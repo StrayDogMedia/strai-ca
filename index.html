@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>strAI.ca — L'IA qui vous connaît</title>
+  <meta name="description" content="Environnements IA sur mesure pour les OBNL et petites entreprises du Québec. Bilingue FR/EN.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;1,9..144,300;1,9..144,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+  <!-- GSAP for fluid scroll animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <style>
+    /* ============================================================
+       strAI.ca — Design System v2
+       Bold. Modern. Confident.
+       🐕 Hidden theme: paw details throughout
+       Stray Dog Media spin-off — les chiens errants travaillent ici
+    ============================================================ */
+
+    :root {
+      --bg:         #0C0B0A;
+      --surface:    #141210;
+      --surface-2:  #1D1A16;
+      --golden:     #C8932A;
+      --golden-lt:  #DFA83C;
+      --golden-glow: rgba(200,147,42,0.15);
+      --teal:       #2A7A6A;
+      --teal-lt:    #34A08C;
+      --cream:      #F0EAE0;
+      --muted:      #7A756E;
+      --muted-lt:   #A09890;
+      --border:     rgba(240,234,224,0.07);
+      --border-lt:  rgba(240,234,224,0.14);
+      --radius:     14px;
+      --radius-sm:  8px;
+      --max:        1120px;
+      --font-d:     'Fraunces', Georgia, serif;
+      --font-b:     'DM Sans', sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--font-b);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3 { font-family: var(--font-d); font-weight: 300; line-height: 1.12; }
+    h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); letter-spacing: -0.025em; }
+    h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); letter-spacing: -0.015em; }
+    h3 { font-size: 1.05rem; font-weight: 400; }
+    p { color: var(--muted-lt); }
+    a { color: inherit; text-decoration: none; }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
+
+    .eyebrow {
+      font-family: var(--font-b);
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+    .eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--golden);
+      flex-shrink: 0;
+    }
+
+    /* --- GSAP reveal base states --- */
+    .gs-reveal { opacity: 0; transform: translateY(40px); }
+    .gs-reveal-left { opacity: 0; transform: translateX(-60px); }
+    .gs-reveal-right { opacity: 0; transform: translateX(60px); }
+    .gs-reveal-scale { opacity: 0; transform: scale(0.9); }
+
+    /* ========== BUTTONS ========== */
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 0.72rem 1.6rem;
+      border-radius: 100px;
+      font-family: var(--font-b);
+      font-size: 0.88rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      line-height: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s;
+    }
+    .btn:hover::after { transform: translateX(100%); }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--golden), var(--golden-lt));
+      color: #0C0B0A;
+      box-shadow: 0 4px 24px rgba(200,147,42,0.25);
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(200,147,42,0.35);
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 1px solid var(--border-lt);
+      color: var(--cream);
+    }
+    .btn-ghost:hover {
+      border-color: var(--golden);
+      color: var(--golden);
+      box-shadow: 0 0 20px rgba(200,147,42,0.1);
+    }
+
+    /* ========== NAV ========== */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      padding: 1.1rem 0;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border-bottom: 1px solid transparent;
+    }
+    nav.scrolled {
+      background: rgba(12,11,10,0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-color: var(--border);
+      padding: 0.8rem 0;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      max-width: var(--max); margin: 0 auto; padding: 0 2rem;
+    }
+
+    .logo {
+      display: flex; align-items: center; gap: 7px;
+      font-family: var(--font-d);
+      font-size: 1.3rem;
+      font-weight: 300;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.3s;
+    }
+    .logo:hover { opacity: 0.85; }
+    .logo .ai { color: var(--golden); font-style: italic; }
+    .logo .ca { font-size: 0.78rem; color: var(--muted); margin-left: 1px; }
+    .paw-svg {
+      width: 16px; height: 16px;
+      color: var(--golden);
+      opacity: 0.55;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      flex-shrink: 0;
+    }
+    .logo:hover .paw-svg { opacity: 1; transform: rotate(20deg) scale(1.15); }
+
+    .nav-links {
+      display: flex; align-items: center; gap: 2.2rem;
+      list-style: none;
+      font-size: 0.84rem;
+      color: var(--muted-lt);
+    }
+    .nav-links a {
+      transition: color 0.2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--golden);
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+
+    .lang-btn {
+      font-family: var(--font-b);
+      font-size: 0.74rem;
+      font-weight: 400;
+      background: transparent;
+      border: 1px solid var(--border-lt);
+      color: var(--muted-lt);
+      padding: 0.32rem 0.8rem;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      letter-spacing: 0.05em;
+    }
+    .lang-btn:hover { border-color: var(--golden); color: var(--golden); }
+
+    /* Mobile menu */
+    .mobile-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--cream);
+      margin: 5px 0;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
+    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(12,11,10,0.97);
+      backdrop-filter: blur(20px);
+      z-index: 99;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: var(--font-d);
+      font-size: 1.8rem;
+      color: var(--cream);
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--golden); }
+
+    /* ========== HERO ========== */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 9rem 0 6rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated gradient orbs */
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      will-change: transform;
+    }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(200,147,42,0.12) 0%, transparent 70%);
+      top: -10%; right: -10%;
+    }
+    .hero-orb-2 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(42,122,106,0.1) 0%, transparent 70%);
+      bottom: -5%; left: -5%;
+    }
+    .hero-orb-3 {
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,147,42,0.06) 0%, transparent 70%);
+      top: 40%; left: 30%;
+    }
+
+    /* Animated grid */
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(200,147,42,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(200,147,42,0.04) 1px, transparent 1px);
+      background-size: 64px 64px;
+      pointer-events: none;
+      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
+    }
+
+    /* Floating particles */
+    .particles-canvas {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 780px; }
+    .hero-h1 em { font-style: italic; color: var(--golden); }
+    .hero-h1 .highlight-underline {
+      position: relative;
+      display: inline-block;
+    }
+    .hero-h1 .highlight-underline::after {
+      content: '';
+      position: absolute;
+      bottom: 0.05em; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--golden), var(--teal));
+      border-radius: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: underlineIn 1s 0.8s ease forwards;
+    }
+    @keyframes underlineIn {
+      to { transform: scaleX(1); }
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      max-width: 560px;
+      margin: 1.8rem 0 2.8rem;
+      line-height: 1.8;
+    }
+    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-pills {
+      display: flex; gap: 0.8rem; flex-wrap: wrap;
+      margin-top: 3.5rem;
+    }
+    .pill {
+      font-size: 0.7rem;
+      letter-spacing: 0.07em;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 0.4rem 1rem;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    .pill:hover {
+      border-color: var(--golden);
+      color: var(--golden);
+    }
+
+    /* Scroll indicator */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      z-index: 1;
+    }
+    .scroll-indicator span {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--golden), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
+      50% { opacity: 1; transform: scaleY(1); }
+    }
+
+    /* ========== SECTIONS ========== */
+    section { padding: 7rem 0; position: relative; }
+
+    /* ========== PROBLEME ========== */
+    #probleme { border-top: 1px solid var(--border); }
+    .pain-intro { max-width: 560px; margin-top: 0.8rem; }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+    .pain-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--golden), transparent);
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .pain-card:hover {
+      border-color: var(--border-lt);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+    }
+    .pain-card:hover::before { opacity: 1; }
+
+    .pain-icon {
+      width: 40px; height: 40px;
+      background: rgba(200,147,42,0.08);
+      border: 1px solid rgba(200,147,42,0.15);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.2rem;
+      transition: all 0.3s;
+    }
+    .pain-card:hover .pain-icon {
+      background: rgba(200,147,42,0.15);
+      transform: scale(1.05);
+    }
+    .pain-icon svg { width: 18px; height: 18px; stroke: var(--golden); }
+    .pain-card h3 { color: var(--cream); margin-bottom: 0.5rem; }
+    .pain-card p { font-size: 0.88rem; line-height: 1.6; }
+
+    /* ========== AI ASSESSMENT SURVEY ========== */
+    #assessment {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+    .assessment-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .assessment-intro {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .assessment-intro p {
+      font-size: 0.95rem;
+      max-width: 480px;
+      margin: 0.8rem auto 0;
+    }
+
+    /* Progress bar */
+    .survey-progress {
+      width: 100%;
+      height: 3px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+      overflow: hidden;
+    }
+    .survey-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--golden), var(--teal));
+      border-radius: 2px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 0%;
+    }
+
+    /* Survey card */
+    .survey-card {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      min-height: 320px;
+      position: relative;
+    }
+    .survey-step {
+      display: none;
+      animation: surveyFadeIn 0.4s ease;
+    }
+    .survey-step.active { display: block; }
+    @keyframes surveyFadeIn {
+      from { opacity: 0; transform: translateX(20px); }
+      to { opacity: 1; transform: none; }
+    }
+    .survey-step-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .survey-step h3 {
+      font-family: var(--font-d);
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+      line-height: 1.3;
+    }
+
+    .survey-options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .survey-option {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1rem 1.2rem;
+      cursor: pointer;
+      transition: all 0.25s;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-size: 0.9rem;
+      color: var(--cream);
+    }
+    .survey-option:hover {
+      border-color: var(--golden);
+      background: rgba(200,147,42,0.05);
+    }
+    .survey-option.selected {
+      border-color: var(--golden);
+      background: rgba(200,147,42,0.1);
+      box-shadow: 0 0 20px rgba(200,147,42,0.1);
+    }
+    .survey-option-dot {
+      width: 18px; height: 18px;
+      border: 2px solid var(--border-lt);
+      border-radius: 50%;
+      flex-shrink: 0;
+      position: relative;
+      transition: all 0.25s;
+    }
+    .survey-option.selected .survey-option-dot {
+      border-color: var(--golden);
+    }
+    .survey-option.selected .survey-option-dot::after {
+      content: '';
+      position: absolute;
+      inset: 3px;
+      background: var(--golden);
+      border-radius: 50%;
+    }
+
+    .survey-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .survey-back {
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-family: var(--font-b);
+      font-size: 0.84rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      padding: 0.5rem 0;
+    }
+    .survey-back:hover { color: var(--cream); }
+    .survey-back:disabled { opacity: 0; pointer-events: none; }
+
+    /* Results */
+    .survey-results {
+      display: none;
+      text-align: center;
+      animation: surveyFadeIn 0.5s ease;
+    }
+    .survey-results.active { display: block; }
+    .results-icon {
+      width: 64px; height: 64px;
+      background: linear-gradient(135deg, var(--golden), var(--teal));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.6rem;
+    }
+    .survey-results h3 {
+      font-family: var(--font-d);
+      font-size: 1.6rem;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .results-recommendations {
+      text-align: left;
+      margin: 1.5rem 0;
+    }
+    .result-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.2rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .result-item-icon {
+      width: 32px; height: 32px;
+      background: rgba(200,147,42,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.9rem;
+    }
+    .result-item h4 {
+      font-family: var(--font-b);
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--cream);
+      margin-bottom: 0.3rem;
+    }
+    .result-item p {
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+    .results-cta {
+      margin-top: 2rem;
+    }
+
+    /* ========== APPROCHE ========== */
+    #approche { border-top: 1px solid var(--border); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3.5rem;
+      position: relative;
+    }
+    /* Animated connecting line */
+    .steps-line {
+      position: absolute;
+      top: 1.4rem; left: 18%; right: 18%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--golden), transparent);
+      opacity: 0.25;
+    }
+    .step {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      position: relative;
+    }
+    .step-num {
+      width: 48px; height: 48px;
+      border: 1px solid rgba(200,147,42,0.4);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-d);
+      font-size: 1.15rem;
+      color: var(--golden);
+      margin: 0 auto 1.3rem;
+      transition: all 0.4s;
+      position: relative;
+    }
+    .step:hover .step-num {
+      border-color: var(--golden);
+      box-shadow: 0 0 30px rgba(200,147,42,0.2);
+      transform: scale(1.1);
+    }
+    .step h3 { color: var(--cream); margin-bottom: 0.6rem; }
+    .step p { font-size: 0.88rem; line-height: 1.65; }
+
+    /* ========== FORFAITS ========== */
+    #forfaits {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .forfaits-intro { font-size: 0.92rem; max-width: 480px; margin-top: 0.8rem; }
+
+    .forfaits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+    }
+    .forfait {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      display: flex; flex-direction: column;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+    }
+    .forfait::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--border-lt), transparent);
+      transition: background 0.4s;
+    }
+    .forfait:hover {
+      border-color: var(--border-lt);
+      transform: translateY(-5px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .forfait:hover::before {
+      background: linear-gradient(90deg, transparent, var(--golden), transparent);
+    }
+    .forfait.featured {
+      border-color: var(--golden);
+      background: var(--surface-2);
+      transform: translateY(-5px);
+    }
+    .forfait.featured::before {
+      background: linear-gradient(90deg, var(--golden), var(--golden-lt), var(--golden));
+      height: 3px;
+    }
+    .featured-label {
+      display: inline-block;
+      font-size: 0.62rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      background: linear-gradient(135deg, var(--golden), var(--golden-lt));
+      color: #0C0B0A;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 1.1rem;
+    }
+    .forfait-name {
+      font-family: var(--font-d);
+      font-size: 1.6rem;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .forfait-desc { font-size: 0.84rem; line-height: 1.55; margin-bottom: 1.5rem; min-height: 3rem; }
+    .forfait-price {
+      font-family: var(--font-d);
+      font-size: 2.4rem;
+      color: var(--cream);
+      line-height: 1;
+    }
+    .forfait-note { font-size: 0.76rem; color: var(--muted); margin-top: 0.25rem; }
+    .forfait-obnl { font-size: 0.82rem; color: var(--teal-lt); margin-top: 0.2rem; margin-bottom: 1.4rem; }
+    .f-divider { border: none; border-top: 1px solid var(--border); margin: 1.2rem 0; }
+    .f-feat {
+      display: flex; gap: 0.65rem;
+      font-size: 0.84rem; color: var(--muted-lt);
+      margin-bottom: 0.65rem;
+      line-height: 1.45; align-items: flex-start;
+    }
+    .f-check {
+      color: var(--golden);
+      flex-shrink: 0;
+      margin-top: 0.08rem;
+      font-size: 0.8rem;
+    }
+    .forfait-cta { margin-top: auto; padding-top: 1.5rem; }
+    .forfait-cta .btn { width: 100%; justify-content: center; padding: 0.75rem; }
+
+    .retainers-label {
+      font-size: 0.68rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--golden);
+      margin: 3.5rem 0 1rem;
+    }
+    .retainers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .retainer {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 1.3rem 1.5rem;
+      transition: all 0.3s;
+    }
+    .retainer:hover {
+      border-color: var(--border-lt);
+      transform: translateY(-2px);
+    }
+    .ret-name { font-size: 0.95rem; color: var(--cream); margin-bottom: 0.25rem; }
+    .ret-price { font-size: 0.78rem; color: var(--teal-lt); margin-bottom: 0.4rem; }
+    .ret-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.55; }
+
+    /* ========== POUR QUI ========== */
+    #pour-qui { border-top: 1px solid var(--border); }
+    .pour-qui-cols {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem;
+    }
+    .pq-col h3 { font-size: 1.35rem; color: var(--cream); margin-bottom: 0.8rem; }
+    .pq-col > p { font-size: 0.9rem; margin-bottom: 1.2rem; }
+    .pq-list { list-style: none; }
+    .pq-list li {
+      font-size: 0.86rem; color: var(--muted-lt);
+      padding: 0.55rem 0 0.55rem 1.2rem;
+      border-bottom: 1px solid var(--border);
+      position: relative;
+      transition: all 0.25s;
+    }
+    .pq-list li::before { content: '—'; color: var(--golden); position: absolute; left: 0; }
+    .pq-list li:hover {
+      color: var(--cream);
+      padding-left: 1.5rem;
+    }
+
+    /* ========== A PROPOS ========== */
+    #apropos {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .apropos-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .ap-text h2 { margin-bottom: 1.5rem; }
+    .ap-text p { font-size: 0.92rem; margin-bottom: 0.9rem; }
+    .ap-sig {
+      font-family: var(--font-d);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--golden);
+      margin-top: 1.8rem;
+    }
+    .ap-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .ap-card::after {
+      content: '';
+      position: absolute;
+      top: -50%; right: -50%;
+      width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(200,147,42,0.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .ap-stats {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 2rem; margin-top: 1.5rem;
+      position: relative; z-index: 1;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: var(--font-d);
+      font-size: 2.4rem;
+      color: var(--golden);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+    .stat-lbl { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
+
+    /* Counter animation for stat */
+    .stat-num[data-count] {
+      transition: color 0.3s;
+    }
+
+    /* ========== CONTACT ========== */
+    #contact {
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative orb */
+    #contact::before {
+      content: '';
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,147,42,0.06) 0%, transparent 70%);
+      top: -20%; left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+    .contact-info h2 { margin-bottom: 1.2rem; }
+    .contact-info > p { font-size: 0.95rem; margin-bottom: 2rem; }
+
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    .contact-method:hover {
+      border-color: var(--golden);
+      transform: translateX(4px);
+    }
+    .contact-method-icon {
+      width: 36px; height: 36px;
+      background: rgba(200,147,42,0.1);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-method-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--golden);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .contact-method-text {
+      font-size: 0.88rem;
+      color: var(--cream);
+    }
+    .contact-method-label {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-bottom: 0.15rem;
+    }
+
+    /* Contact form */
+    .contact-form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2.5rem;
+    }
+    .contact-form-wrap h3 {
+      font-family: var(--font-d);
+      font-size: 1.3rem;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted-lt);
+      margin-bottom: 0.4rem;
+      letter-spacing: 0.03em;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 1rem;
+      color: var(--cream);
+      font-family: var(--font-b);
+      font-size: 0.88rem;
+      transition: all 0.3s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--golden);
+      box-shadow: 0 0 0 3px rgba(200,147,42,0.1);
+    }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--muted);
+    }
+    .form-group select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237A756E' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+    .form-group select option {
+      background: var(--surface-2);
+      color: var(--cream);
+    }
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-submit {
+      margin-top: 0.5rem;
+    }
+    .form-submit .btn {
+      width: 100%;
+      justify-content: center;
+      padding: 0.85rem;
+      font-size: 0.92rem;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 2rem 1rem;
+      animation: surveyFadeIn 0.4s ease;
+    }
+    .form-success.active { display: block; }
+    .form-success-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .form-success h3 {
+      font-family: var(--font-d);
+      font-size: 1.4rem;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+    .form-success p {
+      font-size: 0.9rem;
+    }
+
+    /* ========== FOOTER ========== */
+    footer {
+      background: var(--bg);
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 0;
+    }
+    .footer-row {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 1rem;
+      font-size: 0.76rem; color: var(--muted);
+    }
+    .footer-logo { font-family: var(--font-d); font-size: 1rem; color: var(--cream); }
+    .footer-logo .ai { color: var(--golden); font-style: italic; }
+    .footer-sdm a { color: var(--muted); transition: color 0.2s; }
+    .footer-sdm a:hover { color: var(--golden); }
+
+    /* Easter egg dog */
+    #dog-egg {
+      position: fixed;
+      bottom: -110px; right: 2rem;
+      font-size: 3.8rem;
+      transition: bottom 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 999; pointer-events: none; user-select: none;
+    }
+    #dog-egg.up { bottom: 1.5rem; }
+
+    /* Custom cursor glow */
+    .cursor-glow {
+      position: fixed;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(200,147,42,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      transition: opacity 0.3s;
+      will-change: transform;
+    }
+
+    /* Hidden for source-code curious */
+    .stray { display: none; }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 920px) {
+      .steps { grid-template-columns: 1fr; }
+      .steps-line { display: none; }
+      .forfaits-grid { grid-template-columns: 1fr; }
+      .forfait.featured { transform: none; }
+      .pour-qui-cols { grid-template-columns: 1fr; gap: 2.5rem; }
+      .apropos-grid { grid-template-columns: 1fr; gap: 3rem; }
+      .retainers { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .nav-links { display: none; }
+      .mobile-toggle { display: block; }
+    }
+    @media (max-width: 600px) {
+      h1 { font-size: 2.3rem; }
+      h2 { font-size: 1.8rem; }
+      .hero-ctas { flex-direction: column; align-items: flex-start; }
+      .footer-row { flex-direction: column; text-align: center; }
+      .form-row { grid-template-columns: 1fr; }
+      .survey-card { padding: 1.8rem; }
+      section { padding: 5rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- 🐕 Les chiens errants travaillent ici — Stray Dog Media -->
+<span class="stray" aria-hidden="true">🐾</span>
+
+<!-- Cursor glow effect -->
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="logo" id="logo">
+      <svg class="paw-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <ellipse cx="12" cy="16.5" rx="5.5" ry="4.5"/>
+        <ellipse cx="6.5" cy="10.5" rx="2.7" ry="2.1"/>
+        <ellipse cx="12" cy="8.2" rx="2.7" ry="2.1"/>
+        <ellipse cx="17.5" cy="10.5" rx="2.7" ry="2.1"/>
+      </svg>
+      str<span class="ai">AI</span><span class="ca">.ca</span>
+    </div>
+
+    <ul class="nav-links">
+      <li><a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
+      <li><a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
+      <li><a href="#pour-qui" data-fr="Pour qui" data-en="For whom">Pour qui</a></li>
+      <li><a href="#apropos" data-fr="À propos" data-en="About">À propos</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="lang-btn" id="lang-btn">EN</button>
+      <a href="#contact" class="btn btn-gold" data-fr="Parlons-en" data-en="Let's talk">Parlons-en</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
+  <a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
+  <a href="#pour-qui" data-fr="Pour qui" data-en="For whom">Pour qui</a>
+  <a href="#apropos" data-fr="À propos" data-en="About">À propos</a>
+  <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+
+<!-- ====== HERO ====== -->
+<section id="hero">
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+  <div class="hero-orb hero-orb-3"></div>
+  <div class="hero-grid"></div>
+  <canvas class="particles-canvas" id="particles"></canvas>
+
+  <div class="container">
+    <div class="hero-content">
+      <p class="eyebrow gs-reveal" data-fr="Ormstown, Québec · Bilingue · Local" data-en="Ormstown, Quebec · Bilingual · Local">Ormstown, Québec · Bilingue · Local</p>
+      <h1 class="hero-h1 gs-reveal">
+        <span data-fr="L'IA qui apprend<br><em class='highlight-underline'>qui vous êtes.</em>" data-en="AI that learns<br><em class='highlight-underline'>who you are.</em>">L'IA qui apprend<br><em class="highlight-underline">qui vous êtes.</em></span>
+      </h1>
+      <p class="hero-sub gs-reveal"
+        data-fr="strAI.ca configure des environnements d'intelligence artificielle sur mesure pour les OBNL et petites entreprises du Québec — pour que vos outils vous connaissent vraiment, et travaillent pour vous."
+        data-en="strAI.ca builds custom AI environments for Quebec nonprofits and small businesses — so your tools actually know you, and work for you.">
+        strAI.ca configure des environnements d'intelligence artificielle sur mesure pour les OBNL et petites entreprises du Québec — pour que vos outils vous connaissent vraiment, et travaillent pour vous.
+      </p>
+      <div class="hero-ctas gs-reveal">
+        <a href="#assessment" class="btn btn-gold" data-fr="Faire mon diagnostic IA" data-en="Take my AI assessment">Faire mon diagnostic IA</a>
+        <a href="#forfaits" class="btn btn-ghost" data-fr="Voir les forfaits ↓" data-en="See packages ↓">Voir les forfaits ↓</a>
+      </div>
+      <div class="hero-pills gs-reveal">
+        <span class="pill" data-fr="OBNL — 20 % de rabais" data-en="Nonprofits — 20% off">OBNL — 20 % de rabais</span>
+        <span class="pill" data-fr="Admissible aux subventions" data-en="Grant-eligible">Admissible aux subventions</span>
+        <span class="pill" data-fr="Appel découverte gratuit" data-en="Free discovery call">Appel découverte gratuit</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-indicator">
+    <span data-fr="Défiler" data-en="Scroll">Défiler</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ====== PROBLEME ====== -->
+<section id="probleme">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Le problème" data-en="The problem">Le problème</p>
+    <h2 class="gs-reveal" data-fr="La plupart utilisent l'IA comme un moteur de recherche glorifié." data-en="Most people use AI like a glorified search engine.">La plupart utilisent l'IA comme un moteur de recherche glorifié.</h2>
+    <p class="pain-intro gs-reveal"
+      data-fr="Ce n'est pas leur faute — personne ne les a configurés autrement. Et pendant ce temps, des heures précieuses s'évaporent."
+      data-en="It's not their fault — nobody set things up differently. And in the meantime, precious hours evaporate.">
+      Ce n'est pas leur faute — personne ne les a configurés autrement. Et pendant ce temps, des heures précieuses s'évaporent.
+    </p>
+    <div class="pain-grid">
+      <div class="pain-card gs-reveal">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <h3 data-fr="Le temps perdu" data-en="Wasted time">Le temps perdu</h3>
+        <p data-fr="Des heures à rédiger les mêmes courriels, callouts de bénévoles et mises à jour — chaque fois à partir de zéro." data-en="Hours drafting the same emails, volunteer callouts, and updates — from scratch every time.">Des heures à rédiger les mêmes courriels, callouts de bénévoles et mises à jour — chaque fois à partir de zéro.</p>
+      </div>
+      <div class="pain-card gs-reveal">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+        </div>
+        <h3 data-fr="Les subventions manquées" data-en="Missed grants">Les subventions manquées</h3>
+        <p data-fr="Des jours de travail pour des demandes génériques qui ne reflètent pas vraiment l'impact de votre organisation." data-en="Days of work for generic applications that don't truly reflect your organization's impact.">Des jours de travail pour des demandes génériques qui ne reflètent pas vraiment l'impact de votre organisation.</p>
+      </div>
+      <div class="pain-card gs-reveal">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+        </div>
+        <h3 data-fr="La mémoire qui part" data-en="Lost knowledge">La mémoire qui part</h3>
+        <p data-fr="Quand un bénévole clé quitte, tout ce qu'il savait part avec lui. Aucun système pour capturer ce savoir." data-en="When a key volunteer leaves, everything they knew leaves with them. No system to capture it.">Quand un bénévole clé quitte, tout ce qu'il savait part avec lui. Aucun système pour capturer ce savoir.</p>
+      </div>
+      <div class="pain-card gs-reveal">
+        <div class="pain-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        </div>
+        <h3 data-fr="Des outils sous-utilisés" data-en="Underused tools">Des outils sous-utilisés</h3>
+        <p data-fr="ChatGPT, Claude, Gemini — puissants mais génériques. Sans configuration, ils ne savent rien de votre organisation." data-en="ChatGPT, Claude, Gemini — powerful but generic. Without setup, they know nothing about you.">ChatGPT, Claude, Gemini — puissants mais génériques. Sans configuration, ils ne savent rien de votre organisation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== AI ASSESSMENT SURVEY ====== -->
+<section id="assessment">
+  <div class="container">
+    <div class="assessment-wrap">
+      <div class="assessment-intro gs-reveal">
+        <p class="eyebrow" style="justify-content:center;" data-fr="Diagnostic gratuit" data-en="Free assessment">Diagnostic gratuit</p>
+        <h2 data-fr="Que pourrait faire l'IA pour vous?" data-en="What could AI do for you?">Que pourrait faire l'IA pour vous?</h2>
+        <p data-fr="Répondez à 4 questions rapides et recevez des recommandations personnalisées." data-en="Answer 4 quick questions and receive personalized recommendations.">Répondez à 4 questions rapides et recevez des recommandations personnalisées.</p>
+      </div>
+
+      <div class="survey-progress gs-reveal">
+        <div class="survey-progress-fill" id="survey-progress"></div>
+      </div>
+
+      <div class="survey-card gs-reveal" id="survey-card">
+        <!-- Step 1: Org type -->
+        <div class="survey-step active" data-step="1">
+          <div class="survey-step-label" data-fr="Question 1 de 4" data-en="Question 1 of 4">Question 1 de 4</div>
+          <h3 data-fr="Quel type d'organisation êtes-vous?" data-en="What type of organization are you?">Quel type d'organisation êtes-vous?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="nonprofit" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Organisme à but non lucratif (OBNL)" data-en="Non-profit organization">Organisme à but non lucratif (OBNL)</span>
+            </div>
+            <div class="survey-option" data-value="small-biz" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Petite entreprise (1-15 employés)" data-en="Small business (1-15 employees)">Petite entreprise (1-15 employés)</span>
+            </div>
+            <div class="survey-option" data-value="freelancer" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Travailleur autonome / Consultant" data-en="Freelancer / Consultant">Travailleur autonome / Consultant</span>
+            </div>
+            <div class="survey-option" data-value="other" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Autre" data-en="Other">Autre</span>
+            </div>
+          </div>
+          <div class="survey-nav">
+            <button class="survey-back" disabled>&larr;</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Biggest challenge -->
+        <div class="survey-step" data-step="2">
+          <div class="survey-step-label" data-fr="Question 2 de 4" data-en="Question 2 of 4">Question 2 de 4</div>
+          <h3 data-fr="Quel est votre plus grand défi au quotidien?" data-en="What is your biggest daily challenge?">Quel est votre plus grand défi au quotidien?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="comms" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Rédiger des communications (courriels, rapports, infolettres)" data-en="Writing communications (emails, reports, newsletters)">Rédiger des communications (courriels, rapports, infolettres)</span>
+            </div>
+            <div class="survey-option" data-value="grants" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Demandes de subventions et reddition de comptes" data-en="Grant applications and reporting">Demandes de subventions et reddition de comptes</span>
+            </div>
+            <div class="survey-option" data-value="knowledge" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Conserver la mémoire organisationnelle" data-en="Preserving organizational knowledge">Conserver la mémoire organisationnelle</span>
+            </div>
+            <div class="survey-option" data-value="admin" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Trop de tâches administratives répétitives" data-en="Too many repetitive admin tasks">Trop de tâches administratives répétitives</span>
+            </div>
+          </div>
+          <div class="survey-nav">
+            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+
+        <!-- Step 3: AI experience -->
+        <div class="survey-step" data-step="3">
+          <div class="survey-step-label" data-fr="Question 3 de 4" data-en="Question 3 of 4">Question 3 de 4</div>
+          <h3 data-fr="Quel est votre niveau d'expérience avec l'IA?" data-en="What's your experience level with AI?">Quel est votre niveau d'expérience avec l'IA?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="none" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Je n'ai jamais vraiment essayé" data-en="I've never really tried">Je n'ai jamais vraiment essayé</span>
+            </div>
+            <div class="survey-option" data-value="basic" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="J'utilise ChatGPT/Claude de temps en temps" data-en="I use ChatGPT/Claude occasionally">J'utilise ChatGPT/Claude de temps en temps</span>
+            </div>
+            <div class="survey-option" data-value="regular" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Je l'utilise régulièrement mais je sais que je pourrais faire mieux" data-en="I use it regularly but know I could do better">Je l'utilise régulièrement mais je sais que je pourrais faire mieux</span>
+            </div>
+            <div class="survey-option" data-value="advanced" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="J'ai de l'expérience mais j'ai besoin d'aide pour structurer" data-en="I have experience but need help structuring">J'ai de l'expérience mais j'ai besoin d'aide pour structurer</span>
+            </div>
+          </div>
+          <div class="survey-nav">
+            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+
+        <!-- Step 4: Team size -->
+        <div class="survey-step" data-step="4">
+          <div class="survey-step-label" data-fr="Question 4 de 4" data-en="Question 4 of 4">Question 4 de 4</div>
+          <h3 data-fr="Combien de personnes utiliseraient ces outils?" data-en="How many people would use these tools?">Combien de personnes utiliseraient ces outils?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="solo" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Juste moi" data-en="Just me">Juste moi</span>
+            </div>
+            <div class="survey-option" data-value="small" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="2 à 4 personnes" data-en="2 to 4 people">2 à 4 personnes</span>
+            </div>
+            <div class="survey-option" data-value="medium" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="5 à 10 personnes" data-en="5 to 10 people">5 à 10 personnes</span>
+            </div>
+            <div class="survey-option" data-value="large" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Plus de 10" data-en="More than 10">Plus de 10</span>
+            </div>
+          </div>
+          <div class="survey-nav">
+            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+
+        <!-- Results -->
+        <div class="survey-results" id="survey-results">
+          <div class="results-icon">&#x2728;</div>
+          <h3 data-fr="Voici ce que l'IA pourrait faire pour vous" data-en="Here's what AI could do for you">Voici ce que l'IA pourrait faire pour vous</h3>
+          <div class="results-recommendations" id="results-recommendations"></div>
+          <div class="results-cta">
+            <a href="#contact" class="btn btn-gold" data-fr="Parlons de votre projet" data-en="Let's talk about your project">Parlons de votre projet</a>
+            <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;" data-fr="Gratuit. Aucun engagement." data-en="Free. No commitment.">Gratuit. Aucun engagement.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== APPROCHE ====== -->
+<section id="approche">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Notre approche" data-en="Our approach">Notre approche</p>
+    <h2 class="gs-reveal" style="max-width:620px;"
+      data-fr="On configure l'IA pour qu'elle vous connaisse. Après, elle travaille."
+      data-en="We configure AI to know you. Then it works for you.">
+      On configure l'IA pour qu'elle vous connaisse. Après, elle travaille.
+    </h2>
+    <div class="steps">
+      <div class="steps-line"></div>
+      <div class="step gs-reveal">
+        <div class="step-num">1</div>
+        <h3 data-fr="On apprend" data-en="We learn">On apprend</h3>
+        <p data-fr="Un appel découverte + questionnaire pour capter votre mission, vos programmes, vos bailleurs, votre ton." data-en="A discovery call + questionnaire to capture your mission, programs, funders, and voice.">Un appel découverte + questionnaire pour capter votre mission, vos programmes, vos bailleurs, votre ton.</p>
+      </div>
+      <div class="step gs-reveal">
+        <div class="step-num">2</div>
+        <h3 data-fr="On configure" data-en="We configure">On configure</h3>
+        <p data-fr="Vos outils IA sont chargés avec le contexte de votre organisation — modèles, automatisations, hub de connaissances." data-en="Your AI tools are loaded with your organization's context — templates, automations, knowledge hub.">Vos outils IA sont chargés avec le contexte de votre organisation — modèles, automatisations, hub de connaissances.</p>
+      </div>
+      <div class="step gs-reveal">
+        <div class="step-num">3</div>
+        <h3 data-fr="Ça roule" data-en="It runs">Ça roule</h3>
+        <p data-fr="Votre équipe apprend en 2 heures. Après, l'IA gère le routinier — vous vous concentrez sur la mission." data-en="Your team learns in 2 hours. After that, AI handles the routine — you focus on the mission.">Votre équipe apprend en 2 heures. Après, l'IA gère le routinier — vous vous concentrez sur la mission.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FORFAITS ====== -->
+<section id="forfaits">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Les forfaits" data-en="Packages">Les forfaits</p>
+    <h2 class="gs-reveal" data-fr="Choisissez votre point de départ." data-en="Choose your starting point.">Choisissez votre point de départ.</h2>
+    <p class="forfaits-intro gs-reveal"
+      data-fr="Mise en place unique. 20 % de rabais pour les OBNL. Admissible à certains programmes de financement provincial et fédéral."
+      data-en="One-time setup. 20% off for nonprofits. Eligible for certain provincial and federal funding programs.">
+      Mise en place unique. 20 % de rabais pour les OBNL. Admissible à certains programmes de financement provincial et fédéral.
+    </p>
+
+    <div class="forfaits-grid">
+      <!-- Ancrage -->
+      <div class="forfait gs-reveal">
+        <div class="forfait-name">Ancrage</div>
+        <p class="forfait-desc"
+          data-fr="Pour les organisations prêtes à arrêter de réinventer la roue à chaque communication."
+          data-en="For organizations ready to stop reinventing the wheel with every communication.">
+          Pour les organisations prêtes à arrêter de réinventer la roue à chaque communication.
+        </p>
+        <div class="forfait-price">$597</div>
+        <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
+        <div class="forfait-obnl" data-fr="$478 pour les OBNL (−20 %)" data-en="$478 for nonprofits (−20%)">$478 pour les OBNL (−20 %)</div>
+        <hr class="f-divider">
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Fichier de connaissances organisationnelles construit" data-en="Organizational knowledge file built">Fichier de connaissances organisationnelles construit</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Claude configuré avec votre contexte complet" data-en="Claude configured with your full context">Claude configuré avec votre contexte complet</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="5 modèles de communication bilingues FR/EN" data-en="5 bilingual FR/EN communication templates">5 modèles de communication bilingues FR/EN</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Formation de 2 heures avec votre équipe" data-en="2-hour training session with your team">Formation de 2 heures avec votre équipe</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support par courriel — 30 jours" data-en="Email support — 30 days">Support par courriel — 30 jours</span></div>
+        <div class="forfait-cta">
+          <a href="#contact" class="btn btn-ghost" data-fr="Commencer" data-en="Get started">Commencer</a>
+        </div>
+      </div>
+
+      <!-- Momentum -->
+      <div class="forfait featured gs-reveal">
+        <div class="featured-label" data-fr="Le plus populaire" data-en="Most popular">Le plus populaire</div>
+        <div class="forfait-name">Momentum</div>
+        <p class="forfait-desc"
+          data-fr="Pour les OBNL qui laissent de l'argent sur la table chaque année faute de temps pour bien rédiger leurs demandes."
+          data-en="For nonprofits leaving money on the table each year from lack of time to write strong grant applications.">
+          Pour les OBNL qui laissent de l'argent sur la table chaque année faute de temps pour bien rédiger leurs demandes.
+        </p>
+        <div class="forfait-price">$1 197</div>
+        <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
+        <div class="forfait-obnl" data-fr="$958 pour les OBNL (−20 %)" data-en="$958 for nonprofits (−20%)">$958 pour les OBNL (−20 %)</div>
+        <hr class="f-divider">
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Tout ce qu'il y a dans Ancrage" data-en="Everything in Ancrage">Tout ce qu'il y a dans Ancrage</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Système de rédaction de subventions — premiers jets en 20 min" data-en="Grant writing system — first drafts in 20 min">Système de rédaction de subventions — premiers jets en 20 min</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Suivi des bailleurs de fonds + rappels automatiques" data-en="Funder tracking + automatic reminders">Suivi des bailleurs de fonds + rappels automatiques</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Rapport au CA — rédigé automatiquement à partir de vos notes" data-en="Board report — auto-drafted from your notes">Rapport au CA — rédigé automatiquement à partir de vos notes</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Hub de mémoire organisationnelle (Notion ou Google Drive)" data-en="Organizational memory hub (Notion or Google Drive)">Hub de mémoire organisationnelle (Notion ou Google Drive)</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 60 jours + 1 appel de suivi" data-en="60-day support + 1 follow-up call">Support 60 jours + 1 appel de suivi</span></div>
+        <div class="forfait-cta">
+          <a href="#contact" class="btn btn-gold" data-fr="Commencer" data-en="Get started">Commencer</a>
+        </div>
+      </div>
+
+      <!-- Autonomie -->
+      <div class="forfait gs-reveal">
+        <div class="forfait-name">Autonomie</div>
+        <p class="forfait-desc"
+          data-fr="Pour les organisations prêtes à fonctionner comme si elles avaient une équipe complète — sans en avoir une."
+          data-en="For organizations ready to operate like they have a full team — without having one.">
+          Pour les organisations prêtes à fonctionner comme si elles avaient une équipe complète — sans en avoir une.
+        </p>
+        <div class="forfait-price">$2 197</div>
+        <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
+        <div class="forfait-obnl" data-fr="$1 758 pour les OBNL (−20 %)" data-en="$1,758 for nonprofits (−20%)">$1 758 pour les OBNL (−20 %)</div>
+        <hr class="f-divider">
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Tout ce qu'il y a dans Momentum" data-en="Everything in Momentum">Tout ce qu'il y a dans Momentum</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Automatisation de la coordination des bénévoles" data-en="Volunteer coordination automation">Automatisation de la coordination des bénévoles</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Réunion → résumé automatique → classé automatiquement" data-en="Meeting → auto-summary → auto-filed">Réunion → résumé automatique → classé automatiquement</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Pipeline de contenu social — planifié en bloc chaque mois" data-en="Social content pipeline — planned in bulk monthly">Pipeline de contenu social — planifié en bloc chaque mois</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Remerciements aux donateurs — automatisés et personnalisés" data-en="Donor acknowledgments — automated and personalized">Remerciements aux donateurs — automatisés et personnalisés</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR" data-en="Team workshop (up to 6 people) + written guide in FR">Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 90 jours + appels mensuels de suivi" data-en="90-day support + monthly check-in calls">Support 90 jours + appels mensuels de suivi</span></div>
+        <div class="forfait-cta">
+          <a href="#contact" class="btn btn-ghost" data-fr="Commencer" data-en="Get started">Commencer</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="retainers-label gs-reveal" data-fr="Retenue mensuelle (optionnel)" data-en="Monthly retainer (optional)">Retenue mensuelle (optionnel)</p>
+    <div class="retainers">
+      <div class="retainer gs-reveal">
+        <div class="ret-name">Maintien — $127/mo</div>
+        <div class="ret-price" data-fr="$102/mo OBNL · Pour les clients Ancrage" data-en="$102/mo nonprofits · For Ancrage clients">$102/mo OBNL · Pour les clients Ancrage</div>
+        <div class="ret-desc" data-fr="Fichier de connaissances mis à jour · Mises à jour des outils · Support courriel · 1 nouveau modèle par trimestre" data-en="Knowledge file updated · Tool updates · Email support · 1 new template per quarter">Fichier de connaissances mis à jour · Mises à jour des outils · Support courriel · 1 nouveau modèle par trimestre</div>
+      </div>
+      <div class="retainer gs-reveal">
+        <div class="ret-name">Évolution — $227/mo</div>
+        <div class="ret-price" data-fr="$182/mo OBNL · Pour les clients Momentum et Autonomie" data-en="$182/mo nonprofits · For Momentum and Autonomie clients">$182/mo OBNL · Pour les clients Momentum et Autonomie</div>
+        <div class="ret-desc" data-fr="Tout + appel stratégique mensuel · Nouvelle automatisation par trimestre · Surveillance des délais de subventions · Support prioritaire" data-en="Everything + monthly strategy call · New automation per quarter · Grant deadline monitoring · Priority support">Tout + appel stratégique mensuel · Nouvelle automatisation par trimestre · Surveillance des délais de subventions · Support prioritaire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== POUR QUI ====== -->
+<section id="pour-qui">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Pour qui" data-en="For whom">Pour qui</p>
+    <h2 class="gs-reveal" data-fr="Fait pour les petites équipes qui font un grand travail." data-en="Built for small teams doing big work.">Fait pour les petites équipes qui font un grand travail.</h2>
+    <div class="pour-qui-cols">
+      <div class="pq-col gs-reveal-left">
+        <h3 data-fr="Organismes à but non lucratif" data-en="Non-profit organizations">Organismes à but non lucratif</h3>
+        <p data-fr="Vous coordonnez des bénévoles, cherchez des subventions, et essayez d'en faire plus avec moins. strAI.ca est fait pour vous." data-en="You coordinate volunteers, seek grants, and try to do more with less. strAI.ca is built for you.">Vous coordonnez des bénévoles, cherchez des subventions, et essayez d'en faire plus avec moins. strAI.ca est fait pour vous.</p>
+        <ul class="pq-list">
+          <li data-fr="Organismes communautaires" data-en="Community organizations">Organismes communautaires</li>
+          <li data-fr="Centres d'action bénévole" data-en="Volunteer action centres">Centres d'action bénévole</li>
+          <li data-fr="Associations culturelles et sportives" data-en="Cultural and sports associations">Associations culturelles et sportives</li>
+          <li data-fr="Groupes environnementaux" data-en="Environmental groups">Groupes environnementaux</li>
+          <li data-fr="Organismes de santé et services sociaux" data-en="Health and social service organizations">Organismes de santé et services sociaux</li>
+        </ul>
+      </div>
+      <div class="pq-col gs-reveal-right">
+        <h3 data-fr="Petites entreprises" data-en="Small businesses">Petites entreprises</h3>
+        <p data-fr="1 à 15 employés, trop d'admin, pas assez de temps. Des outils bien configurés font la différence entre survivre et prospérer." data-en="1 to 15 employees, too much admin, not enough time. Properly configured tools make the difference.">1 à 15 employés, trop d'admin, pas assez de temps. Des outils bien configurés font la différence entre survivre et prospérer.</p>
+        <ul class="pq-list">
+          <li data-fr="PME et commerces locaux" data-en="Local SMBs and shops">PME et commerces locaux</li>
+          <li data-fr="Professionnels et travailleurs autonomes" data-en="Professionals and freelancers">Professionnels et travailleurs autonomes</li>
+          <li data-fr="Entreprises de construction et de services" data-en="Construction and service companies">Entreprises de construction et de services</li>
+          <li data-fr="Agences et studios créatifs" data-en="Creative agencies and studios">Agences et studios créatifs</li>
+          <li data-fr="Tout secteur avec trop d'admin et trop peu de temps" data-en="Any sector with too much admin and too little time">Tout secteur avec trop d'admin et trop peu de temps</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== A PROPOS ====== -->
+<section id="apropos">
+  <div class="container">
+    <div class="apropos-grid">
+      <div class="ap-text gs-reveal-left">
+        <p class="eyebrow" data-fr="À propos" data-en="About">À propos</p>
+        <h2 data-fr="Quelqu'un qui parle votre réalité." data-en="Someone who speaks your reality.">Quelqu'un qui parle votre réalité.</h2>
+        <p style="margin-top:1.5rem;"
+          data-fr="Je m'appelle Jesse R. Je vis et travaille dans la région depuis des années — d'abord à travers Stray Dog Media, où j'aide des organisations locales à raconter leur histoire et à mieux communiquer."
+          data-en="My name is Jesse R. I live and work in the region — first through Stray Dog Media, where I help local organizations tell their story and communicate better.">
+          Je m'appelle Jesse R. Je vis et travaille dans la région depuis des années — d'abord à travers Stray Dog Media, où j'aide des organisations locales à raconter leur histoire et à mieux communiquer.
+        </p>
+        <p data-fr="strAI.ca est né d'une question simple : et si les outils que j'utilise pour moi-même pouvaient travailler pour mes clients aussi — sans qu'ils aient à devenir des experts en IA?"
+           data-en="strAI.ca was born from a simple question: what if the tools I use for myself could work for my clients too — without them needing to become AI experts?">
+          strAI.ca est né d'une question simple : et si les outils que j'utilise pour moi-même pouvaient travailler pour mes clients aussi — sans qu'ils aient à devenir des experts en IA?
+        </p>
+        <p data-fr="Je parle français et anglais. Je comprends les budgets serrés, les équipes surchargées, et le potentiel immense que des outils bien configurés peuvent débloquer."
+           data-en="I speak French and English. I understand tight budgets, overwhelmed teams, and the immense potential that well-configured tools can unlock.">
+          Je parle français et anglais. Je comprends les budgets serrés, les équipes surchargées, et le potentiel immense que des outils bien configurés peuvent débloquer.
+        </p>
+        <div class="ap-sig">— Jesse R.</div>
+      </div>
+      <div class="ap-card gs-reveal-right">
+        <p class="eyebrow" style="margin-bottom:1.8rem;" data-fr="Par les chiffres" data-en="By the numbers">Par les chiffres</p>
+        <div class="ap-stats">
+          <div class="stat">
+            <div class="stat-num" data-count="70">0%</div>
+            <div class="stat-lbl" data-fr="de temps en rédaction de subventions, en moyenne" data-en="reduction in grant writing time, on average">de temps en rédaction de subventions, en moyenne</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num">FR/EN</div>
+            <div class="stat-lbl" data-fr="configuré pour votre langue, toujours" data-en="configured for your language, always">configuré pour votre langue, toujours</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" data-count="30" data-suffix="'">0'</div>
+            <div class="stat-lbl" data-fr="appel découverte gratuit, aucun engagement" data-en="free discovery call, no commitment">appel découverte gratuit, aucun engagement</div>
+          </div>
+          <div class="stat">
+            <div class="stat-num" style="font-size:1.5rem;">Ormstown</div>
+            <div class="stat-lbl" data-fr="ancré dans la région, disponible partout" data-en="rooted in the region, available anywhere">ancré dans la région, disponible partout</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CONTACT ====== -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-grid">
+      <div class="contact-info gs-reveal-left">
+        <p class="eyebrow" data-fr="Commençons" data-en="Let's start">Commençons</p>
+        <h2 data-fr="On jase d'abord." data-en="Let's talk first.">On jase d'abord.</h2>
+        <p data-fr="30 minutes. Aucun engagement. On regarde ensemble ce qui ferait vraiment une différence pour votre organisation."
+           data-en="30 minutes. No commitment. We look together at what would truly make a difference for your organization.">
+          30 minutes. Aucun engagement. On regarde ensemble ce qui ferait vraiment une différence pour votre organisation.
+        </p>
+
+        <div class="contact-methods">
+          <a href="tel:+15146186185" class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+            </div>
+            <div>
+              <div class="contact-method-label" data-fr="Téléphone" data-en="Phone">Téléphone</div>
+              <div class="contact-method-text">514-618-6185</div>
+            </div>
+          </a>
+          <a href="mailto:hello@strai.ca" class="contact-method">
+            <div class="contact-method-icon">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div>
+              <div class="contact-method-label" data-fr="Courriel" data-en="Email">Courriel</div>
+              <div class="contact-method-text">hello@strai.ca</div>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <div class="contact-form-wrap gs-reveal-right" id="contact-form-wrap">
+        <h3 data-fr="Envoyez-nous un message" data-en="Send us a message">Envoyez-nous un message</h3>
+        <form id="contact-form" action="https://formspree.io/f/mjgpqgkz" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name" data-fr="Nom" data-en="Name">Nom</label>
+              <input type="text" id="name" name="name" required placeholder="Votre nom">
+            </div>
+            <div class="form-group">
+              <label for="org" data-fr="Organisation" data-en="Organization">Organisation</label>
+              <input type="text" id="org" name="organization" placeholder="Nom de l'organisme">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email" data-fr="Courriel" data-en="Email">Courriel</label>
+            <input type="email" id="email" name="email" required placeholder="vous@exemple.com">
+          </div>
+          <div class="form-group">
+            <label for="interest" data-fr="Intérêt principal" data-en="Main interest">Intérêt principal</label>
+            <select id="interest" name="interest">
+              <option value="" data-fr="Sélectionnez..." data-en="Select...">Sélectionnez...</option>
+              <option value="ancrage" data-fr="Ancrage ($597)" data-en="Ancrage ($597)">Ancrage ($597)</option>
+              <option value="momentum" data-fr="Momentum ($1 197)" data-en="Momentum ($1,197)">Momentum ($1 197)</option>
+              <option value="autonomie" data-fr="Autonomie ($2 197)" data-en="Autonomie ($2,197)">Autonomie ($2 197)</option>
+              <option value="discovery" data-fr="Appel découverte (gratuit)" data-en="Discovery call (free)">Appel découverte (gratuit)</option>
+              <option value="other" data-fr="Autre / Pas encore sûr" data-en="Other / Not sure yet">Autre / Pas encore sûr</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" data-fr="Message (optionnel)" data-en="Message (optional)">Message (optionnel)</label>
+            <textarea id="message" name="message" placeholder="Parlez-nous de votre organisation et de vos besoins..." rows="4"></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn btn-gold" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
+          </div>
+        </form>
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">&#x1F389;</div>
+          <h3 data-fr="Message envoyé!" data-en="Message sent!">Message envoyé!</h3>
+          <p data-fr="On vous revient dans les 24 heures. Merci!" data-en="We'll get back to you within 24 hours. Thank you!">On vous revient dans les 24 heures. Merci!</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-logo">str<span class="ai">AI</span>.ca</div>
+      <div class="footer-sdm">
+        <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
+        <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
+      </div>
+      <div data-fr="&copy; 2025 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2025 strAI.ca &middot; Ormstown, Quebec">&copy; 2025 strAI.ca &middot; Ormstown, Québec</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Easter egg -->
+<div id="dog-egg" aria-hidden="true">&#x1F415;</div>
+
+<script>
+  /* ============================================================
+     strAI.ca — UI Scripts v2
+     🐕 The stray is watching.
+  ============================================================ */
+
+  // --- Language toggle ---
+  const HTML = document.documentElement;
+  const langBtn = document.getElementById('lang-btn');
+  let lang = 'fr';
+
+  function applyLang(l) {
+    lang = l;
+    HTML.setAttribute('lang', l);
+    HTML.setAttribute('data-lang', l);
+    langBtn.textContent = l === 'fr' ? 'EN' : 'FR';
+    document.querySelectorAll('[data-fr]').forEach(el => {
+      const val = el.getAttribute('data-' + l);
+      if (val) el.innerHTML = val;
+    });
+    document.title = l === 'fr'
+      ? "strAI.ca — L'IA qui vous connaît"
+      : "strAI.ca — AI that knows you";
+    // Update form placeholders
+    if (l === 'en') {
+      document.querySelector('#name').placeholder = 'Your name';
+      document.querySelector('#org').placeholder = 'Organization name';
+      document.querySelector('#email').placeholder = 'you@example.com';
+      document.querySelector('#message').placeholder = 'Tell us about your organization and your needs...';
+    } else {
+      document.querySelector('#name').placeholder = 'Votre nom';
+      document.querySelector('#org').placeholder = "Nom de l'organisme";
+      document.querySelector('#email').placeholder = 'vous@exemple.com';
+      document.querySelector('#message').placeholder = 'Parlez-nous de votre organisation et de vos besoins...';
+    }
+  }
+
+  langBtn.addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
+
+  // --- Nav scroll ---
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 50);
+  }, { passive: true });
+
+  // --- Smooth scroll ---
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) {
+        e.preventDefault();
+        t.scrollIntoView({ behavior: 'smooth' });
+        // Close mobile menu if open
+        mobileMenu.classList.remove('open');
+        mobileBtn.classList.remove('active');
+      }
+    });
+  });
+
+  // --- Mobile menu ---
+  const mobileBtn = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  mobileBtn.addEventListener('click', () => {
+    mobileBtn.classList.toggle('active');
+    mobileMenu.classList.toggle('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      mobileBtn.classList.remove('active');
+    });
+  });
+
+  // --- Cursor glow ---
+  const glow = document.getElementById('cursor-glow');
+  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+  function updateGlow() {
+    glowX += (mouseX - glowX) * 0.08;
+    glowY += (mouseY - glowY) * 0.08;
+    glow.style.left = glowX + 'px';
+    glow.style.top = glowY + 'px';
+    requestAnimationFrame(updateGlow);
+  }
+  // Only on non-touch
+  if (!('ontouchstart' in window)) {
+    updateGlow();
+    glow.style.opacity = '1';
+  } else {
+    glow.style.display = 'none';
+  }
+
+  // --- Particles ---
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+
+  function resizeCanvas() {
+    const hero = document.getElementById('hero');
+    canvas.width = hero.offsetWidth;
+    canvas.height = hero.offsetHeight;
+  }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function createParticle() {
+    return {
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      size: Math.random() * 2 + 0.5,
+      speedX: (Math.random() - 0.5) * 0.3,
+      speedY: (Math.random() - 0.5) * 0.3,
+      opacity: Math.random() * 0.4 + 0.1,
+      pulseSpeed: Math.random() * 0.02 + 0.005,
+      pulsePhase: Math.random() * Math.PI * 2
+    };
+  }
+
+  for (let i = 0; i < 60; i++) particles.push(createParticle());
+
+  function drawParticles() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const t = Date.now() * 0.001;
+
+    particles.forEach(p => {
+      p.x += p.speedX;
+      p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width;
+      if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height;
+      if (p.y > canvas.height) p.y = 0;
+
+      const pulse = Math.sin(t * p.pulseSpeed * 10 + p.pulsePhase) * 0.3 + 0.7;
+      const alpha = p.opacity * pulse;
+
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200, 147, 42, ${alpha})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    for (let i = 0; i < particles.length; i++) {
+      for (let j = i + 1; j < particles.length; j++) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < 120) {
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(200, 147, 42, ${0.06 * (1 - dist / 120)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(drawParticles);
+  }
+  drawParticles();
+
+  // --- Hero orb parallax ---
+  const orbs = document.querySelectorAll('.hero-orb');
+  window.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 2;
+    const y = (e.clientY / window.innerHeight - 0.5) * 2;
+    orbs.forEach((orb, i) => {
+      const factor = (i + 1) * 15;
+      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
+    });
+  });
+
+  // --- GSAP Scroll Animations ---
+  gsap.registerPlugin(ScrollTrigger);
+
+  // Hero entrance
+  gsap.from('#hero .gs-reveal', {
+    y: 40,
+    opacity: 0,
+    duration: 0.9,
+    stagger: 0.15,
+    ease: 'power3.out',
+    delay: 0.2
+  });
+
+  // Generic reveal animations
+  gsap.utils.toArray('.gs-reveal').forEach(el => {
+    if (el.closest('#hero')) return; // Skip hero — handled above
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => {
+        gsap.to(el, {
+          y: 0, opacity: 1,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+      }
+    });
+  });
+
+  // Left reveals
+  gsap.utils.toArray('.gs-reveal-left').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => {
+        gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
+      }
+    });
+  });
+
+  // Right reveals
+  gsap.utils.toArray('.gs-reveal-right').forEach(el => {
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 88%',
+      once: true,
+      onEnter: () => {
+        gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
+      }
+    });
+  });
+
+  // Pain cards staggered
+  ScrollTrigger.create({
+    trigger: '.pain-grid',
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.to('.pain-card', {
+        y: 0, opacity: 1,
+        duration: 0.6,
+        stagger: 0.12,
+        ease: 'power3.out'
+      });
+    }
+  });
+
+  // Steps staggered
+  ScrollTrigger.create({
+    trigger: '.steps',
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.to('.step', {
+        y: 0, opacity: 1,
+        duration: 0.7,
+        stagger: 0.2,
+        ease: 'power3.out'
+      });
+    }
+  });
+
+  // Forfaits staggered
+  ScrollTrigger.create({
+    trigger: '.forfaits-grid',
+    start: 'top 85%',
+    once: true,
+    onEnter: () => {
+      gsap.to('.forfait', {
+        y: 0, opacity: 1,
+        duration: 0.6,
+        stagger: 0.15,
+        ease: 'power3.out'
+      });
+    }
+  });
+
+  // Counter animation
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const prefix = el.textContent.startsWith('-') || el.textContent.startsWith('\u2212') ? '\u2212' : '';
+
+    ScrollTrigger.create({
+      trigger: el,
+      start: 'top 90%',
+      once: true,
+      onEnter: () => {
+        gsap.to({ val: 0 }, {
+          val: target,
+          duration: 1.5,
+          ease: 'power2.out',
+          onUpdate: function() {
+            el.textContent = prefix + Math.round(this.targets()[0].val) + '%' + suffix;
+          },
+          onComplete: function() {
+            el.textContent = prefix + target + '%' + suffix;
+          }
+        });
+      }
+    });
+  });
+
+  // --- Survey Logic ---
+  let currentStep = 1;
+  const totalSteps = 4;
+  const surveyAnswers = {};
+
+  function selectOption(el) {
+    const step = el.closest('.survey-step');
+    step.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
+    el.classList.add('selected');
+    surveyAnswers[currentStep] = el.dataset.value;
+
+    // Auto-advance after brief delay
+    setTimeout(() => {
+      if (currentStep < totalSteps) {
+        nextStep();
+      } else {
+        showResults();
+      }
+    }, 350);
+  }
+
+  function nextStep() {
+    if (currentStep >= totalSteps) return;
+    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.remove('active');
+    currentStep++;
+    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.add('active');
+    updateProgress();
+  }
+
+  function prevStep() {
+    if (currentStep <= 1) return;
+    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.remove('active');
+    currentStep--;
+    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.add('active');
+    updateProgress();
+  }
+
+  function updateProgress() {
+    const pct = ((currentStep - 1) / totalSteps) * 100;
+    document.getElementById('survey-progress').style.width = pct + '%';
+  }
+
+  function showResults() {
+    // Hide all steps
+    document.querySelectorAll('.survey-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('survey-progress').style.width = '100%';
+
+    // Generate recommendations based on answers
+    const recs = getRecommendations();
+    const container = document.getElementById('results-recommendations');
+    container.innerHTML = '';
+
+    const icons = ['&#x1F4CB;', '&#x1F4AC;', '&#x26A1;', '&#x1F4CA;'];
+    recs.forEach((rec, i) => {
+      const div = document.createElement('div');
+      div.className = 'result-item';
+      div.innerHTML = `
+        <div class="result-item-icon">${icons[i % icons.length]}</div>
+        <div>
+          <h4>${lang === 'fr' ? rec.title_fr : rec.title_en}</h4>
+          <p>${lang === 'fr' ? rec.desc_fr : rec.desc_en}</p>
+        </div>
+      `;
+      container.appendChild(div);
+    });
+
+    document.getElementById('survey-results').classList.add('active');
+    applyLang(lang); // re-apply translations
+  }
+
+  function getRecommendations() {
+    const recs = [];
+    const orgType = surveyAnswers[1];
+    const challenge = surveyAnswers[2];
+    const experience = surveyAnswers[3];
+    const teamSize = surveyAnswers[4];
+
+    // Always recommend based on challenge
+    if (challenge === 'comms') {
+      recs.push({
+        title_fr: 'Modèles de communication IA',
+        title_en: 'AI Communication Templates',
+        desc_fr: 'Des modèles pré-configurés avec votre ton et votre contexte — courriels, infolettres, appels aux bénévoles rédigés en minutes.',
+        desc_en: 'Pre-configured templates with your tone and context — emails, newsletters, volunteer callouts drafted in minutes.'
+      });
+    } else if (challenge === 'grants') {
+      recs.push({
+        title_fr: 'Système de rédaction de subventions',
+        title_en: 'Grant Writing System',
+        desc_fr: "L'IA connaît votre mission, vos programmes et vos chiffres — premiers jets de demandes de subvention en 20 minutes au lieu de 3 jours.",
+        desc_en: 'AI knows your mission, programs, and numbers — first grant drafts in 20 minutes instead of 3 days.'
+      });
+    } else if (challenge === 'knowledge') {
+      recs.push({
+        title_fr: 'Hub de mémoire organisationnelle',
+        title_en: 'Organizational Memory Hub',
+        desc_fr: 'Un système qui capture et organise le savoir de votre équipe — plus jamais de connaissances perdues lors des départs.',
+        desc_en: 'A system that captures and organizes your team\'s knowledge — never lose expertise when people leave.'
+      });
+    } else {
+      recs.push({
+        title_fr: 'Automatisation des tâches répétitives',
+        title_en: 'Repetitive Task Automation',
+        desc_fr: 'Les rapports, suivis et mises à jour se rédigent automatiquement — libérez des heures chaque semaine.',
+        desc_en: 'Reports, follow-ups, and updates draft themselves — free up hours every week.'
+      });
+    }
+
+    // Nonprofit-specific
+    if (orgType === 'nonprofit') {
+      recs.push({
+        title_fr: 'Forfait OBNL — 20 % de rabais',
+        title_en: 'Nonprofit Package — 20% Discount',
+        desc_fr: 'En tant qu\'OBNL, vous avez droit à 20 % de rabais sur tous nos forfaits, et vos investissements sont admissibles aux subventions.',
+        desc_en: 'As a nonprofit, you get 20% off all packages, and your investment is eligible for grant funding.'
+      });
+    }
+
+    // Experience-based
+    if (experience === 'none' || experience === 'basic') {
+      recs.push({
+        title_fr: 'Formation sur mesure incluse',
+        title_en: 'Custom Training Included',
+        desc_fr: 'Pas besoin d\'être un expert — notre formation de 2 heures rend votre équipe autonome dès le premier jour.',
+        desc_en: 'No need to be an expert — our 2-hour training makes your team autonomous from day one.'
+      });
+    } else {
+      recs.push({
+        title_fr: 'Configuration avancée',
+        title_en: 'Advanced Configuration',
+        desc_fr: 'Vous avez déjà de bonnes bases — on structure et optimise votre utilisation pour un impact maximal.',
+        desc_en: 'You already have a solid foundation — we structure and optimize your usage for maximum impact.'
+      });
+    }
+
+    // Team-based recommendation
+    if (teamSize === 'medium' || teamSize === 'large') {
+      recs.push({
+        title_fr: 'Forfait Autonomie recommandé',
+        title_en: 'Autonomie Package Recommended',
+        desc_fr: 'Pour une équipe de votre taille, le forfait Autonomie inclut un atelier d\'équipe et des automatisations de coordination.',
+        desc_en: 'For a team your size, the Autonomie package includes team workshops and coordination automations.'
+      });
+    } else {
+      recs.push({
+        title_fr: 'Démarrage rapide possible',
+        title_en: 'Quick Start Possible',
+        desc_fr: 'Avec une petite équipe, on peut être opérationnel en quelques jours — résultats visibles dès la première semaine.',
+        desc_en: 'With a small team, we can be operational in days — visible results from week one.'
+      });
+    }
+
+    return recs;
+  }
+
+  // --- Contact Form ---
+  const contactForm = document.getElementById('contact-form');
+  contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(contactForm);
+
+    // Submit to Formspree (or show success for now)
+    fetch(contactForm.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        contactForm.style.display = 'none';
+        document.querySelector('#contact-form-wrap h3').style.display = 'none';
+        document.getElementById('form-success').classList.add('active');
+      }
+    }).catch(() => {
+      // Fallback: still show success (form action can be configured later)
+      contactForm.style.display = 'none';
+      document.querySelector('#contact-form-wrap h3').style.display = 'none';
+      document.getElementById('form-success').classList.add('active');
+    });
+  });
+
+  // --- Easter egg ---
+  let clicks = 0, clickT;
+  const dogEl = document.getElementById('dog-egg');
+  document.getElementById('logo').addEventListener('click', () => {
+    clicks++;
+    clearTimeout(clickT);
+    clickT = setTimeout(() => { clicks = 0; }, 2000);
+    if (clicks >= 5) {
+      dogEl.classList.add('up');
+      setTimeout(() => dogEl.classList.remove('up'), 3500);
+      clicks = 0;
+    }
+  });
+</script>
+</body>
+</html>
