@@ -370,7 +370,7 @@
 
     /* ========== CAPABILITIES ========== */
     #capabilities {
-      background: var(--surface);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       border-top: 1px solid var(--border);
     }
     .cap-grid {
@@ -623,7 +623,7 @@
 
     /* ========== FORFAITS ========== */
     #forfaits {
-      background: var(--surface);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       border-top: 1px solid var(--border);
     }
     .forfaits-intro { font-size: 0.92rem; max-width: 480px; margin-top: 0.8rem; color: var(--muted-lt); }
@@ -794,7 +794,7 @@
 
     /* ========== FINAL CTA ========== */
     #cta {
-      background: linear-gradient(180deg, var(--surface) 0%, var(--bg-deep) 100%);
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
       border-top: 1px solid var(--border);
       text-align: center;
     }
@@ -877,7 +877,15 @@
     .contact-method-text {
       font-family: var(--font-m);
       font-size: 0.92rem;
-      color: var(--heading);
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-color: rgba(0,174,239,0.35);
+      text-underline-offset: 3px;
+      transition: all 0.25s;
+    }
+    .contact-method:hover .contact-method-text {
+      color: var(--accent-2);
+      text-decoration-color: var(--accent-2);
     }
     .contact-method-label {
       font-size: 0.7rem;
@@ -1006,13 +1014,14 @@
     }
     #dog-egg.up { bottom: 1.5rem; }
 
-    /* Custom cursor glow */
+    /* Custom cursor glow — z-index above section backgrounds so it follows everywhere */
     .cursor-glow {
       position: fixed;
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,174,239,0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,174,239,0.07) 0%, transparent 70%);
       pointer-events: none;
-      z-index: 0;
+      z-index: 50;
+      mix-blend-mode: screen;
       transform: translate(-50%, -50%);
       transition: opacity 0.3s;
       will-change: transform;
@@ -1852,18 +1861,26 @@
     recs.forEach((rec, i) => {
       const div = document.createElement('div');
       div.className = 'result-item';
-      div.innerHTML = `
-        <div class="result-item-icon">${icons[i % icons.length]}</div>
-        <div>
-          <h4>${lang === 'fr' ? rec.title_fr : rec.title_en}</h4>
-          <p>${lang === 'fr' ? rec.desc_fr : rec.desc_en}</p>
-        </div>
-      `;
+      const icon = document.createElement('div');
+      icon.className = 'result-item-icon';
+      icon.innerHTML = icons[i % icons.length];
+      const body = document.createElement('div');
+      // data-fr/data-en so applyLang() re-translates results on later toggles
+      const h4 = document.createElement('h4');
+      h4.setAttribute('data-fr', rec.title_fr);
+      h4.setAttribute('data-en', rec.title_en);
+      const p = document.createElement('p');
+      p.setAttribute('data-fr', rec.desc_fr);
+      p.setAttribute('data-en', rec.desc_en);
+      body.appendChild(h4);
+      body.appendChild(p);
+      div.appendChild(icon);
+      div.appendChild(body);
       container.appendChild(div);
     });
 
     document.getElementById('survey-results').classList.add('active');
-    applyLang(lang); // re-apply translations
+    applyLang(lang); // re-apply translations (fills in the rec cards too)
   }
 
   function getRecommendations() {
