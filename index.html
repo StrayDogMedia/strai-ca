@@ -3,42 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>strAI.ca — L'IA qui vous connaît</title>
-  <meta name="description" content="Environnements IA sur mesure pour les OBNL et petites entreprises du Québec. Bilingue FR/EN.">
+  <title>StrAI.ca – Outils intelligents d'automatisation et d'IA pour l'éducation, les OBNL et l'industrie</title>
+  <meta name="description" id="meta-desc" content="StrAI conçoit des applications intelligentes, des automatisations et des systèmes de communication qui simplifient la complexité et propulsent le progrès des écoles, des OBNL et des industries.">
+  <meta property="og:title" content="StrAI.ca – Smart tools for a connected future">
+  <meta property="og:description" content="StrAI develops intelligent apps, automation, and communication systems that simplify complexity and power progress for schools, nonprofits, and industries.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://strai.ca">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
   <!-- GSAP for fluid scroll animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <style>
     /* ============================================================
-       strAI.ca — Luxury Tech Design System v3
-       Bold. Refined. Confident.
+       StrAI.ca — Stealth Tech Design System v4
+       Smart tools for a connected future.
        Stray Dog Media spin-off — les chiens errants travaillent ici
     ============================================================ */
 
     :root {
-      --bg:         #1A1A1A;
-      --surface:    #212121;
-      --surface-2:  #252525;
-      --golden:     #D4AF37;
-      --golden-lt:  #EDC16A;
-      --golden-glow: rgba(212,175,55,0.15);
-      --teal:       #2A7A6A;
-      --teal-lt:    #34A08C;
-      --cream:      #FDFDFA;
-      --body-text:  #CCCCCC;
-      --muted:      #888888;
-      --muted-lt:   #AAAAAA;
-      --border:     rgba(253,253,250,0.06);
-      --border-lt:  rgba(253,253,250,0.12);
-      --card-bg:    #252525;
-      --radius:     20px;
-      --radius-sm:  12px;
+      --bg:         #0A0F1C;
+      --bg-deep:    #05070D;
+      --surface:    #0D1424;
+      --surface-2:  #111827;
+      --card-bg:    #111827;
+      --accent:     #00AEEF;
+      --accent-2:   #3DFFF3;
+      --accent-glow: rgba(0,174,239,0.15);
+      --hot:        #FF6B35;
+      --heading:    #FFFFFF;
+      --body-text:  #E5E5E5;
+      --muted:      #7B8494;
+      --muted-lt:   #A5ADBE;
+      --border:     rgba(0,174,239,0.10);
+      --border-lt:  rgba(229,229,229,0.14);
+      --radius:     12px;
+      --radius-sm:  8px;
       --max:        1120px;
-      --font-d:     'Playfair Display', Georgia, serif;
+      --font-d:     'Orbitron', sans-serif;
       --font-b:     'Inter', sans-serif;
+      --font-m:     'Share Tech Mono', monospace;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -46,29 +51,28 @@
 
     body {
       background: var(--bg);
-      color: var(--cream);
+      color: var(--body-text);
       font-family: var(--font-b);
       font-weight: 300;
       line-height: 1.7;
       overflow-x: hidden;
     }
 
-    h1, h2, h3 { font-family: var(--font-d); font-weight: 400; line-height: 1.15; }
-    h1 { font-size: clamp(2.8rem, 6.5vw, 5.2rem); letter-spacing: -0.02em; }
-    h2 { font-size: clamp(2rem, 4.2vw, 3.4rem); letter-spacing: -0.01em; }
-    h3 { font-size: 1.1rem; font-weight: 400; }
+    h1, h2, h3 { font-family: var(--font-d); font-weight: 700; line-height: 1.25; color: var(--heading); }
+    h1 { font-size: clamp(1.9rem, 4.5vw, 3.4rem); letter-spacing: 0.01em; }
+    h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); letter-spacing: 0.01em; }
+    h3 { font-size: 1rem; font-weight: 500; letter-spacing: 0.03em; }
     p { color: var(--body-text); }
     a { color: inherit; text-decoration: none; }
 
     .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
 
     .eyebrow {
-      font-family: var(--font-b);
-      font-size: 0.68rem;
-      font-weight: 500;
-      letter-spacing: 0.16em;
+      font-family: var(--font-m);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
-      color: var(--golden);
+      color: var(--accent);
       margin-bottom: 1.2rem;
       display: flex;
       align-items: center;
@@ -78,7 +82,7 @@
       content: '';
       width: 24px;
       height: 1px;
-      background: var(--golden);
+      background: var(--accent);
       flex-shrink: 0;
     }
 
@@ -90,12 +94,14 @@
 
     /* ========== BUTTONS ========== */
     .btn {
-      display: inline-flex; align-items: center; gap: 8px;
-      padding: 0.75rem 1.7rem;
-      border-radius: 100px;
-      font-family: var(--font-b);
-      font-size: 0.88rem;
-      font-weight: 500;
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 0.85rem 1.7rem;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-d);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       cursor: pointer;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
       border: none;
@@ -113,24 +119,25 @@
     }
     .btn:hover::after { transform: translateX(100%); }
 
-    .btn-gold {
-      background: linear-gradient(135deg, var(--golden), var(--golden-lt));
-      color: #1A1A1A;
-      box-shadow: 0 4px 24px rgba(212,175,55,0.25);
+    .btn-primary {
+      background: var(--accent);
+      color: #FFFFFF;
+      box-shadow: 0 4px 24px rgba(0,174,239,0.25);
     }
-    .btn-gold:hover {
+    .btn-primary:hover {
+      background: var(--hot);
       transform: translateY(-2px);
-      box-shadow: 0 8px 36px rgba(212,175,55,0.4);
+      box-shadow: 0 0 0 1px var(--accent-2), 0 8px 36px rgba(255,107,53,0.35);
     }
     .btn-ghost {
-      background: var(--surface-2);
-      border: 1px solid rgba(212,175,55,0.3);
-      color: var(--golden-lt);
+      background: transparent;
+      border: 1px solid rgba(0,174,239,0.4);
+      color: var(--accent);
     }
     .btn-ghost:hover {
-      border-color: var(--golden);
-      color: var(--golden);
-      box-shadow: 0 0 24px rgba(212,175,55,0.12);
+      border-color: var(--accent-2);
+      color: var(--accent-2);
+      box-shadow: 0 0 24px rgba(61,255,243,0.15);
     }
 
     /* ========== NAV ========== */
@@ -141,7 +148,7 @@
       border-bottom: 1px solid transparent;
     }
     nav.scrolled {
-      background: rgba(26,26,26,0.92);
+      background: rgba(10,15,28,0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border-color: var(--border);
@@ -153,25 +160,19 @@
     }
 
     .logo {
-      display: flex; align-items: center; gap: 7px;
+      display: flex; align-items: baseline;
       font-family: var(--font-d);
-      font-size: 1.3rem;
-      font-weight: 400;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--heading);
       cursor: pointer;
       user-select: none;
       transition: all 0.3s;
     }
     .logo:hover { opacity: 0.85; }
-    .logo .ai { color: var(--golden); font-style: italic; }
-    .logo .ca { font-size: 0.78rem; color: var(--muted); margin-left: 1px; }
-    .paw-svg {
-      width: 16px; height: 16px;
-      color: var(--golden);
-      opacity: 0.55;
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-      flex-shrink: 0;
-    }
-    .logo:hover .paw-svg { opacity: 1; transform: rotate(20deg) scale(1.15); }
+    .logo .ai { color: var(--accent); }
+    .logo .ca { font-size: 0.72rem; color: var(--muted); margin-left: 2px; }
 
     .nav-links {
       display: flex; align-items: center; gap: 2.2rem;
@@ -188,29 +189,29 @@
       position: absolute;
       bottom: -4px; left: 0; right: 0;
       height: 1px;
-      background: var(--golden);
+      background: var(--accent-2);
+      box-shadow: 0 0 8px rgba(61,255,243,0.6);
       transform: scaleX(0);
       transition: transform 0.3s;
     }
-    .nav-links a:hover { color: var(--cream); }
+    .nav-links a:hover { color: var(--heading); }
     .nav-links a:hover::after { transform: scaleX(1); }
 
     .nav-right { display: flex; align-items: center; gap: 1rem; }
 
     .lang-btn {
-      font-family: var(--font-b);
+      font-family: var(--font-m);
       font-size: 0.74rem;
-      font-weight: 500;
       background: transparent;
       border: 1px solid var(--border-lt);
       color: var(--muted-lt);
       padding: 0.32rem 0.8rem;
-      border-radius: 20px;
+      border-radius: var(--radius-sm);
       cursor: pointer;
       transition: all 0.3s;
       letter-spacing: 0.05em;
     }
-    .lang-btn:hover { border-color: var(--golden); color: var(--golden); }
+    .lang-btn:hover { border-color: var(--accent-2); color: var(--accent-2); box-shadow: 0 0 12px rgba(61,255,243,0.15); }
 
     /* Mobile menu */
     .mobile-toggle {
@@ -224,7 +225,7 @@
       display: block;
       width: 22px;
       height: 2px;
-      background: var(--cream);
+      background: var(--heading);
       margin: 5px 0;
       transition: all 0.3s;
       border-radius: 2px;
@@ -237,7 +238,7 @@
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(26,26,26,0.97);
+      background: rgba(10,15,28,0.97);
       backdrop-filter: blur(20px);
       z-index: 99;
       flex-direction: column;
@@ -248,11 +249,13 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
       font-family: var(--font-d);
-      font-size: 1.8rem;
-      color: var(--cream);
+      font-size: 1.3rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--heading);
       transition: color 0.2s;
     }
-    .mobile-menu a:hover { color: var(--golden); }
+    .mobile-menu a:hover { color: var(--accent-2); }
 
     /* ========== HERO ========== */
     #hero {
@@ -261,6 +264,7 @@
       padding: 9rem 0 6rem;
       position: relative;
       overflow: hidden;
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
     }
 
     /* Animated gradient orbs */
@@ -273,17 +277,17 @@
     }
     .hero-orb-1 {
       width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,174,239,0.12) 0%, transparent 70%);
       top: -10%; right: -10%;
     }
     .hero-orb-2 {
       width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(42,122,106,0.08) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(61,255,243,0.06) 0%, transparent 70%);
       bottom: -5%; left: -5%;
     }
     .hero-orb-3 {
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,174,239,0.05) 0%, transparent 70%);
       top: 40%; left: 30%;
     }
 
@@ -291,8 +295,8 @@
     .hero-grid {
       position: absolute; inset: 0;
       background-image:
-        linear-gradient(rgba(212,175,55,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(212,175,55,0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0,174,239,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,174,239,0.04) 1px, transparent 1px);
       background-size: 64px 64px;
       pointer-events: none;
       mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
@@ -307,51 +311,20 @@
       z-index: 0;
     }
 
-    .hero-content { position: relative; z-index: 1; max-width: 780px; }
-    .hero-h1 em { font-style: italic; color: var(--golden); }
-    .hero-h1 .highlight-underline {
-      position: relative;
-      display: inline-block;
-    }
-    .hero-h1 .highlight-underline::after {
-      content: '';
-      position: absolute;
-      bottom: 0.05em; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--golden), var(--teal));
-      border-radius: 2px;
-      transform: scaleX(0);
-      transform-origin: left;
-      animation: underlineIn 1s 0.8s ease forwards;
-    }
-    @keyframes underlineIn {
-      to { transform: scaleX(1); }
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+    .hero-h1 .glow {
+      color: var(--accent-2);
+      text-shadow: 0 0 30px rgba(61,255,243,0.45);
     }
 
     .hero-sub {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       max-width: 560px;
       margin: 1.8rem 0 2.8rem;
       line-height: 1.8;
+      color: var(--muted-lt);
     }
     .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .hero-pills {
-      display: flex; gap: 0.8rem; flex-wrap: wrap;
-      margin-top: 3.5rem;
-    }
-    .pill {
-      font-size: 0.7rem;
-      letter-spacing: 0.07em;
-      color: var(--muted);
-      border: 1px solid var(--border);
-      padding: 0.4rem 1rem;
-      border-radius: 20px;
-      transition: all 0.3s;
-    }
-    .pill:hover {
-      border-color: var(--golden);
-      color: var(--golden);
-    }
 
     /* Scroll indicator */
     .scroll-indicator {
@@ -366,6 +339,7 @@
       z-index: 1;
     }
     .scroll-indicator span {
+      font-family: var(--font-m);
       font-size: 0.65rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -374,7 +348,7 @@
     .scroll-line {
       width: 1px;
       height: 40px;
-      background: linear-gradient(to bottom, var(--golden), transparent);
+      background: linear-gradient(to bottom, var(--accent-2), transparent);
       animation: scrollPulse 2s ease-in-out infinite;
     }
     @keyframes scrollPulse {
@@ -385,77 +359,76 @@
     /* ========== SECTIONS ========== */
     section { padding: 7rem 0; position: relative; }
 
-    /* Gold separator between sections */
-    .section-separator {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.25), transparent);
-      margin: 0;
+    /* ========== ABOUT ========== */
+    #about { border-top: 1px solid var(--border); }
+    .about-wrap { max-width: 680px; }
+    .about-wrap p.lead {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      margin-top: 1.5rem;
     }
 
-    /* ========== PROBLEME ========== */
-    #probleme { border-top: 1px solid var(--border); }
-    .pain-intro { max-width: 560px; margin-top: 0.8rem; }
-
-    .pain-grid {
+    /* ========== CAPABILITIES ========== */
+    #capabilities {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+    }
+    .cap-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.4rem;
       margin-top: 3rem;
     }
-    .pain-card {
+    .cap-card {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 2rem;
+      padding: 2.2rem 2rem;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    .pain-card::before {
+    .cap-card::before {
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, var(--golden), transparent);
+      background: linear-gradient(90deg, var(--accent), var(--accent-2), transparent);
       opacity: 0;
       transition: opacity 0.4s;
     }
-    .pain-card:hover {
+    .cap-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.35), 0 0 30px rgba(212,175,55,0.06);
+      border-color: rgba(61,255,243,0.3);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(0,174,239,0.08);
     }
-    .pain-card:hover::before { opacity: 1; }
-
-    .pain-icon {
-      width: 44px; height: 44px;
-      background: rgba(212,175,55,0.08);
-      border-radius: 12px;
+    .cap-card:hover::before { opacity: 1; }
+    .cap-icon {
+      width: 48px; height: 48px;
+      background: rgba(0,174,239,0.08);
+      border: 1px solid rgba(0,174,239,0.2);
+      border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1.4rem;
       transition: all 0.3s;
-      position: relative;
     }
-    .pain-icon::after {
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 16px;
-      background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
+    .cap-card:hover .cap-icon {
+      background: rgba(0,174,239,0.15);
+      box-shadow: 0 0 20px rgba(61,255,243,0.2);
     }
-    .pain-card:hover .pain-icon::after { opacity: 1; }
-    .pain-card:hover .pain-icon {
-      background: rgba(212,175,55,0.15);
-      transform: scale(1.05);
+    .cap-icon svg {
+      width: 22px; height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
     }
-    .pain-icon svg { width: 20px; height: 20px; stroke: var(--golden); }
-    .pain-card h3 { color: var(--cream); margin-bottom: 0.5rem; }
-    .pain-card p { font-size: 0.88rem; line-height: 1.6; }
+    .cap-card h3 { margin-bottom: 0.7rem; font-size: 0.95rem; }
+    .cap-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-lt); }
 
     /* ========== AI ASSESSMENT SURVEY ========== */
     #assessment {
-      background: var(--surface);
       border-top: 1px solid var(--border);
       overflow: hidden;
     }
@@ -471,20 +444,21 @@
       font-size: 0.95rem;
       max-width: 480px;
       margin: 0.8rem auto 0;
+      color: var(--muted-lt);
     }
 
     /* Progress bar */
     .survey-progress {
       width: 100%;
       height: 3px;
-      background: var(--border);
+      background: rgba(229,229,229,0.08);
       border-radius: 2px;
       margin-bottom: 2.5rem;
       overflow: hidden;
     }
     .survey-progress-fill {
       height: 100%;
-      background: linear-gradient(90deg, var(--golden), var(--teal));
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
       border-radius: 2px;
       transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
       width: 0%;
@@ -493,11 +467,12 @@
     /* Survey card */
     .survey-card {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2.5rem;
       min-height: 320px;
       position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
     }
     .survey-step {
       display: none;
@@ -509,18 +484,17 @@
       to { opacity: 1; transform: none; }
     }
     .survey-step-label {
-      font-size: 0.65rem;
+      font-family: var(--font-m);
+      font-size: 0.68rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
-      color: var(--muted);
+      color: var(--accent);
       margin-bottom: 1rem;
     }
     .survey-step h3 {
-      font-family: var(--font-d);
-      font-size: 1.4rem;
-      color: var(--cream);
+      font-size: 1.1rem;
       margin-bottom: 1.5rem;
-      line-height: 1.3;
+      line-height: 1.4;
     }
 
     .survey-options {
@@ -539,16 +513,16 @@
       align-items: center;
       gap: 0.8rem;
       font-size: 0.9rem;
-      color: var(--cream);
+      color: var(--body-text);
     }
     .survey-option:hover {
-      border-color: var(--golden);
-      background: rgba(212,175,55,0.05);
+      border-color: var(--accent);
+      background: rgba(0,174,239,0.05);
     }
     .survey-option.selected {
-      border-color: var(--golden);
-      background: rgba(212,175,55,0.1);
-      box-shadow: 0 0 24px rgba(212,175,55,0.1);
+      border-color: var(--accent);
+      background: rgba(0,174,239,0.1);
+      box-shadow: 0 0 24px rgba(0,174,239,0.12);
     }
     .survey-option-dot {
       width: 18px; height: 18px;
@@ -559,14 +533,15 @@
       transition: all 0.25s;
     }
     .survey-option.selected .survey-option-dot {
-      border-color: var(--golden);
+      border-color: var(--accent-2);
     }
     .survey-option.selected .survey-option-dot::after {
       content: '';
       position: absolute;
       inset: 3px;
-      background: var(--golden);
+      background: var(--accent-2);
       border-radius: 50%;
+      box-shadow: 0 0 8px rgba(61,255,243,0.6);
     }
 
     .survey-nav {
@@ -585,7 +560,7 @@
       transition: color 0.2s;
       padding: 0.5rem 0;
     }
-    .survey-back:hover { color: var(--cream); }
+    .survey-back:hover { color: var(--heading); }
     .survey-back:disabled { opacity: 0; pointer-events: none; }
 
     /* Results */
@@ -597,16 +572,15 @@
     .survey-results.active { display: block; }
     .results-icon {
       width: 64px; height: 64px;
-      background: linear-gradient(135deg, var(--golden), var(--teal));
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
       border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin: 0 auto 1.5rem;
       font-size: 1.6rem;
+      box-shadow: 0 0 40px rgba(0,174,239,0.35);
     }
     .survey-results h3 {
-      font-family: var(--font-d);
-      font-size: 1.6rem;
-      color: var(--cream);
+      font-size: 1.15rem;
       margin-bottom: 1rem;
     }
     .results-recommendations {
@@ -615,18 +589,18 @@
     }
     .result-item {
       background: var(--surface);
+      border: 1px solid var(--border);
       border-radius: var(--radius-sm);
       padding: 1.2rem;
       margin-bottom: 0.8rem;
       display: flex;
       gap: 1rem;
       align-items: flex-start;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.15);
     }
     .result-item-icon {
       width: 32px; height: 32px;
-      background: rgba(212,175,55,0.1);
-      border-radius: 8px;
+      background: rgba(0,174,239,0.1);
+      border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
       font-size: 0.9rem;
@@ -635,104 +609,24 @@
       font-family: var(--font-b);
       font-size: 0.9rem;
       font-weight: 500;
-      color: var(--cream);
+      color: var(--heading);
       margin-bottom: 0.3rem;
     }
     .result-item p {
       font-size: 0.82rem;
       line-height: 1.5;
+      color: var(--muted-lt);
     }
     .results-cta {
       margin-top: 2rem;
     }
-
-    /* ========== APPROCHE ========== */
-    #approche { border-top: 1px solid var(--border); }
-
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 1.5rem;
-      margin-top: 3.5rem;
-      max-width: 640px;
-      position: relative;
-    }
-    /* Vertical connecting line */
-    .steps-line {
-      position: absolute;
-      top: 28px; bottom: 28px; left: 23px;
-      width: 1px;
-      background: linear-gradient(to bottom, transparent, var(--golden), transparent);
-      opacity: 0.25;
-    }
-    .step {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.5rem;
-      padding: 1.5rem;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-      transition: all 0.4s;
-      position: relative;
-    }
-    .step:hover {
-      transform: translateX(6px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.06);
-    }
-    .step-num {
-      width: 46px; height: 46px;
-      border: 1px solid rgba(212,175,55,0.4);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-family: var(--font-d);
-      font-size: 1.1rem;
-      color: var(--golden);
-      flex-shrink: 0;
-      transition: all 0.4s;
-      position: relative;
-      background: var(--bg);
-      z-index: 1;
-    }
-    .step-num::after {
-      content: '';
-      position: absolute;
-      inset: -5px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(212,175,55,0.12) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .step:hover .step-num {
-      border-color: var(--golden);
-      box-shadow: 0 0 24px rgba(212,175,55,0.2);
-    }
-    .step:hover .step-num::after { opacity: 1; }
-    .step-content { flex: 1; }
-    .step-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 28px; height: 28px;
-      margin-bottom: 0.4rem;
-    }
-    .step-icon svg {
-      width: 20px; height: 20px;
-      stroke: var(--golden);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .step h3 { color: var(--cream); margin-bottom: 0.5rem; }
-    .step p { font-size: 0.88rem; line-height: 1.65; }
 
     /* ========== FORFAITS ========== */
     #forfaits {
       background: var(--surface);
       border-top: 1px solid var(--border);
     }
-    .forfaits-intro { font-size: 0.92rem; max-width: 480px; margin-top: 0.8rem; }
+    .forfaits-intro { font-size: 0.92rem; max-width: 480px; margin-top: 0.8rem; color: var(--muted-lt); }
 
     .forfaits-grid {
       display: grid;
@@ -743,64 +637,67 @@
     }
     .forfait {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2rem;
       display: flex; flex-direction: column;
       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
       position: relative;
       overflow: hidden;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     }
     .forfait:hover {
       transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.35), 0 0 30px rgba(212,175,55,0.06);
+      border-color: rgba(61,255,243,0.25);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 30px rgba(0,174,239,0.08);
     }
     .forfait.featured {
-      background: var(--card-bg);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.3), 0 0 40px rgba(212,175,55,0.08);
+      border-color: rgba(0,174,239,0.4);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 40px rgba(0,174,239,0.1);
       transform: translateY(-8px);
       z-index: 2;
     }
     .forfait.featured:hover {
       transform: translateY(-12px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.4), 0 0 50px rgba(212,175,55,0.12);
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 50px rgba(0,174,239,0.15);
     }
     .featured-label {
       position: absolute;
       top: -1px; left: 50%;
       transform: translateX(-50%);
+      font-family: var(--font-m);
       font-size: 0.62rem;
-      font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      background: linear-gradient(135deg, var(--golden), var(--golden-lt));
-      color: #1A1A1A;
+      background: var(--accent);
+      color: #FFFFFF;
       padding: 6px 20px;
-      border-radius: 0 0 12px 12px;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
     }
     .forfait-name {
       font-family: var(--font-d);
-      font-size: 1.6rem;
-      color: var(--cream);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--heading);
       margin-bottom: 0.4rem;
     }
     .forfait.featured .forfait-name {
       margin-top: 1.2rem;
     }
-    .forfait-desc { font-size: 0.84rem; line-height: 1.55; margin-bottom: 1.5rem; min-height: 3rem; }
+    .forfait-desc { font-size: 0.84rem; line-height: 1.55; margin-bottom: 1.5rem; min-height: 3rem; color: var(--muted-lt); }
     .forfait-price {
-      font-family: var(--font-d);
-      font-size: 2.4rem;
-      color: var(--cream);
+      font-family: var(--font-m);
+      font-size: 2.2rem;
+      color: var(--heading);
       line-height: 1;
     }
     .forfait-note { font-size: 0.76rem; color: var(--muted); margin-top: 0.25rem; }
-    .forfait-obnl { font-size: 0.82rem; color: var(--teal-lt); margin-top: 0.2rem; margin-bottom: 1.4rem; }
+    .forfait-obnl { font-size: 0.82rem; color: var(--accent-2); margin-top: 0.2rem; margin-bottom: 1.4rem; }
     .f-divider {
       border: none;
       height: 1px;
-      background: linear-gradient(90deg, transparent, var(--golden), transparent);
-      opacity: 0.2;
+      background: linear-gradient(90deg, transparent, var(--accent), transparent);
+      opacity: 0.25;
       margin: 1.2rem 0;
     }
     .f-feat {
@@ -810,20 +707,20 @@
       line-height: 1.45; align-items: flex-start;
     }
     .f-check {
-      color: var(--golden);
+      color: var(--accent);
       flex-shrink: 0;
       margin-top: 0.08rem;
       font-size: 0.8rem;
     }
     .forfait-cta { margin-top: auto; padding-top: 1.5rem; }
-    .forfait-cta .btn { width: 100%; justify-content: center; padding: 0.75rem; }
+    .forfait-cta .btn { width: 100%; justify-content: center; padding: 0.85rem; }
 
     .retainers-label {
-      font-size: 0.68rem;
-      font-weight: 500;
+      font-family: var(--font-m);
+      font-size: 0.7rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--golden);
+      color: var(--accent);
       margin: 3.5rem 0 1rem;
     }
     .retainers {
@@ -833,10 +730,10 @@
     }
     .retainer {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 1.6rem 1.8rem;
       transition: all 0.3s;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
       position: relative;
       overflow: hidden;
     }
@@ -845,24 +742,25 @@
       position: absolute;
       top: 0; left: 0; right: 0;
       height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(212,175,55,0.3), transparent);
+      background: linear-gradient(90deg, transparent, rgba(0,174,239,0.4), transparent);
     }
     .retainer:hover {
       transform: translateY(-3px);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      border-color: rgba(61,255,243,0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
     }
     .ret-icon {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       width: 36px; height: 36px;
-      background: rgba(212,175,55,0.08);
-      border-radius: 10px;
+      background: rgba(0,174,239,0.08);
+      border-radius: var(--radius-sm);
       margin-bottom: 0.8rem;
     }
     .ret-icon svg {
       width: 18px; height: 18px;
-      stroke: var(--golden);
+      stroke: var(--accent);
       fill: none;
       stroke-width: 1.5;
       stroke-linecap: round;
@@ -870,142 +768,47 @@
     }
     .ret-name {
       font-family: var(--font-d);
-      font-size: 1.05rem;
-      color: var(--cream);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--heading);
       margin-bottom: 0.25rem;
     }
     .ret-price {
-      font-family: var(--font-d);
-      font-size: 1.3rem;
-      color: var(--golden);
+      font-family: var(--font-m);
+      font-size: 1.25rem;
+      color: var(--accent);
       margin-bottom: 0.5rem;
     }
-    .ret-obnl { font-size: 0.78rem; color: var(--teal-lt); margin-bottom: 0.5rem; }
-    .ret-desc { font-size: 0.8rem; color: var(--body-text); line-height: 1.55; }
+    .ret-obnl { font-size: 0.78rem; color: var(--accent-2); margin-bottom: 0.5rem; }
+    .ret-desc { font-size: 0.8rem; color: var(--muted-lt); line-height: 1.55; }
 
-    /* ========== POUR QUI ========== */
-    #pour-qui { border-top: 1px solid var(--border); }
-    .pour-qui-cols {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2rem; margin-top: 3rem;
+    /* ========== POURQUOI ========== */
+    #pourquoi { border-top: 1px solid var(--border); }
+    .pourquoi-wrap { max-width: 680px; }
+    .pourquoi-wrap p.lead {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      margin-top: 1.5rem;
     }
-    .pq-col {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 2.2rem;
-      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
-      transition: all 0.4s;
-    }
-    .pq-col:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-    }
-    .pq-col-header {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      margin-bottom: 0.8rem;
-    }
-    .pq-icon {
-      width: 40px; height: 40px;
-      background: rgba(212,175,55,0.08);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .pq-icon svg {
-      width: 20px; height: 20px;
-      stroke: var(--golden);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .pq-col h3 {
-      font-size: 1.35rem;
-      color: var(--cream);
-    }
-    .pq-col > p { font-size: 0.9rem; margin-bottom: 1.2rem; }
-    .pq-list { list-style: none; }
-    .pq-list li {
-      font-size: 0.86rem; color: var(--body-text);
-      padding: 0.6rem 0 0.6rem 1.4rem;
-      border-bottom: 1px solid var(--border);
-      position: relative;
-      transition: all 0.25s;
-    }
-    .pq-list li::before {
-      content: '';
-      position: absolute;
-      left: 0; top: 50%;
-      transform: translateY(-50%);
-      width: 6px; height: 6px;
-      background: var(--golden);
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(212,175,55,0.3);
-    }
-    .pq-list li:hover {
-      color: var(--cream);
-      padding-left: 1.7rem;
-    }
-    .pq-list li:last-child { border-bottom: none; }
 
-    /* ========== A PROPOS ========== */
-    #apropos {
-      background: var(--surface);
+    /* ========== FINAL CTA ========== */
+    #cta {
+      background: linear-gradient(180deg, var(--surface) 0%, var(--bg-deep) 100%);
       border-top: 1px solid var(--border);
+      text-align: center;
     }
-    .apropos-grid {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 5rem; align-items: center;
-    }
-    .ap-text h2 { margin-bottom: 1.5rem; }
-    .ap-text p { font-size: 0.92rem; margin-bottom: 0.9rem; }
-    .ap-sig {
+    .cta-line {
       font-family: var(--font-d);
-      font-style: italic;
-      font-size: 1.3rem;
-      color: var(--golden);
-      margin-top: 1.8rem;
-      text-shadow: 0 0 30px rgba(212,175,55,0.2);
-    }
-    .ap-card {
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    }
-    .ap-card::after {
-      content: '';
-      position: absolute;
-      top: -50%; right: -50%;
-      width: 100%; height: 100%;
-      background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, transparent 70%);
-      pointer-events: none;
-    }
-    .ap-stats {
-      display: grid; grid-template-columns: 1fr 1fr;
-      gap: 2rem; margin-top: 1.5rem;
-      position: relative; z-index: 1;
-    }
-    .stat { text-align: center; }
-    .stat-num {
-      font-family: var(--font-d);
-      font-size: 2.8rem;
+      font-size: clamp(1.2rem, 2.8vw, 1.9rem);
       font-weight: 700;
-      color: var(--golden);
-      line-height: 1;
-      margin-bottom: 0.4rem;
-      text-shadow: 0 0 40px rgba(212,175,55,0.3);
+      letter-spacing: 0.02em;
+      color: var(--heading);
+      max-width: 780px;
+      margin: 0 auto 2.2rem;
+      line-height: 1.4;
     }
-    .stat-lbl { font-size: 0.72rem; color: var(--muted); line-height: 1.4; }
-
-    /* Counter animation for stat */
-    .stat-num[data-count] {
-      transition: color 0.3s;
-    }
+    .cta-line .zap { color: var(--accent-2); text-shadow: 0 0 24px rgba(61,255,243,0.5); }
 
     /* ========== CONTACT ========== */
     #contact {
@@ -1018,7 +821,7 @@
       content: '';
       position: absolute;
       width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,174,239,0.06) 0%, transparent 70%);
       top: -20%; left: 50%;
       transform: translateX(-50%);
       pointer-events: none;
@@ -1033,7 +836,7 @@
       z-index: 1;
     }
     .contact-info h2 { margin-bottom: 1.2rem; }
-    .contact-info > p { font-size: 0.95rem; margin-bottom: 2rem; }
+    .contact-info > p { font-size: 0.95rem; margin-bottom: 2rem; color: var(--muted-lt); }
 
     .contact-methods {
       display: flex;
@@ -1046,45 +849,35 @@
       gap: 1rem;
       padding: 1.1rem 1.4rem;
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       transition: all 0.3s;
       text-decoration: none;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.2);
     }
     .contact-method:hover {
       transform: translateX(6px);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.3), 0 0 20px rgba(212,175,55,0.08);
+      border-color: rgba(61,255,243,0.3);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 20px rgba(0,174,239,0.1);
     }
     .contact-method-icon {
       width: 42px; height: 42px;
-      background: rgba(212,175,55,0.1);
-      border-radius: 12px;
+      background: rgba(0,174,239,0.1);
+      border-radius: var(--radius-sm);
       display: flex; align-items: center; justify-content: center;
       flex-shrink: 0;
-      position: relative;
     }
-    .contact-method-icon::after {
-      content: '';
-      position: absolute;
-      inset: -3px;
-      border-radius: 15px;
-      background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-    .contact-method:hover .contact-method-icon::after { opacity: 1; }
     .contact-method-icon svg {
       width: 18px; height: 18px;
-      stroke: var(--golden);
+      stroke: var(--accent);
       fill: none;
       stroke-width: 1.5;
       stroke-linecap: round;
       stroke-linejoin: round;
     }
     .contact-method-text {
+      font-family: var(--font-m);
       font-size: 0.92rem;
-      color: var(--cream);
-      font-weight: 500;
+      color: var(--heading);
     }
     .contact-method-label {
       font-size: 0.7rem;
@@ -1095,14 +888,13 @@
     /* Contact form */
     .contact-form-wrap {
       background: var(--card-bg);
+      border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 2.5rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.25);
+      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
     }
     .contact-form-wrap h3 {
-      font-family: var(--font-d);
-      font-size: 1.3rem;
-      color: var(--cream);
+      font-size: 1.05rem;
       margin-bottom: 1.5rem;
     }
     .form-group {
@@ -1120,10 +912,10 @@
     .form-group textarea {
       width: 100%;
       background: var(--bg);
-      border: 1px solid rgba(212,175,55,0.15);
+      border: 1px solid rgba(0,174,239,0.18);
       border-radius: var(--radius-sm);
       padding: 0.8rem 1rem;
-      color: var(--cream);
+      color: var(--heading);
       font-family: var(--font-b);
       font-size: 0.88rem;
       transition: all 0.3s;
@@ -1132,8 +924,8 @@
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
-      border-color: var(--golden);
-      box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,174,239,0.12);
     }
     .form-group input::placeholder,
     .form-group textarea::placeholder {
@@ -1141,7 +933,7 @@
     }
     .form-group select {
       appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888888' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237B8494' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
       background-repeat: no-repeat;
       background-position: right 1rem center;
       padding-right: 2.5rem;
@@ -1149,7 +941,7 @@
     }
     .form-group select option {
       background: var(--surface-2);
-      color: var(--cream);
+      color: var(--heading);
     }
     .form-group textarea {
       resize: vertical;
@@ -1166,8 +958,7 @@
     .form-submit .btn {
       width: 100%;
       justify-content: center;
-      padding: 0.85rem;
-      font-size: 0.92rem;
+      padding: 0.9rem;
     }
     .form-success {
       display: none;
@@ -1181,18 +972,17 @@
       margin-bottom: 1rem;
     }
     .form-success h3 {
-      font-family: var(--font-d);
-      font-size: 1.4rem;
-      color: var(--cream);
+      font-size: 1.1rem;
       margin-bottom: 0.5rem;
     }
     .form-success p {
       font-size: 0.9rem;
+      color: var(--muted-lt);
     }
 
     /* ========== FOOTER ========== */
     footer {
-      background: var(--bg);
+      background: var(--bg-deep);
       border-top: 1px solid var(--border);
       padding: 2.5rem 0;
     }
@@ -1201,10 +991,10 @@
       flex-wrap: wrap; gap: 1rem;
       font-size: 0.76rem; color: var(--muted);
     }
-    .footer-logo { font-family: var(--font-d); font-size: 1rem; color: var(--cream); }
-    .footer-logo .ai { color: var(--golden); font-style: italic; }
+    .footer-logo { font-family: var(--font-d); font-weight: 700; letter-spacing: 0.04em; font-size: 0.95rem; color: var(--heading); }
+    .footer-logo .ai { color: var(--accent); }
     .footer-sdm a { color: var(--muted); transition: color 0.2s; }
-    .footer-sdm a:hover { color: var(--golden); }
+    .footer-sdm a:hover { color: var(--accent-2); }
 
     /* Easter egg dog */
     #dog-egg {
@@ -1220,7 +1010,7 @@
     .cursor-glow {
       position: fixed;
       width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(212,175,55,0.04) 0%, transparent 70%);
+      background: radial-gradient(circle, rgba(0,174,239,0.05) 0%, transparent 70%);
       pointer-events: none;
       z-index: 0;
       transform: translate(-50%, -50%);
@@ -1233,27 +1023,23 @@
 
     /* ========== RESPONSIVE ========== */
     @media (max-width: 920px) {
-      .steps { max-width: 100%; }
-      .steps-line { display: none; }
+      .cap-grid { grid-template-columns: 1fr; }
       .forfaits-grid { grid-template-columns: 1fr; }
       .forfait.featured { transform: none; }
       .forfait.featured:hover { transform: translateY(-6px); }
-      .pour-qui-cols { grid-template-columns: 1fr; gap: 1.5rem; }
-      .apropos-grid { grid-template-columns: 1fr; gap: 3rem; }
       .retainers { grid-template-columns: 1fr; }
       .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
       .nav-links { display: none; }
       .mobile-toggle { display: block; }
     }
     @media (max-width: 600px) {
-      h1 { font-size: 2.3rem; }
-      h2 { font-size: 1.8rem; }
+      h1 { font-size: 1.7rem; }
+      h2 { font-size: 1.3rem; }
       .hero-ctas { flex-direction: column; align-items: flex-start; }
       .footer-row { flex-direction: column; text-align: center; }
       .form-row { grid-template-columns: 1fr; }
       .survey-card { padding: 1.8rem; }
       section { padding: 5rem 0; }
-      .step { flex-direction: column; gap: 1rem; }
     }
   </style>
 </head>
@@ -1269,25 +1055,19 @@
 <nav id="nav">
   <div class="nav-inner">
     <div class="logo" id="logo">
-      <svg class="paw-svg" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-        <ellipse cx="12" cy="16.5" rx="5.5" ry="4.5"/>
-        <ellipse cx="6.5" cy="10.5" rx="2.7" ry="2.1"/>
-        <ellipse cx="12" cy="8.2" rx="2.7" ry="2.1"/>
-        <ellipse cx="17.5" cy="10.5" rx="2.7" ry="2.1"/>
-      </svg>
       str<span class="ai">AI</span><span class="ca">.ca</span>
     </div>
 
     <ul class="nav-links">
+      <li><a href="#capabilities" data-fr="Capacités" data-en="Capabilities">Capacités</a></li>
       <li><a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
       <li><a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
-      <li><a href="#pour-qui" data-fr="Pour qui" data-en="For whom">Pour qui</a></li>
-      <li><a href="#apropos" data-fr="À propos" data-en="About">À propos</a></li>
+      <li><a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a></li>
     </ul>
 
     <div class="nav-right">
       <button class="lang-btn" id="lang-btn">EN</button>
-      <a href="#contact" class="btn btn-gold" data-fr="Parlons-en" data-en="Let's talk">Parlons-en</a>
+      <a href="#contact" class="btn btn-primary" data-fr="Contacter" data-en="Contact">Contacter</a>
       <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1297,10 +1077,10 @@
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
+  <a href="#capabilities" data-fr="Capacités" data-en="Capabilities">Capacités</a>
   <a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
   <a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
-  <a href="#pour-qui" data-fr="Pour qui" data-en="For whom">Pour qui</a>
-  <a href="#apropos" data-fr="À propos" data-en="About">À propos</a>
+  <a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a>
   <a href="#contact" data-fr="Contact" data-en="Contact">Contact</a>
 </div>
 
@@ -1314,23 +1094,18 @@
 
   <div class="container">
     <div class="hero-content">
-      <p class="eyebrow gs-reveal" data-fr="Ormstown, Québec · Bilingue · Local" data-en="Ormstown, Quebec · Bilingual · Local">Ormstown, Québec · Bilingue · Local</p>
+      <p class="eyebrow gs-reveal" data-fr="Systèmes intelligents · Québec · FR/EN" data-en="Intelligent systems · Quebec · FR/EN">Systèmes intelligents · Québec · FR/EN</p>
       <h1 class="hero-h1 gs-reveal">
-        <span data-fr="L'IA qui apprend<br><em class='highlight-underline'>qui vous êtes.</em>" data-en="AI that learns<br><em class='highlight-underline'>who you are.</em>">L'IA qui apprend<br><em class="highlight-underline">qui vous êtes.</em></span>
+        <span data-fr="Des outils intelligents pour un <span class='glow'>avenir connecté.</span>" data-en="Smart tools for a <span class='glow'>connected future.</span>">Des outils intelligents pour un <span class="glow">avenir connecté.</span></span>
       </h1>
       <p class="hero-sub gs-reveal"
-        data-fr="strAI.ca configure des environnements d'intelligence artificielle sur mesure pour les OBNL et petites entreprises du Québec — pour que vos outils vous connaissent vraiment, et travaillent pour vous."
-        data-en="strAI.ca builds custom AI environments for Quebec nonprofits and small businesses — so your tools actually know you, and work for you.">
-        strAI.ca configure des environnements d'intelligence artificielle sur mesure pour les OBNL et petites entreprises du Québec — pour que vos outils vous connaissent vraiment, et travaillent pour vous.
+        data-fr="Automatisation, IA et outils de communication pour les écoles, les OBNL et l'industrie."
+        data-en="Automation, AI, and communication tools for schools, nonprofits, and industry.">
+        Automatisation, IA et outils de communication pour les écoles, les OBNL et l'industrie.
       </p>
       <div class="hero-ctas gs-reveal">
-        <a href="#assessment" class="btn btn-gold" data-fr="Faire mon diagnostic IA" data-en="Take my AI assessment">Faire mon diagnostic IA</a>
-        <a href="#forfaits" class="btn btn-ghost" data-fr="Voir les forfaits ↓" data-en="See packages ↓">Voir les forfaits ↓</a>
-      </div>
-      <div class="hero-pills gs-reveal">
-        <span class="pill" data-fr="OBNL — 20 % de rabais" data-en="Nonprofits — 20% off">OBNL — 20 % de rabais</span>
-        <span class="pill" data-fr="Admissible aux subventions" data-en="Grant-eligible">Admissible aux subventions</span>
-        <span class="pill" data-fr="Appel découverte gratuit" data-en="Free discovery call">Appel découverte gratuit</span>
+        <a href="#about" class="btn btn-primary" data-fr="Découvrir StrAI" data-en="Discover StrAI">Découvrir StrAI</a>
+        <a href="#assessment" class="btn btn-ghost" data-fr="Diagnostic IA ↓" data-en="AI assessment ↓">Diagnostic IA ↓</a>
       </div>
     </div>
   </div>
@@ -1341,44 +1116,47 @@
   </div>
 </section>
 
-<!-- ====== PROBLEME ====== -->
-<section id="probleme">
+<!-- ====== ABOUT ====== -->
+<section id="about">
   <div class="container">
-    <p class="eyebrow gs-reveal" data-fr="Le problème" data-en="The problem">Le problème</p>
-    <h2 class="gs-reveal" data-fr="La plupart utilisent l'IA comme un moteur de recherche glorifié." data-en="Most people use AI like a glorified search engine.">La plupart utilisent l'IA comme un moteur de recherche glorifié.</h2>
-    <p class="pain-intro gs-reveal"
-      data-fr="Ce n'est pas leur faute — personne ne les a configurés autrement. Et pendant ce temps, des heures précieuses s'évaporent."
-      data-en="It's not their fault — nobody set things up differently. And in the meantime, precious hours evaporate.">
-      Ce n'est pas leur faute — personne ne les a configurés autrement. Et pendant ce temps, des heures précieuses s'évaporent.
-    </p>
-    <div class="pain-grid">
-      <div class="pain-card gs-reveal">
-        <div class="pain-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    <div class="about-wrap">
+      <p class="eyebrow gs-reveal" data-fr="Ce que fait StrAI" data-en="What StrAI Does">Ce que fait StrAI</p>
+      <h2 class="gs-reveal" data-fr="Des systèmes intelligents qui simplifient la complexité." data-en="Intelligent systems that simplify complexity.">Des systèmes intelligents qui simplifient la complexité.</h2>
+      <p class="lead gs-reveal"
+        data-fr="Au service des écoles, des OBNL et des industries de tous horizons, StrAI livre des outils qui aident les organisations à fonctionner avec clarté, rapidité et précision."
+        data-en="Serving schools, nonprofits, and industries of all kinds, StrAI delivers tools that help organizations operate with clarity, speed, and precision.">
+        Au service des écoles, des OBNL et des industries de tous horizons, StrAI livre des outils qui aident les organisations à fonctionner avec clarté, rapidité et précision.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ====== CAPABILITIES ====== -->
+<section id="capabilities">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Capacités clés" data-en="Core Capabilities">Capacités clés</p>
+    <h2 class="gs-reveal" data-fr="Trois façons de faire avancer votre organisation." data-en="Three ways to move your organization forward.">Trois façons de faire avancer votre organisation.</h2>
+    <div class="cap-grid">
+      <div class="cap-card gs-reveal">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
         </div>
-        <h3 data-fr="Le temps perdu" data-en="Wasted time">Le temps perdu</h3>
-        <p data-fr="Des heures à rédiger les mêmes courriels, callouts de bénévoles et mises à jour — chaque fois à partir de zéro." data-en="Hours drafting the same emails, volunteer callouts, and updates — from scratch every time.">Des heures à rédiger les mêmes courriels, callouts de bénévoles et mises à jour — chaque fois à partir de zéro.</p>
+        <h3 data-fr="Développement d'applications" data-en="App Development">Développement d'applications</h3>
+        <p data-fr="Des applications sur mesure, conçues pour les OBNL, les écoles et les organisations communautaires." data-en="Custom applications designed for nonprofits, schools, and community organizations.">Des applications sur mesure, conçues pour les OBNL, les écoles et les organisations communautaires.</p>
       </div>
-      <div class="pain-card gs-reveal">
-        <div class="pain-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+      <div class="cap-card gs-reveal">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="12" cy="19" r="2.2"/><path d="M6.8 6.4l3.9 10.5M17.2 6.4l-3.9 10.5M7.2 5h9.6"/></svg>
         </div>
-        <h3 data-fr="Les subventions manquées" data-en="Missed grants">Les subventions manquées</h3>
-        <p data-fr="Des jours de travail pour des demandes génériques qui ne reflètent pas vraiment l'impact de votre organisation." data-en="Days of work for generic applications that don't truly reflect your organization's impact.">Des jours de travail pour des demandes génériques qui ne reflètent pas vraiment l'impact de votre organisation.</p>
+        <h3 data-fr="Automatisation et systèmes d'IA" data-en="Automation &amp; AI Systems">Automatisation et systèmes d'IA</h3>
+        <p data-fr="Des flux de travail simplifiés, des alertes intelligentes et des analyses en temps réel, adaptés à de multiples industries." data-en="Streamlined workflows, intelligent alerts, and real-time insights tailored to multiple industries.">Des flux de travail simplifiés, des alertes intelligentes et des analyses en temps réel, adaptés à de multiples industries.</p>
       </div>
-      <div class="pain-card gs-reveal">
-        <div class="pain-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0"/></svg>
+      <div class="cap-card gs-reveal">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
-        <h3 data-fr="La mémoire qui part" data-en="Lost knowledge">La mémoire qui part</h3>
-        <p data-fr="Quand un bénévole clé quitte, tout ce qu'il savait part avec lui. Aucun système pour capturer ce savoir." data-en="When a key volunteer leaves, everything they knew leaves with them. No system to capture it.">Quand un bénévole clé quitte, tout ce qu'il savait part avec lui. Aucun système pour capturer ce savoir.</p>
-      </div>
-      <div class="pain-card gs-reveal">
-        <div class="pain-icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
-        </div>
-        <h3 data-fr="Des outils sous-utilisés" data-en="Underused tools">Des outils sous-utilisés</h3>
-        <p data-fr="ChatGPT, Claude, Gemini — puissants mais génériques. Sans configuration, ils ne savent rien de votre organisation." data-en="ChatGPT, Claude, Gemini — powerful but generic. Without setup, they know nothing about you.">ChatGPT, Claude, Gemini — puissants mais génériques. Sans configuration, ils ne savent rien de votre organisation.</p>
+        <h3 data-fr="Outils de communication" data-en="Communication Tools">Outils de communication</h3>
+        <p data-fr="Des solutions intégrées qui assurent des liens clairs et fiables entre les équipes, les clients et les communautés." data-en="Integrated solutions that ensure clear, reliable connections between teams, clients, and communities.">Des solutions intégrées qui assurent des liens clairs et fiables entre les équipes, les clients et les communautés.</p>
       </div>
     </div>
   </div>
@@ -1407,6 +1185,10 @@
             <div class="survey-option" data-value="nonprofit" onclick="selectOption(this)">
               <div class="survey-option-dot"></div>
               <span data-fr="Organisme à but non lucratif (OBNL)" data-en="Non-profit organization">Organisme à but non lucratif (OBNL)</span>
+            </div>
+            <div class="survey-option" data-value="school" onclick="selectOption(this)">
+              <div class="survey-option-dot"></div>
+              <span data-fr="École / établissement d'enseignement" data-en="School / educational institution">École / établissement d'enseignement</span>
             </div>
             <div class="survey-option" data-value="small-biz" onclick="selectOption(this)">
               <div class="survey-option-dot"></div>
@@ -1513,54 +1295,9 @@
           <h3 data-fr="Voici ce que l'IA pourrait faire pour vous" data-en="Here's what AI could do for you">Voici ce que l'IA pourrait faire pour vous</h3>
           <div class="results-recommendations" id="results-recommendations"></div>
           <div class="results-cta">
-            <a href="#contact" class="btn btn-gold" data-fr="Parlons de votre projet" data-en="Let's talk about your project">Parlons de votre projet</a>
+            <a href="#contact" class="btn btn-primary" data-fr="Contacter StrAI" data-en="Connect with StrAI">Contacter StrAI</a>
             <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;" data-fr="Gratuit. Aucun engagement." data-en="Free. No commitment.">Gratuit. Aucun engagement.</p>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ====== APPROCHE ====== -->
-<section id="approche">
-  <div class="container">
-    <p class="eyebrow gs-reveal" data-fr="Notre approche" data-en="Our approach">Notre approche</p>
-    <h2 class="gs-reveal" style="max-width:620px;"
-      data-fr="On configure l'IA pour qu'elle vous connaisse. Après, elle travaille."
-      data-en="We configure AI to know you. Then it works for you.">
-      On configure l'IA pour qu'elle vous connaisse. Après, elle travaille.
-    </h2>
-    <div class="steps">
-      <div class="steps-line"></div>
-      <div class="step gs-reveal">
-        <div class="step-num">1</div>
-        <div class="step-content">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
-          </div>
-          <h3 data-fr="On apprend" data-en="We learn">On apprend</h3>
-          <p data-fr="Un appel découverte + questionnaire pour capter votre mission, vos programmes, vos bailleurs, votre ton." data-en="A discovery call + questionnaire to capture your mission, programs, funders, and voice.">Un appel découverte + questionnaire pour capter votre mission, vos programmes, vos bailleurs, votre ton.</p>
-        </div>
-      </div>
-      <div class="step gs-reveal">
-        <div class="step-num">2</div>
-        <div class="step-content">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.066 2.573c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.573 1.066c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.066-2.573c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.573-1.066z"/><circle cx="12" cy="12" r="3"/></svg>
-          </div>
-          <h3 data-fr="On configure" data-en="We configure">On configure</h3>
-          <p data-fr="Vos outils IA sont chargés avec le contexte de votre organisation — modèles, automatisations, hub de connaissances." data-en="Your AI tools are loaded with your organization's context — templates, automations, knowledge hub.">Vos outils IA sont chargés avec le contexte de votre organisation — modèles, automatisations, hub de connaissances.</p>
-        </div>
-      </div>
-      <div class="step gs-reveal">
-        <div class="step-num">3</div>
-        <div class="step-content">
-          <div class="step-icon">
-            <svg viewBox="0 0 24 24"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-          </div>
-          <h3 data-fr="Ça roule" data-en="It runs">Ça roule</h3>
-          <p data-fr="Votre équipe apprend en 2 heures. Après, l'IA gère le routinier — vous vous concentrez sur la mission." data-en="Your team learns in 2 hours. After that, AI handles the routine — you focus on the mission.">Votre équipe apprend en 2 heures. Après, l'IA gère le routinier — vous vous concentrez sur la mission.</p>
         </div>
       </div>
     </div>
@@ -1597,7 +1334,7 @@
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Formation de 2 heures avec votre équipe" data-en="2-hour training session with your team">Formation de 2 heures avec votre équipe</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support par courriel — 30 jours" data-en="Email support — 30 days">Support par courriel — 30 jours</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-gold" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
         </div>
       </div>
 
@@ -1621,7 +1358,7 @@
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Hub de mémoire organisationnelle (Notion ou Google Drive)" data-en="Organizational memory hub (Notion or Google Drive)">Hub de mémoire organisationnelle (Notion ou Google Drive)</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 60 jours + 1 appel de suivi" data-en="60-day support + 1 follow-up call">Support 60 jours + 1 appel de suivi</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-gold" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
         </div>
       </div>
 
@@ -1645,7 +1382,7 @@
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR" data-en="Team workshop (up to 6 people) + written guide in FR">Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 90 jours + appels mensuels de suivi" data-en="90-day support + monthly check-in calls">Support 90 jours + appels mensuels de suivi</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-gold" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
         </div>
       </div>
     </div>
@@ -1674,92 +1411,29 @@
   </div>
 </section>
 
-<!-- ====== POUR QUI ====== -->
-<section id="pour-qui">
+<!-- ====== POURQUOI STRAI ====== -->
+<section id="pourquoi">
   <div class="container">
-    <p class="eyebrow gs-reveal" data-fr="Pour qui" data-en="For whom">Pour qui</p>
-    <h2 class="gs-reveal" data-fr="Fait pour les petites équipes qui font un grand travail." data-en="Built for small teams doing big work.">Fait pour les petites équipes qui font un grand travail.</h2>
-    <div class="pour-qui-cols">
-      <div class="pq-col gs-reveal-left">
-        <div class="pq-col-header">
-          <div class="pq-icon">
-            <svg viewBox="0 0 24 24"><path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
-          </div>
-          <h3 data-fr="Organismes à but non lucratif" data-en="Non-profit organizations">Organismes à but non lucratif</h3>
-        </div>
-        <p data-fr="Vous coordonnez des bénévoles, cherchez des subventions, et essayez d'en faire plus avec moins. strAI.ca est fait pour vous." data-en="You coordinate volunteers, seek grants, and try to do more with less. strAI.ca is built for you.">Vous coordonnez des bénévoles, cherchez des subventions, et essayez d'en faire plus avec moins. strAI.ca est fait pour vous.</p>
-        <ul class="pq-list">
-          <li data-fr="Organismes communautaires" data-en="Community organizations">Organismes communautaires</li>
-          <li data-fr="Centres d'action bénévole" data-en="Volunteer action centres">Centres d'action bénévole</li>
-          <li data-fr="Associations culturelles et sportives" data-en="Cultural and sports associations">Associations culturelles et sportives</li>
-          <li data-fr="Groupes environnementaux" data-en="Environmental groups">Groupes environnementaux</li>
-          <li data-fr="Organismes de santé et services sociaux" data-en="Health and social service organizations">Organismes de santé et services sociaux</li>
-        </ul>
-      </div>
-      <div class="pq-col gs-reveal-right">
-        <div class="pq-col-header">
-          <div class="pq-icon">
-            <svg viewBox="0 0 24 24"><path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/></svg>
-          </div>
-          <h3 data-fr="Petites entreprises" data-en="Small businesses">Petites entreprises</h3>
-        </div>
-        <p data-fr="1 à 15 employés, trop d'admin, pas assez de temps. Des outils bien configurés font la différence entre survivre et prospérer." data-en="1 to 15 employees, too much admin, not enough time. Properly configured tools make the difference.">1 à 15 employés, trop d'admin, pas assez de temps. Des outils bien configurés font la différence entre survivre et prospérer.</p>
-        <ul class="pq-list">
-          <li data-fr="PME et commerces locaux" data-en="Local SMBs and shops">PME et commerces locaux</li>
-          <li data-fr="Professionnels et travailleurs autonomes" data-en="Professionals and freelancers">Professionnels et travailleurs autonomes</li>
-          <li data-fr="Entreprises de construction et de services" data-en="Construction and service companies">Entreprises de construction et de services</li>
-          <li data-fr="Agences et studios créatifs" data-en="Creative agencies and studios">Agences et studios créatifs</li>
-          <li data-fr="Tout secteur avec trop d'admin et trop peu de temps" data-en="Any sector with too much admin and too little time">Tout secteur avec trop d'admin et trop peu de temps</li>
-        </ul>
-      </div>
+    <div class="pourquoi-wrap">
+      <p class="eyebrow gs-reveal" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</p>
+      <h2 class="gs-reveal" data-fr="Une technologie qui travaille en arrière-plan." data-en="Technology that works in the background.">Une technologie qui travaille en arrière-plan.</h2>
+      <p class="lead gs-reveal"
+        data-fr="StrAI crée des technologies qui travaillent discrètement en arrière-plan et font le gros du travail, pour que les organisations puissent se concentrer sur leur mission. Ses solutions allient simplicité, intelligence et adaptabilité — conçues pour évoluer avec les besoins de demain."
+        data-en="StrAI creates technology that works quietly in the background, doing the heavy lifting so organizations can focus on their mission. Its solutions combine simplicity, intelligence, and adaptability — designed to evolve with the needs of the future.">
+        StrAI crée des technologies qui travaillent discrètement en arrière-plan et font le gros du travail, pour que les organisations puissent se concentrer sur leur mission. Ses solutions allient simplicité, intelligence et adaptabilité — conçues pour évoluer avec les besoins de demain.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ====== A PROPOS ====== -->
-<section id="apropos">
+<!-- ====== FINAL CTA ====== -->
+<section id="cta">
   <div class="container">
-    <div class="apropos-grid">
-      <div class="ap-text gs-reveal-left">
-        <p class="eyebrow" data-fr="À propos" data-en="About">À propos</p>
-        <h2 data-fr="Quelqu'un qui parle votre réalité." data-en="Someone who speaks your reality.">Quelqu'un qui parle votre réalité.</h2>
-        <p style="margin-top:1.5rem;"
-          data-fr="Je m'appelle Jesse R. Je vis et travaille dans la région depuis des années — d'abord à travers Stray Dog Media, où j'aide des organisations locales à raconter leur histoire et à mieux communiquer."
-          data-en="My name is Jesse R. I live and work in the region — first through Stray Dog Media, where I help local organizations tell their story and communicate better.">
-          Je m'appelle Jesse R. Je vis et travaille dans la région depuis des années — d'abord à travers Stray Dog Media, où j'aide des organisations locales à raconter leur histoire et à mieux communiquer.
-        </p>
-        <p data-fr="strAI.ca est né d'une question simple : et si les outils que j'utilise pour moi-même pouvaient travailler pour mes clients aussi — sans qu'ils aient à devenir des experts en IA?"
-           data-en="strAI.ca was born from a simple question: what if the tools I use for myself could work for my clients too — without them needing to become AI experts?">
-          strAI.ca est né d'une question simple : et si les outils que j'utilise pour moi-même pouvaient travailler pour mes clients aussi — sans qu'ils aient à devenir des experts en IA?
-        </p>
-        <p data-fr="Je parle français et anglais. Je comprends les budgets serrés, les équipes surchargées, et le potentiel immense que des outils bien configurés peuvent débloquer."
-           data-en="I speak French and English. I understand tight budgets, overwhelmed teams, and the immense potential that well-configured tools can unlock.">
-          Je parle français et anglais. Je comprends les budgets serrés, les équipes surchargées, et le potentiel immense que des outils bien configurés peuvent débloquer.
-        </p>
-        <div class="ap-sig">— Jesse R.</div>
-      </div>
-      <div class="ap-card gs-reveal-right">
-        <p class="eyebrow" style="margin-bottom:1.8rem;" data-fr="Par les chiffres" data-en="By the numbers">Par les chiffres</p>
-        <div class="ap-stats">
-          <div class="stat">
-            <div class="stat-num" data-count="70">0%</div>
-            <div class="stat-lbl" data-fr="de temps en rédaction de subventions, en moyenne" data-en="reduction in grant writing time, on average">de temps en rédaction de subventions, en moyenne</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">FR/EN</div>
-            <div class="stat-lbl" data-fr="configuré pour votre langue, toujours" data-en="configured for your language, always">configuré pour votre langue, toujours</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num" data-count="30" data-suffix="'">0'</div>
-            <div class="stat-lbl" data-fr="appel découverte gratuit, aucun engagement" data-en="free discovery call, no commitment">appel découverte gratuit, aucun engagement</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num" style="font-size:1.5rem;">Ormstown</div>
-            <div class="stat-lbl" data-fr="ancré dans la région, disponible partout" data-en="rooted in the region, available anywhere">ancré dans la région, disponible partout</div>
-          </div>
-        </div>
-      </div>
+    <div class="cta-line gs-reveal">
+      <span class="zap">&#9889;</span>
+      <span data-fr="StrAI.ca – L'intelligence derrière la prochaine étape." data-en="StrAI.ca – The intelligence behind the next step.">StrAI.ca – L'intelligence derrière la prochaine étape.</span>
     </div>
+    <a href="#contact" class="btn btn-primary gs-reveal" data-fr="Contacter StrAI" data-en="Connect with StrAI">Contacter StrAI</a>
   </div>
 </section>
 
@@ -1768,11 +1442,11 @@
   <div class="container">
     <div class="contact-grid">
       <div class="contact-info gs-reveal-left">
-        <p class="eyebrow" data-fr="Commençons" data-en="Let's start">Commençons</p>
-        <h2 data-fr="On jase d'abord." data-en="Let's talk first.">On jase d'abord.</h2>
-        <p data-fr="30 minutes. Aucun engagement. On regarde ensemble ce qui ferait vraiment une différence pour votre organisation."
-           data-en="30 minutes. No commitment. We look together at what would truly make a difference for your organization.">
-          30 minutes. Aucun engagement. On regarde ensemble ce qui ferait vraiment une différence pour votre organisation.
+        <p class="eyebrow" data-fr="Prochaine étape" data-en="Next step">Prochaine étape</p>
+        <h2 data-fr="Prêt pour la suite?" data-en="Ready for what's next?">Prêt pour la suite?</h2>
+        <p data-fr="Un appel de 30 minutes, sans engagement. StrAI évalue ce qui ferait une vraie différence pour votre organisation."
+           data-en="A 30-minute call, no commitment. StrAI assesses what would make a real difference for your organization.">
+          Un appel de 30 minutes, sans engagement. StrAI évalue ce qui ferait une vraie différence pour votre organisation.
         </p>
 
         <div class="contact-methods">
@@ -1798,7 +1472,7 @@
       </div>
 
       <div class="contact-form-wrap gs-reveal-right" id="contact-form-wrap">
-        <h3 data-fr="Envoyez-nous un message" data-en="Send us a message">Envoyez-nous un message</h3>
+        <h3 data-fr="Écrire à StrAI" data-en="Write to StrAI">Écrire à StrAI</h3>
         <form id="contact-form" action="https://formspree.io/f/mjgpqgkz" method="POST">
           <div class="form-row">
             <div class="form-group">
@@ -1830,13 +1504,13 @@
             <textarea id="message" name="message" placeholder="Parlez-nous de votre organisation et de vos besoins..." rows="4"></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn btn-gold" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
+            <button type="submit" class="btn btn-primary" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
           </div>
         </form>
         <div class="form-success" id="form-success">
-          <div class="form-success-icon">&#x1F389;</div>
+          <div class="form-success-icon">&#x26A1;</div>
           <h3 data-fr="Message envoyé!" data-en="Message sent!">Message envoyé!</h3>
-          <p data-fr="On vous revient dans les 24 heures. Merci!" data-en="We'll get back to you within 24 hours. Thank you!">On vous revient dans les 24 heures. Merci!</p>
+          <p data-fr="StrAI vous revient dans les 24 heures. Merci!" data-en="StrAI will get back to you within 24 hours. Thank you!">StrAI vous revient dans les 24 heures. Merci!</p>
         </div>
       </div>
     </div>
@@ -1852,7 +1526,7 @@
         <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
         <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
       </div>
-      <div data-fr="&copy; 2025 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2025 strAI.ca &middot; Ormstown, Quebec">&copy; 2025 strAI.ca &middot; Ormstown, Québec</div>
+      <div data-fr="&copy; 2026 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2026 strAI.ca &middot; Ormstown, Quebec">&copy; 2026 strAI.ca &middot; Ormstown, Québec</div>
     </div>
   </div>
 </footer>
@@ -1862,7 +1536,7 @@
 
 <script>
   /* ============================================================
-     strAI.ca — UI Scripts v3
+     StrAI.ca — UI Scripts v4
      Stray Dog Media — the stray is watching.
   ============================================================ */
 
@@ -1881,8 +1555,11 @@
       if (val) el.innerHTML = val;
     });
     document.title = l === 'fr'
-      ? "strAI.ca — L'IA qui vous connaît"
-      : "strAI.ca — AI that knows you";
+      ? "StrAI.ca – Outils intelligents d'automatisation et d'IA pour l'éducation, les OBNL et l'industrie"
+      : "StrAI.ca – Smart Automation & AI Tools for Education, Nonprofits, and Industry";
+    document.getElementById('meta-desc').setAttribute('content', l === 'fr'
+      ? "StrAI conçoit des applications intelligentes, des automatisations et des systèmes de communication qui simplifient la complexité et propulsent le progrès des écoles, des OBNL et des industries."
+      : "StrAI develops intelligent apps, automation, and communication systems that simplify complexity and power progress for schools, nonprofits, and industries.");
     // Update form placeholders
     if (l === 'en') {
       document.querySelector('#name').placeholder = 'Your name';
@@ -2000,7 +1677,7 @@
 
       ctx.beginPath();
       ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(212, 175, 55, ${alpha})`;
+      ctx.fillStyle = `rgba(0, 174, 239, ${alpha})`;
       ctx.fill();
     });
 
@@ -2014,7 +1691,7 @@
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);
           ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(212, 175, 55, ${0.06 * (1 - dist / 120)})`;
+          ctx.strokeStyle = `rgba(61, 255, 243, ${0.06 * (1 - dist / 120)})`;
           ctx.lineWidth = 0.5;
           ctx.stroke();
         }
@@ -2038,10 +1715,10 @@
   // --- GSAP Scroll Animations ---
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero entrance
-  gsap.from('#hero .gs-reveal', {
-    y: 40,
-    opacity: 0,
+  // Hero entrance (gsap.to — CSS pre-hides .gs-reveal, so from() would end at opacity 0)
+  gsap.to('#hero .gs-reveal', {
+    y: 0,
+    opacity: 1,
     duration: 0.9,
     stagger: 0.15,
     ease: 'power3.out',
@@ -2089,31 +1766,16 @@
     });
   });
 
-  // Pain cards staggered
+  // Capabilities staggered
   ScrollTrigger.create({
-    trigger: '.pain-grid',
+    trigger: '.cap-grid',
     start: 'top 85%',
     once: true,
     onEnter: () => {
-      gsap.to('.pain-card', {
+      gsap.to('.cap-card', {
         y: 0, opacity: 1,
         duration: 0.6,
         stagger: 0.12,
-        ease: 'power3.out'
-      });
-    }
-  });
-
-  // Steps staggered
-  ScrollTrigger.create({
-    trigger: '.steps',
-    start: 'top 85%',
-    once: true,
-    onEnter: () => {
-      gsap.to('.step', {
-        y: 0, opacity: 1,
-        duration: 0.7,
-        stagger: 0.2,
         ease: 'power3.out'
       });
     }
@@ -2132,32 +1794,6 @@
         ease: 'power3.out'
       });
     }
-  });
-
-  // Counter animation
-  document.querySelectorAll('.stat-num[data-count]').forEach(el => {
-    const target = parseInt(el.dataset.count);
-    const suffix = el.dataset.suffix || '';
-    const prefix = el.textContent.startsWith('-') || el.textContent.startsWith('\u2212') ? '\u2212' : '';
-
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 90%',
-      once: true,
-      onEnter: () => {
-        gsap.to({ val: 0 }, {
-          val: target,
-          duration: 1.5,
-          ease: 'power2.out',
-          onUpdate: function() {
-            el.textContent = prefix + Math.round(this.targets()[0].val) + '%' + suffix;
-          },
-          onComplete: function() {
-            el.textContent = prefix + target + '%' + suffix;
-          }
-        });
-      }
-    });
   });
 
   // --- Survey Logic ---
@@ -2275,6 +1911,16 @@
         title_en: 'Nonprofit Package — 20% Discount',
         desc_fr: 'En tant qu\'OBNL, vous avez droit à 20 % de rabais sur tous nos forfaits, et vos investissements sont admissibles aux subventions.',
         desc_en: 'As a nonprofit, you get 20% off all packages, and your investment is eligible for grant funding.'
+      });
+    }
+
+    // School-specific
+    if (orgType === 'school') {
+      recs.push({
+        title_fr: 'Outils pour le milieu scolaire',
+        title_en: 'Tools for Schools',
+        desc_fr: 'Communications aux parents, coordination du personnel, suivi administratif — des systèmes qui allègent la charge de l\'équipe-école.',
+        desc_en: 'Parent communications, staff coordination, admin tracking — systems that lighten the load on school teams.'
       });
     }
 
