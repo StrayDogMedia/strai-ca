@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StrAI.ca – Outils intelligents d'automatisation et d'IA pour l'éducation, les OBNL et l'industrie</title>
-  <meta name="description" id="meta-desc" content="StrAI conçoit des applications intelligentes, des automatisations et des systèmes de communication qui simplifient la complexité et propulsent le progrès des écoles, des OBNL et des industries.">
-  <meta property="og:title" content="StrAI.ca – Smart tools for a connected future">
-  <meta property="og:description" content="StrAI develops intelligent apps, automation, and communication systems that simplify complexity and power progress for schools, nonprofits, and industries.">
+  <title>StrAI.ca – Outils d'IA pratiques pour les OBNL du Québec</title>
+  <meta name="description" id="meta-desc" content="StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée.">
+  <meta property="og:title" content="StrAI.ca – Practical AI tools for Quebec nonprofits">
+  <meta property="og:description" content="StrAI helps small Quebec nonprofits reduce repetitive work: grants, reports, bilingual communications, and follow-up — practical AI tools configured around your knowledge, teams trained.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://strai.ca">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,7 +18,7 @@
   <style>
     /* ============================================================
        StrAI.ca — Stealth Tech Design System v4
-       Smart tools for a connected future.
+       Practical AI tools for Quebec nonprofits.
        Stray Dog Media spin-off — les chiens errants travaillent ici
     ============================================================ */
 
@@ -375,7 +375,7 @@
     }
     .cap-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.4rem;
       margin-top: 3rem;
     }
@@ -783,14 +783,56 @@
     .ret-obnl { font-size: 0.78rem; color: var(--accent-2); margin-bottom: 0.5rem; }
     .ret-desc { font-size: 0.8rem; color: var(--muted-lt); line-height: 1.55; }
 
-    /* ========== POURQUOI ========== */
-    #pourquoi { border-top: 1px solid var(--border); }
-    .pourquoi-wrap { max-width: 680px; }
-    .pourquoi-wrap p.lead {
-      font-size: 1.1rem;
-      line-height: 1.85;
-      margin-top: 1.5rem;
+    /* ========== PROCESSUS ========== */
+    #processus { border-top: 1px solid var(--border); }
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.4rem;
+      margin-top: 3rem;
     }
+    .step {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(61,255,243,0.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 24px rgba(0,174,239,0.07);
+    }
+    .step-num {
+      font-family: var(--font-m);
+      font-size: 0.85rem;
+      color: var(--accent);
+      border: 1px solid rgba(0,174,239,0.35);
+      border-radius: var(--radius-sm);
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .step h3 { margin-bottom: 0.6rem; font-size: 0.92rem; }
+    .step p { font-size: 0.87rem; line-height: 1.65; color: var(--muted-lt); }
+
+    /* ========== POURQUOI ========== */
+    #pourquoi {
+      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
+      border-top: 1px solid var(--border);
+    }
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.4rem;
+      margin-top: 3rem;
+    }
+    .why-item {
+      border-left: 2px solid rgba(0,174,239,0.4);
+      padding: 0.4rem 0 0.4rem 1.4rem;
+    }
+    .why-item h3 { margin-bottom: 0.5rem; font-size: 0.92rem; }
+    .why-item p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-lt); }
 
     /* ========== FINAL CTA ========== */
     #cta {
@@ -805,10 +847,16 @@
       letter-spacing: 0.02em;
       color: var(--heading);
       max-width: 780px;
-      margin: 0 auto 2.2rem;
+      margin: 0 auto 1.4rem;
       line-height: 1.4;
     }
-    .cta-line .zap { color: var(--accent-2); text-shadow: 0 0 24px rgba(61,255,243,0.5); }
+    .cta-sub {
+      max-width: 620px;
+      margin: 0 auto 2.2rem;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--muted-lt);
+    }
 
     /* ========== CONTACT ========== */
     #contact {
@@ -1033,6 +1081,8 @@
     /* ========== RESPONSIVE ========== */
     @media (max-width: 920px) {
       .cap-grid { grid-template-columns: 1fr; }
+      .steps { grid-template-columns: 1fr; }
+      .why-grid { grid-template-columns: 1fr; }
       .forfaits-grid { grid-template-columns: 1fr; }
       .forfait.featured { transform: none; }
       .forfait.featured:hover { transform: translateY(-6px); }
@@ -1068,7 +1118,7 @@
     </div>
 
     <ul class="nav-links">
-      <li><a href="#capabilities" data-fr="Capacités" data-en="Capabilities">Capacités</a></li>
+      <li><a href="#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
       <li><a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
       <li><a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
       <li><a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a></li>
@@ -1086,7 +1136,7 @@
 
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
-  <a href="#capabilities" data-fr="Capacités" data-en="Capabilities">Capacités</a>
+  <a href="#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
   <a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
   <a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
   <a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a>
@@ -1103,18 +1153,18 @@
 
   <div class="container">
     <div class="hero-content">
-      <p class="eyebrow gs-reveal" data-fr="Systèmes intelligents · Québec · FR/EN" data-en="Intelligent systems · Quebec · FR/EN">Systèmes intelligents · Québec · FR/EN</p>
+      <p class="eyebrow gs-reveal" data-fr="Pour les OBNL du Québec · Bilingue FR/EN" data-en="For Quebec nonprofits · Bilingual FR/EN">Pour les OBNL du Québec · Bilingue FR/EN</p>
       <h1 class="hero-h1 gs-reveal">
-        <span data-fr="Des outils intelligents pour un <span class='glow'>avenir connecté.</span>" data-en="Smart tools for a <span class='glow'>connected future.</span>">Des outils intelligents pour un <span class="glow">avenir connecté.</span></span>
+        <span data-fr="Moins de tâches répétitives. <span class='glow'>Plus de temps pour votre mission.</span>" data-en="Less time on repetitive work. <span class='glow'>More time for your mission.</span>">Moins de tâches répétitives. <span class="glow">Plus de temps pour votre mission.</span></span>
       </h1>
       <p class="hero-sub gs-reveal"
-        data-fr="Automatisation, IA et outils de communication pour les écoles, les OBNL et l'industrie."
-        data-en="Automation, AI, and communication tools for schools, nonprofits, and industry.">
-        Automatisation, IA et outils de communication pour les écoles, les OBNL et l'industrie.
+        data-fr="StrAI met en place des outils d'IA adaptés aux petits OBNL du Québec pour accélérer les demandes de subvention, les rapports, les communications bilingues et le suivi administratif."
+        data-en="StrAI sets up practical AI tools for small Quebec nonprofits, helping their teams prepare grant applications, reports, bilingual communications, and administrative follow-up in less time.">
+        StrAI met en place des outils d'IA adaptés aux petits OBNL du Québec pour accélérer les demandes de subvention, les rapports, les communications bilingues et le suivi administratif.
       </p>
       <div class="hero-ctas gs-reveal">
-        <a href="#about" class="btn btn-primary" data-fr="Découvrir StrAI" data-en="Discover StrAI">Découvrir StrAI</a>
-        <a href="#assessment" class="btn btn-ghost" data-fr="Diagnostic IA ↓" data-en="AI assessment ↓">Diagnostic IA ↓</a>
+        <a href="#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
+        <a href="#forfaits" class="btn btn-ghost" data-fr="Voir les forfaits ↓" data-en="View packages ↓">Voir les forfaits ↓</a>
       </div>
     </div>
   </div>
@@ -1130,11 +1180,16 @@
   <div class="container">
     <div class="about-wrap">
       <p class="eyebrow gs-reveal" data-fr="Ce que fait StrAI" data-en="What StrAI Does">Ce que fait StrAI</p>
-      <h2 class="gs-reveal" data-fr="Des systèmes intelligents qui simplifient la complexité." data-en="Intelligent systems that simplify complexity.">Des systèmes intelligents qui simplifient la complexité.</h2>
+      <h2 class="gs-reveal" data-fr="Conçu pour les petits OBNL du Québec." data-en="Built for small Quebec nonprofits.">Conçu pour les petits OBNL du Québec.</h2>
       <p class="lead gs-reveal"
-        data-fr="Au service des écoles, des OBNL et des industries de tous horizons, StrAI livre des outils qui aident les organisations à fonctionner avec clarté, rapidité et précision."
-        data-en="Serving schools, nonprofits, and industries of all kinds, StrAI delivers tools that help organizations operate with clarity, speed, and precision.">
-        Au service des écoles, des OBNL et des industries de tous horizons, StrAI livre des outils qui aident les organisations à fonctionner avec clarté, rapidité et précision.
+        data-fr="StrAI aide les petits OBNL québécois à réduire le travail administratif répétitif. Nous organisons les connaissances que votre équipe possède déjà, configurons des outils d'IA pratiques autour d'elles, et formons votre personnel à les utiliser pour les subventions, les rapports, les communications et les suivis."
+        data-en="StrAI helps small Quebec nonprofits reduce repetitive administrative work. We organize the knowledge your team already has, configure practical AI tools around it, and train your staff to use them for grants, reports, communications, and follow-up.">
+        StrAI aide les petits OBNL québécois à réduire le travail administratif répétitif. Nous organisons les connaissances que votre équipe possède déjà, configurons des outils d'IA pratiques autour d'elles, et formons votre personnel à les utiliser pour les subventions, les rapports, les communications et les suivis.
+      </p>
+      <p class="gs-reveal" style="margin-top:1.4rem;font-size:0.9rem;color:var(--muted);"
+        data-fr="Vous représentez une école, une petite entreprise ou une organisation avec un besoin sur mesure? <a href='#contact' style='color:var(--accent);text-decoration:underline;text-underline-offset:3px;'>Parlons-en.</a>"
+        data-en="Represent a school, a small business, or an organization with a custom need? <a href='#contact' style='color:var(--accent);text-decoration:underline;text-underline-offset:3px;'>Let's talk.</a>">
+        Vous représentez une école, une petite entreprise ou une organisation avec un besoin sur mesure? <a href="#contact" style="color:var(--accent);text-decoration:underline;text-underline-offset:3px;">Parlons-en.</a>
       </p>
     </div>
   </div>
@@ -1143,29 +1198,43 @@
 <!-- ====== CAPABILITIES ====== -->
 <section id="capabilities">
   <div class="container">
-    <p class="eyebrow gs-reveal" data-fr="Capacités clés" data-en="Core Capabilities">Capacités clés</p>
-    <h2 class="gs-reveal" data-fr="Trois façons de faire avancer votre organisation." data-en="Three ways to move your organization forward.">Trois façons de faire avancer votre organisation.</h2>
+    <p class="eyebrow gs-reveal" data-fr="Résultats concrets" data-en="Concrete outcomes">Résultats concrets</p>
+    <h2 class="gs-reveal" data-fr="Du temps récupéré là où votre équipe en perd chaque semaine." data-en="Time recovered where your team loses it every week.">Du temps récupéré là où votre équipe en perd chaque semaine.</h2>
     <div class="cap-grid">
       <div class="cap-card gs-reveal">
         <div class="cap-icon">
-          <svg viewBox="0 0 24 24"><path d="M8 6l-6 6 6 6M16 6l6 6-6 6"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
         </div>
-        <h3 data-fr="Développement d'applications" data-en="App Development">Développement d'applications</h3>
-        <p data-fr="Des applications sur mesure, conçues pour les OBNL, les écoles et les organisations communautaires." data-en="Custom applications designed for nonprofits, schools, and community organizations.">Des applications sur mesure, conçues pour les OBNL, les écoles et les organisations communautaires.</p>
+        <h3 data-fr="Demandes de subvention" data-en="Grant applications">Demandes de subvention</h3>
+        <p data-fr="Transformez vos notes, vos programmes et vos résultats antérieurs en un premier jet structuré que votre équipe peut vérifier et améliorer." data-en="Turn your notes, programs, and past results into a structured first draft your team can review and improve.">Transformez vos notes, vos programmes et vos résultats antérieurs en un premier jet structuré que votre équipe peut vérifier et améliorer.</p>
       </div>
       <div class="cap-card gs-reveal">
         <div class="cap-icon">
-          <svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2.2"/><circle cx="19" cy="5" r="2.2"/><circle cx="12" cy="19" r="2.2"/><path d="M6.8 6.4l3.9 10.5M17.2 6.4l-3.9 10.5M7.2 5h9.6"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
         </div>
-        <h3 data-fr="Automatisation et systèmes d'IA" data-en="Automation &amp; AI Systems">Automatisation et systèmes d'IA</h3>
-        <p data-fr="Des flux de travail simplifiés, des alertes intelligentes et des analyses en temps réel, adaptés à de multiples industries." data-en="Streamlined workflows, intelligent alerts, and real-time insights tailored to multiple industries.">Des flux de travail simplifiés, des alertes intelligentes et des analyses en temps réel, adaptés à de multiples industries.</p>
+        <h3 data-fr="Rapports et réunions" data-en="Reports and meetings">Rapports et réunions</h3>
+        <p data-fr="Produisez plus rapidement les comptes rendus et les rapports au conseil, puis classez-les au bon endroit." data-en="Produce meeting summaries and board reports faster, then file them where they belong.">Produisez plus rapidement les comptes rendus et les rapports au conseil, puis classez-les au bon endroit.</p>
       </div>
       <div class="cap-card gs-reveal">
         <div class="cap-icon">
           <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
         </div>
-        <h3 data-fr="Outils de communication" data-en="Communication Tools">Outils de communication</h3>
-        <p data-fr="Des solutions intégrées qui assurent des liens clairs et fiables entre les équipes, les clients et les communautés." data-en="Integrated solutions that ensure clear, reliable connections between teams, clients, and communities.">Des solutions intégrées qui assurent des liens clairs et fiables entre les équipes, les clients et les communautés.</p>
+        <h3 data-fr="Communications bilingues" data-en="Bilingual communications">Communications bilingues</h3>
+        <p data-fr="Créez des messages cohérents en français et en anglais à partir de modèles adaptés à votre organisation." data-en="Create consistent French and English messages from templates built for your organization.">Créez des messages cohérents en français et en anglais à partir de modèles adaptés à votre organisation.</p>
+      </div>
+      <div class="cap-card gs-reveal">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v6c0 1.66 3.58 3 8 3s8-1.34 8-3V5M4 11v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"/></svg>
+        </div>
+        <h3 data-fr="Mémoire organisationnelle" data-en="Organizational memory">Mémoire organisationnelle</h3>
+        <p data-fr="Regroupez les informations que votre équipe cherche constamment afin qu'elles restent accessibles malgré les départs et les changements au CA." data-en="Gather the information your team keeps searching for so it stays accessible through staff departures and board changes.">Regroupez les informations que votre équipe cherche constamment afin qu'elles restent accessibles malgré les départs et les changements au CA.</p>
+      </div>
+      <div class="cap-card gs-reveal">
+        <div class="cap-icon">
+          <svg viewBox="0 0 24 24"><path d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </div>
+        <h3 data-fr="Suivis récurrents" data-en="Recurring follow-ups">Suivis récurrents</h3>
+        <p data-fr="Mettez en place des rappels et des processus simples pour les bailleurs de fonds, les donateurs et les bénévoles." data-en="Set up simple reminders and processes for funders, donors, and volunteers.">Mettez en place des rappels et des processus simples pour les bailleurs de fonds, les donateurs et les bénévoles.</p>
       </div>
     </div>
   </div>
@@ -1177,8 +1246,8 @@
     <div class="assessment-wrap">
       <div class="assessment-intro gs-reveal">
         <p class="eyebrow" style="justify-content:center;" data-fr="Diagnostic gratuit" data-en="Free assessment">Diagnostic gratuit</p>
-        <h2 data-fr="Que pourrait faire l'IA pour vous?" data-en="What could AI do for you?">Que pourrait faire l'IA pour vous?</h2>
-        <p data-fr="Répondez à 4 questions rapides et recevez des recommandations personnalisées." data-en="Answer 4 quick questions and receive personalized recommendations.">Répondez à 4 questions rapides et recevez des recommandations personnalisées.</p>
+        <h2 data-fr="Où votre équipe perd-elle du temps?" data-en="Where does your team lose time?">Où votre équipe perd-elle du temps?</h2>
+        <p data-fr="Répondez à quatre questions pour repérer le processus qui mérite d'être simplifié en premier." data-en="Answer four questions to spot the process worth simplifying first.">Répondez à quatre questions pour repérer le processus qui mérite d'être simplifié en premier.</p>
       </div>
 
       <div class="survey-progress gs-reveal">
@@ -1304,10 +1373,35 @@
           <h3 data-fr="Voici ce que l'IA pourrait faire pour vous" data-en="Here's what AI could do for you">Voici ce que l'IA pourrait faire pour vous</h3>
           <div class="results-recommendations" id="results-recommendations"></div>
           <div class="results-cta">
-            <a href="#contact" class="btn btn-primary" data-fr="Contacter StrAI" data-en="Connect with StrAI">Contacter StrAI</a>
+            <a href="#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
             <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;" data-fr="Gratuit. Aucun engagement." data-en="Free. No commitment.">Gratuit. Aucun engagement.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== PROCESSUS ====== -->
+<section id="processus">
+  <div class="container">
+    <p class="eyebrow gs-reveal" data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</p>
+    <h2 class="gs-reveal" data-fr="Trois étapes, avec votre équipe à chacune." data-en="Three steps, with your team at every one.">Trois étapes, avec votre équipe à chacune.</h2>
+    <div class="steps">
+      <div class="step gs-reveal">
+        <div class="step-num">01</div>
+        <h3 data-fr="Nous repérons le travail répétitif" data-en="We identify the repetitive work">Nous repérons le travail répétitif</h3>
+        <p data-fr="Lors d'un appel, nous examinons les tâches qui absorbent le plus de temps et choisissons un point de départ réaliste." data-en="In a call, we look at the tasks absorbing the most staff time and choose a realistic starting point.">Lors d'un appel, nous examinons les tâches qui absorbent le plus de temps et choisissons un point de départ réaliste.</p>
+      </div>
+      <div class="step gs-reveal">
+        <div class="step-num">02</div>
+        <h3 data-fr="Nous construisons avec votre contenu" data-en="We build with your content">Nous construisons avec votre contenu</h3>
+        <p data-fr="Nous organisons les documents, modèles et connaissances que votre équipe utilise déjà, puis configurons les outils retenus." data-en="We organize the documents, templates, and knowledge your team already uses, then configure the selected tools.">Nous organisons les documents, modèles et connaissances que votre équipe utilise déjà, puis configurons les outils retenus.</p>
+      </div>
+      <div class="step gs-reveal">
+        <div class="step-num">03</div>
+        <h3 data-fr="Votre équipe apprend à s'en servir" data-en="Your team learns to use it">Votre équipe apprend à s'en servir</h3>
+        <p data-fr="Nous testons le système avec vous, formons les personnes concernées et restons disponibles pendant la période de soutien incluse." data-en="We test the system with you, train the people involved, and stay available through the included support period.">Nous testons le système avec vous, formons les personnes concernées et restons disponibles pendant la période de soutien incluse.</p>
       </div>
     </div>
   </div>
@@ -1319,9 +1413,9 @@
     <p class="eyebrow gs-reveal" data-fr="Les forfaits" data-en="Packages">Les forfaits</p>
     <h2 class="gs-reveal" data-fr="Choisissez votre point de départ." data-en="Choose your starting point.">Choisissez votre point de départ.</h2>
     <p class="forfaits-intro gs-reveal"
-      data-fr="Mise en place unique. 20 % de rabais pour les OBNL. Admissible à certains programmes de financement provincial et fédéral."
-      data-en="One-time setup. 20% off for nonprofits. Eligible for certain provincial and federal funding programs.">
-      Mise en place unique. 20 % de rabais pour les OBNL. Admissible à certains programmes de financement provincial et fédéral.
+      data-fr="Mise en place unique. 20 % de rabais pour les OBNL. Certains projets peuvent être admissibles à des programmes d'aide — l'admissibilité dépend de votre organisation et des critères en vigueur; nous pouvons vous indiquer les pistes à vérifier."
+      data-en="One-time setup. 20% off for nonprofits. Some projects may qualify for funding programs — eligibility depends on your organization and current criteria; we can point you to the options worth checking.">
+      Mise en place unique. 20 % de rabais pour les OBNL. Certains projets peuvent être admissibles à des programmes d'aide — l'admissibilité dépend de votre organisation et des critères en vigueur; nous pouvons vous indiquer les pistes à vérifier.
     </p>
 
     <div class="forfaits-grid">
@@ -1329,21 +1423,21 @@
       <div class="forfait gs-reveal">
         <div class="forfait-name">Ancrage</div>
         <p class="forfait-desc"
-          data-fr="Pour les organisations prêtes à arrêter de réinventer la roue à chaque communication."
-          data-en="For organizations ready to stop reinventing the wheel with every communication.">
-          Pour les organisations prêtes à arrêter de réinventer la roue à chaque communication.
+          data-fr="Des communications cohérentes, sans repartir de zéro."
+          data-en="Consistent communications, without starting from zero.">
+          Des communications cohérentes, sans repartir de zéro.
         </p>
         <div class="forfait-price">$597</div>
         <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
         <div class="forfait-obnl" data-fr="$478 pour les OBNL (−20 %)" data-en="$478 for nonprofits (−20%)">$478 pour les OBNL (−20 %)</div>
         <hr class="f-divider">
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Fichier de connaissances organisationnelles construit" data-en="Organizational knowledge file built">Fichier de connaissances organisationnelles construit</span></div>
-        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Claude configuré avec votre contexte complet" data-en="Claude configured with your full context">Claude configuré avec votre contexte complet</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Claude configuré avec les informations, instructions et modèles approuvés par votre organisation" data-en="Claude configured with your organization's approved information, instructions, and templates">Claude configuré avec les informations, instructions et modèles approuvés par votre organisation</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="5 modèles de communication bilingues FR/EN" data-en="5 bilingual FR/EN communication templates">5 modèles de communication bilingues FR/EN</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Formation de 2 heures avec votre équipe" data-en="2-hour training session with your team">Formation de 2 heures avec votre équipe</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support par courriel — 30 jours" data-en="Email support — 30 days">Support par courriel — 30 jours</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Discuter de ce forfait" data-en="Discuss this package">Discuter de ce forfait</a>
         </div>
       </div>
 
@@ -1352,22 +1446,22 @@
         <div class="featured-label" data-fr="Le plus populaire" data-en="Most popular">Le plus populaire</div>
         <div class="forfait-name">Momentum</div>
         <p class="forfait-desc"
-          data-fr="Pour les OBNL qui laissent de l'argent sur la table chaque année faute de temps pour bien rédiger leurs demandes."
-          data-en="For nonprofits leaving money on the table each year from lack of time to write strong grant applications.">
-          Pour les OBNL qui laissent de l'argent sur la table chaque année faute de temps pour bien rédiger leurs demandes.
+          data-fr="Des subventions et des rapports préparés plus rapidement."
+          data-en="Grants and reports prepared faster.">
+          Des subventions et des rapports préparés plus rapidement.
         </p>
-        <div class="forfait-price">$1 197</div>
+        <div class="forfait-price" data-fr="$1 197" data-en="$1,197">$1 197</div>
         <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
         <div class="forfait-obnl" data-fr="$958 pour les OBNL (−20 %)" data-en="$958 for nonprofits (−20%)">$958 pour les OBNL (−20 %)</div>
         <hr class="f-divider">
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Tout ce qu'il y a dans Ancrage" data-en="Everything in Ancrage">Tout ce qu'il y a dans Ancrage</span></div>
-        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Système de rédaction de subventions — premiers jets en 20 min" data-en="Grant writing system — first drafts in 20 min">Système de rédaction de subventions — premiers jets en 20 min</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Système de rédaction de subventions — premier jet structuré à partir de vos informations, validation finale par votre équipe" data-en="Grant writing system — structured first drafts from your existing information, final review by your team">Système de rédaction de subventions — premier jet structuré à partir de vos informations, validation finale par votre équipe</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Suivi des bailleurs de fonds + rappels automatiques" data-en="Funder tracking + automatic reminders">Suivi des bailleurs de fonds + rappels automatiques</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Rapport au CA — rédigé automatiquement à partir de vos notes" data-en="Board report — auto-drafted from your notes">Rapport au CA — rédigé automatiquement à partir de vos notes</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Hub de mémoire organisationnelle (Notion ou Google Drive)" data-en="Organizational memory hub (Notion or Google Drive)">Hub de mémoire organisationnelle (Notion ou Google Drive)</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 60 jours + 1 appel de suivi" data-en="60-day support + 1 follow-up call">Support 60 jours + 1 appel de suivi</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Discuter de ce forfait" data-en="Discuss this package">Discuter de ce forfait</a>
         </div>
       </div>
 
@@ -1375,11 +1469,11 @@
       <div class="forfait gs-reveal">
         <div class="forfait-name">Autonomie</div>
         <p class="forfait-desc"
-          data-fr="Pour les organisations prêtes à fonctionner comme si elles avaient une équipe complète — sans en avoir une."
-          data-en="For organizations ready to operate like they have a full team — without having one.">
-          Pour les organisations prêtes à fonctionner comme si elles avaient une équipe complète — sans en avoir une.
+          data-fr="Plusieurs processus récurrents organisés dans un même système."
+          data-en="Several recurring processes organized in one system.">
+          Plusieurs processus récurrents organisés dans un même système.
         </p>
-        <div class="forfait-price">$2 197</div>
+        <div class="forfait-price" data-fr="$2 197" data-en="$2,197">$2 197</div>
         <div class="forfait-note" data-fr="mise en place unique" data-en="one-time setup">mise en place unique</div>
         <div class="forfait-obnl" data-fr="$1 758 pour les OBNL (−20 %)" data-en="$1,758 for nonprofits (−20%)">$1 758 pour les OBNL (−20 %)</div>
         <hr class="f-divider">
@@ -1388,23 +1482,23 @@
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Réunion → résumé automatique → classé automatiquement" data-en="Meeting → auto-summary → auto-filed">Réunion → résumé automatique → classé automatiquement</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Pipeline de contenu social — planifié en bloc chaque mois" data-en="Social content pipeline — planned in bulk monthly">Pipeline de contenu social — planifié en bloc chaque mois</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Remerciements aux donateurs — automatisés et personnalisés" data-en="Donor acknowledgments — automated and personalized">Remerciements aux donateurs — automatisés et personnalisés</span></div>
-        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR" data-en="Team workshop (up to 6 people) + written guide in FR">Atelier d'équipe (jusqu'à 6 pers.) + guide écrit en FR</span></div>
+        <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Atelier d'équipe (jusqu'à 6 pers.) + guide écrit, en français ou en anglais" data-en="Team workshop (up to 6 people) + written guide, in French or English">Atelier d'équipe (jusqu'à 6 pers.) + guide écrit, en français ou en anglais</span></div>
         <div class="f-feat"><span class="f-check">&#10003;</span><span data-fr="Support 90 jours + appels mensuels de suivi" data-en="90-day support + monthly check-in calls">Support 90 jours + appels mensuels de suivi</span></div>
         <div class="forfait-cta">
-          <a href="#contact" class="btn btn-primary" data-fr="Commencer" data-en="Get started">Commencer</a>
+          <a href="#contact" class="btn btn-primary" data-fr="Discuter de ce forfait" data-en="Discuss this package">Discuter de ce forfait</a>
         </div>
       </div>
     </div>
 
-    <p class="retainers-label gs-reveal" data-fr="Retenue mensuelle (optionnel)" data-en="Monthly retainer (optional)">Retenue mensuelle (optionnel)</p>
+    <p class="retainers-label gs-reveal" data-fr="Accompagnement mensuel (optionnel)" data-en="Monthly support (optional)">Accompagnement mensuel (optionnel)</p>
     <div class="retainers">
       <div class="retainer gs-reveal">
         <div class="ret-icon">
           <svg viewBox="0 0 24 24"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
         </div>
         <div class="ret-name">Maintien</div>
-        <div class="ret-price">$127/mo</div>
-        <div class="ret-obnl" data-fr="$102/mo OBNL · Pour les clients Ancrage" data-en="$102/mo nonprofits · For Ancrage clients">$102/mo OBNL · Pour les clients Ancrage</div>
+        <div class="ret-price" data-fr="$127/mois" data-en="$127/mo">$127/mois</div>
+        <div class="ret-obnl" data-fr="$102/mois OBNL · Pour les clients Ancrage" data-en="$102/mo nonprofits · For Ancrage clients">$102/mois OBNL · Pour les clients Ancrage</div>
         <div class="ret-desc" data-fr="Fichier de connaissances mis à jour · Mises à jour des outils · Support courriel · 1 nouveau modèle par trimestre" data-en="Knowledge file updated · Tool updates · Email support · 1 new template per quarter">Fichier de connaissances mis à jour · Mises à jour des outils · Support courriel · 1 nouveau modèle par trimestre</div>
       </div>
       <div class="retainer gs-reveal">
@@ -1412,8 +1506,8 @@
           <svg viewBox="0 0 24 24"><path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
         </div>
         <div class="ret-name">Évolution</div>
-        <div class="ret-price">$227/mo</div>
-        <div class="ret-obnl" data-fr="$182/mo OBNL · Pour les clients Momentum et Autonomie" data-en="$182/mo nonprofits · For Momentum and Autonomie clients">$182/mo OBNL · Pour les clients Momentum et Autonomie</div>
+        <div class="ret-price" data-fr="$227/mois" data-en="$227/mo">$227/mois</div>
+        <div class="ret-obnl" data-fr="$182/mois OBNL · Pour les clients Momentum et Autonomie" data-en="$182/mo nonprofits · For Momentum and Autonomie clients">$182/mois OBNL · Pour les clients Momentum et Autonomie</div>
         <div class="ret-desc" data-fr="Tout + appel stratégique mensuel · Nouvelle automatisation par trimestre · Surveillance des délais de subventions · Support prioritaire" data-en="Everything + monthly strategy call · New automation per quarter · Grant deadline monitoring · Priority support">Tout + appel stratégique mensuel · Nouvelle automatisation par trimestre · Surveillance des délais de subventions · Support prioritaire</div>
       </div>
     </div>
@@ -1423,14 +1517,25 @@
 <!-- ====== POURQUOI STRAI ====== -->
 <section id="pourquoi">
   <div class="container">
-    <div class="pourquoi-wrap">
-      <p class="eyebrow gs-reveal" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</p>
-      <h2 class="gs-reveal" data-fr="Une technologie qui travaille en arrière-plan." data-en="Technology that works in the background.">Une technologie qui travaille en arrière-plan.</h2>
-      <p class="lead gs-reveal"
-        data-fr="StrAI crée des technologies qui travaillent discrètement en arrière-plan et font le gros du travail, pour que les organisations puissent se concentrer sur leur mission. Ses solutions allient simplicité, intelligence et adaptabilité — conçues pour évoluer avec les besoins de demain."
-        data-en="StrAI creates technology that works quietly in the background, doing the heavy lifting so organizations can focus on their mission. Its solutions combine simplicity, intelligence, and adaptability — designed to evolve with the needs of the future.">
-        StrAI crée des technologies qui travaillent discrètement en arrière-plan et font le gros du travail, pour que les organisations puissent se concentrer sur leur mission. Ses solutions allient simplicité, intelligence et adaptabilité — conçues pour évoluer avec les besoins de demain.
-      </p>
+    <p class="eyebrow gs-reveal" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</p>
+    <h2 class="gs-reveal" data-fr="Conçu pour les réalités des petits OBNL québécois." data-en="Built for the realities of small Quebec nonprofits.">Conçu pour les réalités des petits OBNL québécois.</h2>
+    <div class="why-grid">
+      <div class="why-item gs-reveal">
+        <h3 data-fr="Bilingue dès le départ" data-en="Bilingual from day one">Bilingue dès le départ</h3>
+        <p data-fr="Les modèles et la formation sont conçus pour le travail en français et en anglais." data-en="Templates and training are designed for work in both French and English.">Les modèles et la formation sont conçus pour le travail en français et en anglais.</p>
+      </div>
+      <div class="why-item gs-reveal">
+        <h3 data-fr="Construit autour de vos outils actuels" data-en="Built around your current tools">Construit autour de vos outils actuels</h3>
+        <p data-fr="Nous commençons par vos documents et vos façons de travailler, sans imposer un remplacement complet." data-en="We start from your documents and your ways of working, without forcing a full replacement.">Nous commençons par vos documents et vos façons de travailler, sans imposer un remplacement complet.</p>
+      </div>
+      <div class="why-item gs-reveal">
+        <h3 data-fr="Une équipe formée, pas seulement un système livré" data-en="A trained team, not just a delivered system">Une équipe formée, pas seulement un système livré</h3>
+        <p data-fr="Chaque forfait comprend de la formation, de la documentation et une période de soutien." data-en="Every package includes training, documentation, and a support period.">Chaque forfait comprend de la formation, de la documentation et une période de soutien.</p>
+      </div>
+      <div class="why-item gs-reveal">
+        <h3 data-fr="Un périmètre et un prix définis" data-en="A defined scope and price">Un périmètre et un prix définis</h3>
+        <p data-fr="Vous savez ce qui sera mis en place, ce qui est inclus et ce qui restera à votre charge." data-en="You know what will be set up, what's included, and what stays your responsibility.">Vous savez ce qui sera mis en place, ce qui est inclus et ce qui restera à votre charge.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -1439,10 +1544,14 @@
 <section id="cta">
   <div class="container">
     <div class="cta-line gs-reveal">
-      <span class="zap">&#9889;</span>
-      <span data-fr="StrAI.ca – L'intelligence derrière la prochaine étape." data-en="StrAI.ca – The intelligence behind the next step.">StrAI.ca – L'intelligence derrière la prochaine étape.</span>
+      <span data-fr="Choisissons le premier processus à simplifier." data-en="Choose the first process worth simplifying.">Choisissons le premier processus à simplifier.</span>
     </div>
-    <a href="#contact" class="btn btn-primary gs-reveal" data-fr="Contacter StrAI" data-en="Connect with StrAI">Contacter StrAI</a>
+    <p class="cta-sub gs-reveal"
+      data-fr="Pendant un appel de 30 minutes, nous examinerons la tâche récurrente qui prend le plus de temps à votre équipe, les outils que vous utilisez déjà et le point de départ le plus réaliste. Vous repartirez avec une recommandation claire, sans obligation d'achat."
+      data-en="In a 30-minute call, we'll look at the recurring task consuming the most staff time, the tools you already use, and the most realistic place to begin. You'll leave with a clear recommendation and no obligation to buy.">
+      Pendant un appel de 30 minutes, nous examinerons la tâche récurrente qui prend le plus de temps à votre équipe, les outils que vous utilisez déjà et le point de départ le plus réaliste. Vous repartirez avec une recommandation claire, sans obligation d'achat.
+    </p>
+    <a href="#contact" class="btn btn-primary gs-reveal" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
   </div>
 </section>
 
@@ -1564,11 +1673,11 @@
       if (val) el.innerHTML = val;
     });
     document.title = l === 'fr'
-      ? "StrAI.ca – Outils intelligents d'automatisation et d'IA pour l'éducation, les OBNL et l'industrie"
-      : "StrAI.ca – Smart Automation & AI Tools for Education, Nonprofits, and Industry";
+      ? "StrAI.ca – Outils d'IA pratiques pour les OBNL du Québec"
+      : "StrAI.ca – Practical AI tools for Quebec nonprofits";
     document.getElementById('meta-desc').setAttribute('content', l === 'fr'
-      ? "StrAI conçoit des applications intelligentes, des automatisations et des systèmes de communication qui simplifient la complexité et propulsent le progrès des écoles, des OBNL et des industries."
-      : "StrAI develops intelligent apps, automation, and communication systems that simplify complexity and power progress for schools, nonprofits, and industries.");
+      ? "StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée."
+      : "StrAI helps small Quebec nonprofits reduce repetitive work: grants, reports, bilingual communications, and follow-up — practical AI tools configured around your knowledge, teams trained.");
     // Update form placeholders
     if (l === 'en') {
       document.querySelector('#name').placeholder = 'Your name';
@@ -1902,8 +2011,8 @@
       recs.push({
         title_fr: 'Système de rédaction de subventions',
         title_en: 'Grant Writing System',
-        desc_fr: "L'IA connaît votre mission, vos programmes et vos chiffres — premiers jets de demandes de subvention en 20 minutes au lieu de 3 jours.",
-        desc_en: 'AI knows your mission, programs, and numbers — first grant drafts in 20 minutes instead of 3 days.'
+        desc_fr: "L'IA connaît votre mission, vos programmes et vos chiffres — des premiers jets structurés en une fraction du temps, validés par votre équipe.",
+        desc_en: 'AI knows your mission, programs, and numbers — structured first drafts in a fraction of the time, reviewed by your team.'
       });
     } else if (challenge === 'knowledge') {
       recs.push({
@@ -1926,8 +2035,8 @@
       recs.push({
         title_fr: 'Forfait OBNL — 20 % de rabais',
         title_en: 'Nonprofit Package — 20% Discount',
-        desc_fr: 'En tant qu\'OBNL, vous avez droit à 20 % de rabais sur tous nos forfaits, et vos investissements sont admissibles aux subventions.',
-        desc_en: 'As a nonprofit, you get 20% off all packages, and your investment is eligible for grant funding.'
+        desc_fr: 'En tant qu\'OBNL, vous avez droit à 20 % de rabais sur tous nos forfaits — et certains projets peuvent être admissibles à des programmes d\'aide.',
+        desc_en: 'As a nonprofit, you get 20% off all packages — and some projects may qualify for funding programs.'
       });
     }
 
