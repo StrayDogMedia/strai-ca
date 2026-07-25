@@ -64,7 +64,9 @@
     </p>
     <div class="subhero-actions">
       <a href="/#contact" class="btn btn-primary" data-fr="Discuter d'un projet semblable" data-en="Discuss a similar project">Discuter d'un projet semblable</a>
-      <!-- TODO(Stray): add the live OrmstownGPT "Ask" URL here as a .btn.btn-ghost "Essayer ↗" once confirmed -->
+      <a href="#apercu" class="btn btn-ghost" data-fr="Voir un aperçu ↓" data-en="See a preview ↓">Voir un aperçu ↓</a>
+      <!-- TODO(Stray): OrmstownGPT is in development. Once it's public, add the live "Ask" URL here
+           as a .btn.btn-primary "Essayer ↗" and update the preview caption + "beta" framing below. -->
     </div>
   </div>
 </header>
@@ -72,6 +74,49 @@
 <!-- ====== BODY ====== -->
 <main class="example-body">
   <div class="container narrow">
+
+    <div class="ex-block gs-reveal" id="apercu">
+      <h2 data-fr="Aperçu" data-en="A glimpse">Aperçu</h2>
+      <p data-fr="Voici à quoi ressemble un échange. L'important n'est pas seulement la réponse, mais le lien vers le document source qui l'accompagne — pour qu'on puisse toujours remonter au texte officiel."
+         data-en="Here's what an exchange looks like. What matters isn't only the answer, but the link to the source document that comes with it — so you can always trace back to the official text.">
+        Voici à quoi ressemble un échange. L'important n'est pas seulement la réponse, mais le lien vers le document source qui l'accompagne — pour qu'on puisse toujours remonter au texte officiel.
+      </p>
+      <div class="gpt-demo" aria-hidden="true">
+        <div class="gpt-demo-bar">
+          <span class="dot"></span>
+          <span class="gpt-demo-title">Ormstown<span class="ai">GPT</span></span>
+          <span class="gpt-demo-tag">beta</span>
+        </div>
+        <div class="gpt-demo-body">
+          <div class="gpt-msg gpt-q"
+            data-fr="Quelles sont les règles pour installer une clôture sur mon terrain?"
+            data-en="What are the rules for putting up a fence on my property?">
+            Quelles sont les règles pour installer une clôture sur mon terrain?
+          </div>
+          <div class="gpt-msg gpt-a">
+            <span data-fr="Les clôtures sont encadrées par le règlement de zonage. La hauteur maximale et les matériaux permis dépendent de la zone où se trouve votre propriété. Voici la section applicable — vérifiez la zone correspondant à votre adresse pour les détails exacts."
+                  data-en="Fences are governed by the zoning by-law. The maximum height and permitted materials depend on the zone your property is in. Here is the applicable section — check the zone matching your address for the exact details.">
+              Les clôtures sont encadrées par le règlement de zonage. La hauteur maximale et les matériaux permis dépendent de la zone où se trouve votre propriété. Voici la section applicable — vérifiez la zone correspondant à votre adresse pour les détails exacts.
+            </span>
+            <span class="gpt-source">
+              <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              <span data-fr="Source : Règlement de zonage — clôtures (PDF) →" data-en="Source: Zoning by-law — fences (PDF) →">Source : Règlement de zonage — clôtures (PDF) →</span>
+            </span>
+          </div>
+        </div>
+        <div class="gpt-demo-input">
+          <span class="fake-field" data-fr="Posez une question sur la municipalité…" data-en="Ask a question about the municipality…">Posez une question sur la municipalité…</span>
+          <span class="fake-send">
+            <svg viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </span>
+        </div>
+      </div>
+      <p class="gpt-demo-caption"
+         data-fr="Exemple illustratif. OrmstownGPT est en développement et n'est pas encore ouvert au public; chaque réponse renvoie au document officiel, qui fait foi."
+         data-en="Illustrative example. OrmstownGPT is in development and not yet open to the public; every answer links back to the official document, which governs.">
+        Exemple illustratif. OrmstownGPT est en développement et n'est pas encore ouvert au public; chaque réponse renvoie au document officiel, qui fait foi.
+      </p>
+    </div>
 
     <div class="ex-block gs-reveal">
       <h2 data-fr="Le problème" data-en="The problem">Le problème</h2>

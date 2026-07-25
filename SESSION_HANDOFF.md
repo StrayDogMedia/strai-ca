@@ -14,10 +14,16 @@ Two things landed on this branch:
   homepage card + survey language only — NO invented metrics or testimonials. Subhero kept
   visible-by-default (no gs-reveal) to avoid any invisible-hero risk.
 
+**OrmstownGPT preview (not yet public):** since OrmstownGPT isn't published, its example page
+now shows an *illustrative* product-preview mock (`.gpt-demo` in styles.css) — a static sample
+chat exchange with a source-link card — under an "Aperçu / A glimpse" block, framed "beta · not
+yet open to the public" and captioned as illustrative. The subhero "See a preview ↓" ghost button
+scrolls to it. When OrmstownGPT ships, swap in the live "Ask" URL and drop the coming-soon framing
+(TODO comment marks the spot).
+
 **Blocked on Stray — needed to finish the examples:**
-- Live URLs for the Observer newsroom and the OrmstownGPT "Ask" page — I left `TODO(Stray)`
-  comments in the two subheros where a "Voir / Essayer ↗" ghost button should go. Confirm the
-  real URLs and I'll wire them in.
+- Live URL for the Observer newsroom — `TODO(Stray)` comment in that subhero marks where a
+  "Voir le média ↗" ghost button should go. Confirm the real URL and I'll wire it in.
 - Confirm the OrmstownGPT "~130 documents" figure is still current for public copy.
 - Any real proof (a quote, a concrete before/after) you're willing to publish — the example
   pages are the natural home for it.
