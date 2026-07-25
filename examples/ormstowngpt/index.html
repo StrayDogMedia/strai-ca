@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr"
+      data-title-fr="OrmstownGPT — Exemple · StrAI.ca"
+      data-title-en="OrmstownGPT — Example · StrAI.ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OrmstownGPT — Exemple · StrAI.ca</title>
+  <meta name="description" id="meta-desc"
+    data-desc-fr="Un assistant de recherche qui répond aux questions à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse. Un exemple StrAI."
+    data-desc-en="A research assistant that answers questions from about 130 official municipal documents and links back to the source document for every answer. A StrAI example."
+    content="Un assistant de recherche qui répond aux questions à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse. Un exemple StrAI.">
+  <meta property="og:title" content="OrmstownGPT — Example · StrAI.ca">
+  <meta property="og:description" content="A research assistant that answers from about 130 official municipal documents and links back to the source for every answer.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://strai.ca/examples/ormstowngpt/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<span class="stray" aria-hidden="true">&#x1F43E;</span>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" id="logo">str<span class="ai">AI</span><span class="ca">.ca</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
+      <li><a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a></li>
+      <li><a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
+      <li><a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lang-btn">EN</button>
+      <a href="/#contact" class="btn btn-primary" data-fr="Contacter" data-en="Contact">Contacter</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
+  <a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a>
+  <a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
+  <a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
+  <a href="/#contact" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+
+<!-- ====== SUBHERO ====== -->
+<header class="subhero">
+  <div class="container narrow">
+    <a href="/#examples" class="back-link" data-fr="← Tous les exemples" data-en="← All examples">← Tous les exemples</a>
+    <p class="eyebrow" data-fr="Assistant de recherche · beta" data-en="Research assistant · beta">Assistant de recherche · beta</p>
+    <h1>OrmstownGPT</h1>
+    <p class="subhero-sub"
+      data-fr="Poser une question normale plutôt que de chasser un fichier. OrmstownGPT répond à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse, pour que l'on puisse toujours vérifier."
+      data-en="Ask a normal question instead of hunting for a file. OrmstownGPT answers from about 130 official municipal documents and links back to the source document for every answer, so it can always be checked.">
+      Poser une question normale plutôt que de chasser un fichier. OrmstownGPT répond à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse, pour que l'on puisse toujours vérifier.
+    </p>
+    <div class="subhero-actions">
+      <a href="/#contact" class="btn btn-primary" data-fr="Discuter d'un projet semblable" data-en="Discuss a similar project">Discuter d'un projet semblable</a>
+      <!-- TODO(Stray): add the live OrmstownGPT "Ask" URL here as a .btn.btn-ghost "Essayer ↗" once confirmed -->
+    </div>
+  </div>
+</header>
+
+<!-- ====== BODY ====== -->
+<main class="example-body">
+  <div class="container narrow">
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Le problème" data-en="The problem">Le problème</h2>
+      <p data-fr="L'information municipale existe déjà : règlements, procès-verbaux, avis, budgets. Mais elle est répartie dans des dizaines de PDF, sur plusieurs pages, sans moteur de recherche utile. Pour trouver une réponse simple, il faut deviner le bon document, l'ouvrir et le parcourir — un obstacle assez grand pour que la plupart des gens abandonnent."
+         data-en="Municipal information already exists: by-laws, minutes, notices, budgets. But it's spread across dozens of PDFs, on several pages, with no useful search. To find a simple answer you have to guess the right document, open it, and scan it — a barrier big enough that most people give up.">
+        L'information municipale existe déjà : règlements, procès-verbaux, avis, budgets. Mais elle est répartie dans des dizaines de PDF, sur plusieurs pages, sans moteur de recherche utile. Pour trouver une réponse simple, il faut deviner le bon document, l'ouvrir et le parcourir — un obstacle assez grand pour que la plupart des gens abandonnent.
+      </p>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</h2>
+      <div class="flow">
+        <div class="flow-step"><span class="fs-num">01</span><span data-fr="Environ 130 documents officiels sont rassemblés et indexés." data-en="About 130 official documents are gathered and indexed.">Environ 130 documents officiels sont rassemblés et indexés.</span></div>
+        <div class="flow-step"><span class="fs-num">02</span><span data-fr="On pose une question dans un langage normal, en français ou en anglais." data-en="You ask a question in plain language, in French or English.">On pose une question dans un langage normal, en français ou en anglais.</span></div>
+        <div class="flow-step"><span class="fs-num">03</span><span data-fr="L'assistant répond uniquement à partir de ces documents — pas d'invention à partir du web." data-en="The assistant answers only from those documents — no making things up from the open web.">L'assistant répond uniquement à partir de ces documents — pas d'invention à partir du web.</span></div>
+        <div class="flow-step human"><span class="fs-num">04</span><span data-fr="Chaque réponse renvoie au document source, pour vérification par la personne." data-en="Every answer links to the source document, for the person to verify.">Chaque réponse renvoie au document source, pour vérification par la personne.</span></div>
+      </div>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Le principe important" data-en="The important principle">Le principe important</h2>
+      <ul>
+        <li data-fr="L'assistant est limité à un corpus défini de documents officiels — il ne répond pas à partir de tout l'internet." data-en="The assistant is limited to a defined corpus of official documents — it doesn't answer from the whole internet.">L'assistant est limité à un corpus défini de documents officiels — il ne répond pas à partir de tout l'internet.</li>
+        <li data-fr="Chaque réponse est accompagnée de sa source, ce qui rend la vérification possible plutôt qu'une question de confiance aveugle." data-en="Every answer comes with its source, which makes verification possible instead of a matter of blind trust.">Chaque réponse est accompagnée de sa source, ce qui rend la vérification possible plutôt qu'une question de confiance aveugle.</li>
+        <li data-fr="C'est un outil en beta : il accélère la recherche, il ne remplace pas le document officiel." data-en="It's a beta tool: it speeds up the search, it doesn't replace the official document.">C'est un outil en beta : il accélère la recherche, il ne remplace pas le document officiel.</li>
+      </ul>
+      <p class="ex-note" style="margin-top:1.4rem;"
+         data-fr="Le même modèle — un assistant limité à vos documents approuvés, avec un lien vers la source — peut être construit pour un OBNL, une école ou une entreprise autour de ses propres politiques et dossiers."
+         data-en="The same model — an assistant limited to your approved documents, with a link back to the source — can be built for a nonprofit, a school, or a business around its own policies and records.">
+        Le même modèle — un assistant limité à vos documents approuvés, avec un lien vers la source — peut être construit pour un OBNL, une école ou une entreprise autour de ses propres politiques et dossiers.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== CTA ====== -->
+<section class="example-cta">
+  <div class="container narrow">
+    <h2 data-fr="Toujours les mêmes questions?" data-en="The same questions, over and over?">Toujours les mêmes questions?</h2>
+    <p data-fr="Si votre équipe répond sans cesse aux mêmes demandes à partir de documents que vous possédez déjà, un assistant limité à vos sources approuvées peut être conçu autour d'eux."
+       data-en="If your team keeps answering the same requests from documents you already own, an assistant limited to your approved sources can be built around them.">
+      Si votre équipe répond sans cesse aux mêmes demandes à partir de documents que vous possédez déjà, un assistant limité à vos sources approuvées peut être conçu autour d'eux.
+    </p>
+    <a href="/#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
+    <a href="/#examples" class="btn btn-ghost" data-fr="Voir les autres exemples" data-en="See the other examples">Voir les autres exemples</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-logo">str<span class="ai">AI</span>.ca</div>
+      <div class="footer-sdm">
+        <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
+        <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
+      </div>
+      <div data-fr="&copy; 2026 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2026 strAI.ca &middot; Ormstown, Quebec">&copy; 2026 strAI.ca &middot; Ormstown, Québec</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

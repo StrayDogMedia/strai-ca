@@ -1,6 +1,30 @@
 # SESSION_HANDOFF — strAI.ca
 
-**Last session:** 2026-07-22
+**Last session:** 2026-07-24
+
+## 2026-07-24 — Asset refactor + example subpages (branch `examples-subpages`, NOT merged/deployed)
+Two things landed on this branch:
+- **Refactor:** index.html inline CSS/JS extracted to `/assets/styles.css`, `/assets/app.js`,
+  `/assets/survey.js` (index.html now 680 lines, down from ~2300). app.js is guarded to run
+  on homepage + subpages; lang toggle persists via localStorage.
+- **Three example subpages built** (design system was already in styles.css): 
+  `/examples/ormstown-observer/`, `/examples/ormstowngpt/`, `/examples/automation/`.
+  Each: shared nav/footer, bilingual FR/EN, `.subhero` → `.ex-block` problem/how-it-works
+  (`.flow` diagram, human step highlighted) → `.example-cta`. Copy expands on the already-approved
+  homepage card + survey language only — NO invented metrics or testimonials. Subhero kept
+  visible-by-default (no gs-reveal) to avoid any invisible-hero risk.
+
+**Blocked on Stray — needed to finish the examples:**
+- Live URLs for the Observer newsroom and the OrmstownGPT "Ask" page — I left `TODO(Stray)`
+  comments in the two subheros where a "Voir / Essayer ↗" ghost button should go. Confirm the
+  real URLs and I'll wire them in.
+- Confirm the OrmstownGPT "~130 documents" figure is still current for public copy.
+- Any real proof (a quote, a concrete before/after) you're willing to publish — the example
+  pages are the natural home for it.
+
+**Next actions:** get URLs above → wire buttons → review branch → merge `examples-subpages` → main → deploy.
+
+---
 
 ## 2026-07-22 — Copy pass 2 (deployed, commit 62d009b)
 Second messaging-audit copy-only tier: package + retainer cards now LEAD with

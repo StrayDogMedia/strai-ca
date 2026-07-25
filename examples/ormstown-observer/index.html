@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr"
+      data-title-fr="L'Ormstown Observer — Exemple · StrAI.ca"
+      data-title-en="The Ormstown Observer — Example · StrAI.ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Ormstown Observer — Exemple · StrAI.ca</title>
+  <meta name="description" id="meta-desc"
+    data-desc-fr="Comment StrAI a conçu un processus de recherche et de rédaction bilingue pour un média civique : des documents publics dispersés deviennent des explications accessibles, avec vérification humaine avant publication."
+    data-desc-en="How StrAI designed a bilingual research and writing process for a civic newsroom: scattered public documents become accessible explanations, with human review before publication."
+    content="Comment StrAI a conçu un processus de recherche et de rédaction bilingue pour un média civique : des documents publics dispersés deviennent des explications accessibles, avec vérification humaine avant publication.">
+  <meta property="og:title" content="The Ormstown Observer — Example · StrAI.ca">
+  <meta property="og:description" content="Scattered public documents become accessible bilingual explanations, with human review before publication.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://strai.ca/examples/ormstown-observer/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<span class="stray" aria-hidden="true">&#x1F43E;</span>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" id="logo">str<span class="ai">AI</span><span class="ca">.ca</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
+      <li><a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a></li>
+      <li><a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
+      <li><a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lang-btn">EN</button>
+      <a href="/#contact" class="btn btn-primary" data-fr="Contacter" data-en="Contact">Contacter</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
+  <a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a>
+  <a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
+  <a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
+  <a href="/#contact" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+
+<!-- ====== SUBHERO ====== -->
+<header class="subhero">
+  <div class="container narrow">
+    <a href="/#examples" class="back-link" data-fr="← Tous les exemples" data-en="← All examples">← Tous les exemples</a>
+    <p class="eyebrow" data-fr="Journalisme civique · en ligne" data-en="Civic journalism · live">Journalisme civique · en ligne</p>
+    <h1>L'Ormstown Observer</h1>
+    <p class="subhero-sub"
+      data-fr="Un petit média communautaire couvre une région bilingue à partir de documents publics souvent longs et techniques. StrAI a mis en place un processus de recherche et de rédaction qui aide à rassembler les sources, à relever les faits importants et à préparer des explications accessibles — la décision de publier restant toujours humaine."
+      data-en="A small community newsroom covers a bilingual region from public documents that are often long and technical. StrAI set up a research and writing process that helps gather sources, surface the important facts, and prepare accessible explanations — with the decision to publish always staying human.">
+      Un petit média communautaire couvre une région bilingue à partir de documents publics souvent longs et techniques. StrAI a mis en place un processus de recherche et de rédaction qui aide à rassembler les sources, à relever les faits importants et à préparer des explications accessibles — la décision de publier restant toujours humaine.
+    </p>
+    <div class="subhero-actions">
+      <a href="/#contact" class="btn btn-primary" data-fr="Discuter d'un projet semblable" data-en="Discuss a similar project">Discuter d'un projet semblable</a>
+      <!-- TODO(Stray): add the live Observer URL here as a .btn.btn-ghost "Voir le média ↗" once confirmed -->
+    </div>
+  </div>
+</header>
+
+<!-- ====== BODY ====== -->
+<main class="example-body">
+  <div class="container narrow">
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Le problème" data-en="The problem">Le problème</h2>
+      <p data-fr="Les décisions qui touchent une communauté vivent dans des procès-verbaux, des règlements, des ordres du jour et des rapports — des documents publics, mais rarement lus. Ils sont longs, dispersés sur plusieurs sites et rédigés dans un langage administratif. Une petite salle de rédaction n'a pas le temps de tout éplucher chaque semaine, et l'information importante passe souvent inaperçue."
+         data-en="The decisions that affect a community live in minutes, by-laws, agendas, and reports — public documents, but rarely read. They are long, scattered across several sites, and written in administrative language. A small newsroom doesn't have time to comb through all of it every week, and the information that matters often goes unnoticed.">
+        Les décisions qui touchent une communauté vivent dans des procès-verbaux, des règlements, des ordres du jour et des rapports — des documents publics, mais rarement lus. Ils sont longs, dispersés sur plusieurs sites et rédigés dans un langage administratif. Une petite salle de rédaction n'a pas le temps de tout éplucher chaque semaine, et l'information importante passe souvent inaperçue.
+      </p>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</h2>
+      <p data-fr="Le processus part des documents officiels et se termine par une décision éditoriale humaine. L'IA fait le travail répétitif de repérage et de mise en forme; la personne qui publie garde le contrôle."
+         data-en="The process starts from the official documents and ends with a human editorial decision. The AI does the repetitive work of locating and shaping; the person who publishes stays in control.">
+        Le processus part des documents officiels et se termine par une décision éditoriale humaine. L'IA fait le travail répétitif de repérage et de mise en forme; la personne qui publie garde le contrôle.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="fs-num">01</span><span data-fr="Les documents publics pertinents sont rassemblés au même endroit." data-en="The relevant public documents are gathered in one place.">Les documents publics pertinents sont rassemblés au même endroit.</span></div>
+        <div class="flow-step"><span class="fs-num">02</span><span data-fr="L'outil relève les points marquants et retrouve le passage source de chacun." data-en="The tool surfaces the notable points and locates the source passage for each.">L'outil relève les points marquants et retrouve le passage source de chacun.</span></div>
+        <div class="flow-step"><span class="fs-num">03</span><span data-fr="Un premier jet d'explication bilingue FR/EN est préparé, sources conservées." data-en="A first draft of a bilingual FR/EN explanation is prepared, with sources kept.">Un premier jet d'explication bilingue FR/EN est préparé, sources conservées.</span></div>
+        <div class="flow-step human"><span class="fs-num">04</span><span data-fr="Un journaliste vérifie les faits, réécrit et décide de publier — étape humaine." data-en="A journalist checks the facts, rewrites, and decides whether to publish — human step.">Un journaliste vérifie les faits, réécrit et décide de publier — étape humaine.</span></div>
+      </div>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Ce qui reste humain" data-en="What stays human">Ce qui reste humain</h2>
+      <ul>
+        <li data-fr="Le jugement éditorial : quoi couvrir, quel angle, quoi laisser de côté." data-en="Editorial judgment: what to cover, which angle, what to leave out.">Le jugement éditorial : quoi couvrir, quel angle, quoi laisser de côté.</li>
+        <li data-fr="La vérification des faits par rapport aux documents source." data-en="Fact-checking against the source documents.">La vérification des faits par rapport aux documents source.</li>
+        <li data-fr="La décision finale de publier, et la responsabilité de ce qui est publié." data-en="The final decision to publish, and responsibility for what is published.">La décision finale de publier, et la responsabilité de ce qui est publié.</li>
+      </ul>
+      <p class="ex-note" style="margin-top:1.4rem;"
+         data-fr="L'objectif n'est pas de remplacer le journalisme, mais de retirer les heures de lecture et de mise en forme qui empêchent une petite équipe de couvrir davantage."
+         data-en="The goal isn't to replace journalism, but to remove the hours of reading and formatting that keep a small team from covering more.">
+        L'objectif n'est pas de remplacer le journalisme, mais de retirer les heures de lecture et de mise en forme qui empêchent une petite équipe de couvrir davantage.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== CTA ====== -->
+<section class="example-cta">
+  <div class="container narrow">
+    <h2 data-fr="Un flot de documents à rendre lisible?" data-en="A stream of documents to make readable?">Un flot de documents à rendre lisible?</h2>
+    <p data-fr="Si votre organisation produit ou reçoit beaucoup de documents que peu de gens ont le temps de lire, un processus semblable peut être conçu autour de votre contenu."
+       data-en="If your organization produces or receives many documents that few people have time to read, a similar process can be built around your content.">
+      Si votre organisation produit ou reçoit beaucoup de documents que peu de gens ont le temps de lire, un processus semblable peut être conçu autour de votre contenu.
+    </p>
+    <a href="/#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
+    <a href="/#examples" class="btn btn-ghost" data-fr="Voir les autres exemples" data-en="See the other examples">Voir les autres exemples</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-logo">str<span class="ai">AI</span>.ca</div>
+      <div class="footer-sdm">
+        <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
+        <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
+      </div>
+      <div data-fr="&copy; 2026 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2026 strAI.ca &middot; Ormstown, Quebec">&copy; 2026 strAI.ca &middot; Ormstown, Québec</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js" defer></script>
+</body>
+</html>

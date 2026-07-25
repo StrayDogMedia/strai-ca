@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr" data-lang="fr">
+<html lang="fr" data-lang="fr"
+      data-title-fr="StrAI.ca – Outils d'IA pratiques pour les OBNL du Québec"
+      data-title-en="StrAI.ca – Practical AI tools for Quebec nonprofits">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StrAI.ca – Outils d'IA pratiques pour les OBNL du Québec</title>
-  <meta name="description" id="meta-desc" content="StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée.">
+  <meta name="description" id="meta-desc"
+    data-desc-fr="StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée."
+    data-desc-en="StrAI helps small Quebec nonprofits reduce repetitive work: grants, reports, bilingual communications, and follow-up — practical AI tools configured around your knowledge, teams trained."
+    content="StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée.">
   <meta property="og:title" content="StrAI.ca – Practical AI tools for Quebec nonprofits">
   <meta property="og:description" content="StrAI helps small Quebec nonprofits reduce repetitive work: grants, reports, bilingual communications, and follow-up — practical AI tools configured around your knowledge, teams trained.">
   <meta property="og:type" content="website">
@@ -15,1092 +20,7 @@
   <!-- GSAP for fluid scroll animations -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <style>
-    /* ============================================================
-       StrAI.ca — Stealth Tech Design System v4
-       Practical AI tools for Quebec nonprofits.
-       Stray Dog Media spin-off — les chiens errants travaillent ici
-    ============================================================ */
-
-    :root {
-      --bg:         #0A0F1C;
-      --bg-deep:    #05070D;
-      --surface:    #0D1424;
-      --surface-2:  #111827;
-      --card-bg:    #111827;
-      --accent:     #00AEEF;
-      --accent-2:   #3DFFF3;
-      --accent-glow: rgba(0,174,239,0.15);
-      --hot:        #FF6B35;
-      --heading:    #FFFFFF;
-      --body-text:  #E5E5E5;
-      --muted:      #7B8494;
-      --muted-lt:   #A5ADBE;
-      --border:     rgba(0,174,239,0.10);
-      --border-lt:  rgba(229,229,229,0.14);
-      --radius:     12px;
-      --radius-sm:  8px;
-      --max:        1120px;
-      --font-d:     'Orbitron', sans-serif;
-      --font-b:     'Inter', sans-serif;
-      --font-m:     'Share Tech Mono', monospace;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--bg);
-      color: var(--body-text);
-      font-family: var(--font-b);
-      font-weight: 300;
-      line-height: 1.7;
-      overflow-x: hidden;
-    }
-
-    h1, h2, h3 { font-family: var(--font-d); font-weight: 700; line-height: 1.25; color: var(--heading); }
-    h1 { font-size: clamp(1.9rem, 4.5vw, 3.4rem); letter-spacing: 0.01em; }
-    h2 { font-size: clamp(1.4rem, 3vw, 2.2rem); letter-spacing: 0.01em; }
-    h3 { font-size: 1rem; font-weight: 500; letter-spacing: 0.03em; }
-    p { color: var(--body-text); }
-    a { color: inherit; text-decoration: none; }
-
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 2rem; }
-
-    .eyebrow {
-      font-family: var(--font-m);
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1.2rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-    .eyebrow::before {
-      content: '';
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
-      flex-shrink: 0;
-    }
-
-    /* --- GSAP reveal base states --- */
-    .gs-reveal { opacity: 0; transform: translateY(40px); }
-    .gs-reveal-left { opacity: 0; transform: translateX(-60px); }
-    .gs-reveal-right { opacity: 0; transform: translateX(60px); }
-    .gs-reveal-scale { opacity: 0; transform: scale(0.9); }
-
-    /* ========== BUTTONS ========== */
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-      padding: 0.85rem 1.7rem;
-      border-radius: var(--radius-sm);
-      font-family: var(--font-d);
-      font-size: 0.74rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      border: none;
-      line-height: 1;
-      position: relative;
-      overflow: hidden;
-    }
-    .btn::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.15) 50%, transparent 70%);
-      transform: translateX(-100%);
-      transition: transform 0.6s;
-    }
-    .btn:hover::after { transform: translateX(100%); }
-
-    .btn-primary {
-      background: var(--accent);
-      color: #FFFFFF;
-      box-shadow: 0 4px 24px rgba(0,174,239,0.25);
-    }
-    .btn-primary:hover {
-      background: var(--hot);
-      transform: translateY(-2px);
-      box-shadow: 0 0 0 1px var(--accent-2), 0 8px 36px rgba(255,107,53,0.35);
-    }
-    .btn-ghost {
-      background: transparent;
-      border: 1px solid rgba(0,174,239,0.4);
-      color: var(--accent);
-    }
-    .btn-ghost:hover {
-      border-color: var(--accent-2);
-      color: var(--accent-2);
-      box-shadow: 0 0 24px rgba(61,255,243,0.15);
-    }
-
-    /* ========== NAV ========== */
-    nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      padding: 1.1rem 0;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      border-bottom: 1px solid transparent;
-    }
-    nav.scrolled {
-      background: rgba(10,15,28,0.92);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-color: var(--border);
-      padding: 0.8rem 0;
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      max-width: var(--max); margin: 0 auto; padding: 0 2rem;
-    }
-
-    .logo {
-      display: flex; align-items: baseline;
-      font-family: var(--font-d);
-      font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--heading);
-      cursor: pointer;
-      user-select: none;
-      transition: all 0.3s;
-    }
-    .logo:hover { opacity: 0.85; }
-    .logo .ai { color: var(--accent); }
-    .logo .ca { font-size: 0.72rem; color: var(--muted); margin-left: 2px; }
-
-    .nav-links {
-      display: flex; align-items: center; gap: 2.2rem;
-      list-style: none;
-      font-size: 0.84rem;
-      color: var(--muted-lt);
-    }
-    .nav-links a {
-      transition: color 0.2s;
-      position: relative;
-    }
-    .nav-links a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0; right: 0;
-      height: 1px;
-      background: var(--accent-2);
-      box-shadow: 0 0 8px rgba(61,255,243,0.6);
-      transform: scaleX(0);
-      transition: transform 0.3s;
-    }
-    .nav-links a:hover { color: var(--heading); }
-    .nav-links a:hover::after { transform: scaleX(1); }
-
-    .nav-right { display: flex; align-items: center; gap: 1rem; }
-
-    .lang-btn {
-      font-family: var(--font-m);
-      font-size: 0.74rem;
-      background: transparent;
-      border: 1px solid var(--border-lt);
-      color: var(--muted-lt);
-      padding: 0.32rem 0.8rem;
-      border-radius: var(--radius-sm);
-      cursor: pointer;
-      transition: all 0.3s;
-      letter-spacing: 0.05em;
-    }
-    .lang-btn:hover { border-color: var(--accent-2); color: var(--accent-2); box-shadow: 0 0 12px rgba(61,255,243,0.15); }
-
-    /* Mobile menu */
-    .mobile-toggle {
-      display: none;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .mobile-toggle span {
-      display: block;
-      width: 22px;
-      height: 2px;
-      background: var(--heading);
-      margin: 5px 0;
-      transition: all 0.3s;
-      border-radius: 2px;
-    }
-    .mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .mobile-toggle.active span:nth-child(2) { opacity: 0; }
-    .mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-
-    .mobile-menu {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(10,15,28,0.97);
-      backdrop-filter: blur(20px);
-      z-index: 99;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 2rem;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      font-family: var(--font-d);
-      font-size: 1.3rem;
-      font-weight: 500;
-      letter-spacing: 0.05em;
-      color: var(--heading);
-      transition: color 0.2s;
-    }
-    .mobile-menu a:hover { color: var(--accent-2); }
-
-    /* ========== HERO ========== */
-    #hero {
-      min-height: 100vh;
-      display: flex; align-items: center;
-      padding: 9rem 0 6rem;
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-    }
-
-    /* Animated gradient orbs */
-    .hero-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(80px);
-      pointer-events: none;
-      will-change: transform;
-    }
-    .hero-orb-1 {
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,174,239,0.12) 0%, transparent 70%);
-      top: -10%; right: -10%;
-    }
-    .hero-orb-2 {
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(61,255,243,0.06) 0%, transparent 70%);
-      bottom: -5%; left: -5%;
-    }
-    .hero-orb-3 {
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,174,239,0.05) 0%, transparent 70%);
-      top: 40%; left: 30%;
-    }
-
-    /* Animated grid */
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(0,174,239,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0,174,239,0.04) 1px, transparent 1px);
-      background-size: 64px 64px;
-      pointer-events: none;
-      mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
-      -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black, transparent);
-    }
-
-    /* Floating particles */
-    .particles-canvas {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    .hero-content { position: relative; z-index: 1; max-width: 820px; }
-    .hero-h1 .glow {
-      color: var(--accent-2);
-      text-shadow: 0 0 30px rgba(61,255,243,0.45);
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      max-width: 560px;
-      margin: 1.8rem 0 2.8rem;
-      line-height: 1.8;
-      color: var(--muted-lt);
-    }
-    .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-    /* Scroll indicator */
-    .scroll-indicator {
-      position: absolute;
-      bottom: 2.5rem;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.5rem;
-      z-index: 1;
-    }
-    .scroll-indicator span {
-      font-family: var(--font-m);
-      font-size: 0.65rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-    }
-    .scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--accent-2), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.3; transform: scaleY(0.6); }
-      50% { opacity: 1; transform: scaleY(1); }
-    }
-
-    /* ========== SECTIONS ========== */
-    section { padding: 7rem 0; position: relative; }
-
-    /* ========== ABOUT ========== */
-    #about { border-top: 1px solid var(--border); }
-    .about-wrap { max-width: 680px; }
-    .about-wrap p.lead {
-      font-size: 1.1rem;
-      line-height: 1.85;
-      margin-top: 1.5rem;
-    }
-
-    /* ========== CAPABILITIES ========== */
-    #capabilities {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      border-top: 1px solid var(--border);
-    }
-    .cap-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.4rem;
-      margin-top: 3rem;
-    }
-    .cap-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.2rem 2rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .cap-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2), transparent);
-      opacity: 0;
-      transition: opacity 0.4s;
-    }
-    .cap-card:hover {
-      transform: translateY(-6px);
-      border-color: rgba(61,255,243,0.3);
-      box-shadow: 0 16px 48px rgba(0,0,0,0.4), 0 0 30px rgba(0,174,239,0.08);
-    }
-    .cap-card:hover::before { opacity: 1; }
-    .cap-icon {
-      width: 48px; height: 48px;
-      background: rgba(0,174,239,0.08);
-      border: 1px solid rgba(0,174,239,0.2);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.4rem;
-      transition: all 0.3s;
-    }
-    .cap-card:hover .cap-icon {
-      background: rgba(0,174,239,0.15);
-      box-shadow: 0 0 20px rgba(61,255,243,0.2);
-    }
-    .cap-icon svg {
-      width: 22px; height: 22px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .cap-card h3 { margin-bottom: 0.7rem; font-size: 0.95rem; }
-    .cap-card p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-lt); }
-
-    /* ========== AI ASSESSMENT SURVEY ========== */
-    #assessment {
-      border-top: 1px solid var(--border);
-      overflow: hidden;
-    }
-    .assessment-wrap {
-      max-width: 640px;
-      margin: 0 auto;
-    }
-    .assessment-intro {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    .assessment-intro p {
-      font-size: 0.95rem;
-      max-width: 480px;
-      margin: 0.8rem auto 0;
-      color: var(--muted-lt);
-    }
-
-    /* Progress bar */
-    .survey-progress {
-      width: 100%;
-      height: 3px;
-      background: rgba(229,229,229,0.08);
-      border-radius: 2px;
-      margin-bottom: 2.5rem;
-      overflow: hidden;
-    }
-    .survey-progress-fill {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      border-radius: 2px;
-      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      width: 0%;
-    }
-
-    /* Survey card */
-    .survey-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      min-height: 320px;
-      position: relative;
-      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
-    }
-    .survey-step {
-      display: none;
-      animation: surveyFadeIn 0.4s ease;
-    }
-    .survey-step.active { display: block; }
-    @keyframes surveyFadeIn {
-      from { opacity: 0; transform: translateX(20px); }
-      to { opacity: 1; transform: none; }
-    }
-    .survey-step-label {
-      font-family: var(--font-m);
-      font-size: 0.68rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    .survey-step h3 {
-      font-size: 1.1rem;
-      margin-bottom: 1.5rem;
-      line-height: 1.4;
-    }
-
-    .survey-options {
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .survey-option {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.2rem;
-      cursor: pointer;
-      transition: all 0.25s;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-      font-size: 0.9rem;
-      color: var(--body-text);
-    }
-    .survey-option:hover {
-      border-color: var(--accent);
-      background: rgba(0,174,239,0.05);
-    }
-    .survey-option.selected {
-      border-color: var(--accent);
-      background: rgba(0,174,239,0.1);
-      box-shadow: 0 0 24px rgba(0,174,239,0.12);
-    }
-    .survey-option-dot {
-      width: 18px; height: 18px;
-      border: 2px solid var(--border-lt);
-      border-radius: 50%;
-      flex-shrink: 0;
-      position: relative;
-      transition: all 0.25s;
-    }
-    .survey-option.selected .survey-option-dot {
-      border-color: var(--accent-2);
-    }
-    .survey-option.selected .survey-option-dot::after {
-      content: '';
-      position: absolute;
-      inset: 3px;
-      background: var(--accent-2);
-      border-radius: 50%;
-      box-shadow: 0 0 8px rgba(61,255,243,0.6);
-    }
-
-    .survey-nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 2rem;
-    }
-    .survey-back {
-      background: none;
-      border: none;
-      color: var(--muted);
-      font-family: var(--font-b);
-      font-size: 0.84rem;
-      cursor: pointer;
-      transition: color 0.2s;
-      padding: 0.5rem 0;
-    }
-    .survey-back:hover { color: var(--heading); }
-    .survey-back:disabled { opacity: 0; pointer-events: none; }
-
-    /* Results */
-    .survey-results {
-      display: none;
-      text-align: center;
-      animation: surveyFadeIn 0.5s ease;
-    }
-    .survey-results.active { display: block; }
-    .results-icon {
-      width: 64px; height: 64px;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.5rem;
-      font-size: 1.6rem;
-      box-shadow: 0 0 40px rgba(0,174,239,0.35);
-    }
-    .survey-results h3 {
-      font-size: 1.15rem;
-      margin-bottom: 1rem;
-    }
-    .results-recommendations {
-      text-align: left;
-      margin: 1.5rem 0;
-    }
-    .result-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1.2rem;
-      margin-bottom: 0.8rem;
-      display: flex;
-      gap: 1rem;
-      align-items: flex-start;
-    }
-    .result-item-icon {
-      width: 32px; height: 32px;
-      background: rgba(0,174,239,0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-      font-size: 0.9rem;
-    }
-    .result-item h4 {
-      font-family: var(--font-b);
-      font-size: 0.9rem;
-      font-weight: 500;
-      color: var(--heading);
-      margin-bottom: 0.3rem;
-    }
-    .result-item p {
-      font-size: 0.82rem;
-      line-height: 1.5;
-      color: var(--muted-lt);
-    }
-    .results-cta {
-      margin-top: 2rem;
-    }
-
-    /* ========== FORFAITS ========== */
-    #forfaits {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      border-top: 1px solid var(--border);
-    }
-    .forfaits-intro { font-size: 0.92rem; max-width: 480px; margin-top: 0.8rem; color: var(--muted-lt); }
-
-    .forfaits-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
-      margin-top: 3rem;
-      align-items: start;
-    }
-    .forfait {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      display: flex; flex-direction: column;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      position: relative;
-      overflow: hidden;
-    }
-    .forfait:hover {
-      transform: translateY(-6px);
-      border-color: rgba(61,255,243,0.25);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.45), 0 0 30px rgba(0,174,239,0.08);
-    }
-    .forfait.featured {
-      border-color: rgba(0,174,239,0.4);
-      box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 40px rgba(0,174,239,0.1);
-      transform: translateY(-8px);
-      z-index: 2;
-    }
-    .forfait.featured:hover {
-      transform: translateY(-12px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 50px rgba(0,174,239,0.15);
-    }
-    .featured-label {
-      position: absolute;
-      top: -1px; left: 50%;
-      transform: translateX(-50%);
-      font-family: var(--font-m);
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      background: var(--accent);
-      color: #FFFFFF;
-      padding: 6px 20px;
-      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-    }
-    .forfait-name {
-      font-family: var(--font-d);
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--heading);
-      margin-bottom: 0.4rem;
-    }
-    .forfait.featured .forfait-name {
-      margin-top: 1.2rem;
-    }
-    .forfait-desc { font-size: 0.84rem; line-height: 1.55; margin-bottom: 1.5rem; min-height: 3rem; color: var(--muted-lt); }
-    .forfait-price {
-      font-family: var(--font-m);
-      font-size: 2.2rem;
-      color: var(--heading);
-      line-height: 1;
-    }
-    .forfait-note { font-size: 0.76rem; color: var(--muted); margin-top: 0.25rem; }
-    .forfait-obnl { font-size: 0.82rem; color: var(--accent-2); margin-top: 0.2rem; margin-bottom: 1.4rem; }
-    .f-divider {
-      border: none;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: 0.25;
-      margin: 1.2rem 0;
-    }
-    .f-feat {
-      display: flex; gap: 0.65rem;
-      font-size: 0.84rem; color: var(--body-text);
-      margin-bottom: 0.65rem;
-      line-height: 1.45; align-items: flex-start;
-    }
-    .f-check {
-      color: var(--accent);
-      flex-shrink: 0;
-      margin-top: 0.08rem;
-      font-size: 0.8rem;
-    }
-    .forfait-cta { margin-top: auto; padding-top: 1.5rem; }
-    .forfait-cta .btn { width: 100%; justify-content: center; padding: 0.85rem; }
-
-    .retainers-label {
-      font-family: var(--font-m);
-      font-size: 0.7rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin: 3.5rem 0 1rem;
-    }
-    .retainers {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.2rem;
-    }
-    .retainer {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.6rem 1.8rem;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-    }
-    .retainer::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 2px;
-      background: linear-gradient(90deg, transparent, rgba(0,174,239,0.4), transparent);
-    }
-    .retainer:hover {
-      transform: translateY(-3px);
-      border-color: rgba(61,255,243,0.25);
-      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
-    }
-    .ret-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 36px; height: 36px;
-      background: rgba(0,174,239,0.08);
-      border-radius: var(--radius-sm);
-      margin-bottom: 0.8rem;
-    }
-    .ret-icon svg {
-      width: 18px; height: 18px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .ret-name {
-      font-family: var(--font-d);
-      font-size: 0.95rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      color: var(--heading);
-      margin-bottom: 0.25rem;
-    }
-    .ret-price {
-      font-family: var(--font-m);
-      font-size: 1.25rem;
-      color: var(--accent);
-      margin-bottom: 0.5rem;
-    }
-    .ret-obnl { font-size: 0.78rem; color: var(--accent-2); margin-bottom: 0.5rem; }
-    .ret-desc { font-size: 0.8rem; color: var(--muted-lt); line-height: 1.55; }
-
-    /* ========== PROCESSUS ========== */
-    #processus { border-top: 1px solid var(--border); }
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.4rem;
-      margin-top: 3rem;
-    }
-    .step {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2rem;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-    .step:hover {
-      transform: translateY(-4px);
-      border-color: rgba(61,255,243,0.25);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 0 24px rgba(0,174,239,0.07);
-    }
-    .step-num {
-      font-family: var(--font-m);
-      font-size: 0.85rem;
-      color: var(--accent);
-      border: 1px solid rgba(0,174,239,0.35);
-      border-radius: var(--radius-sm);
-      width: 34px; height: 34px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.1rem;
-    }
-    .step h3 { margin-bottom: 0.6rem; font-size: 0.92rem; }
-    .step p { font-size: 0.87rem; line-height: 1.65; color: var(--muted-lt); }
-
-    /* ========== POURQUOI ========== */
-    #pourquoi {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      border-top: 1px solid var(--border);
-    }
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.4rem;
-      margin-top: 3rem;
-    }
-    .why-item {
-      border-left: 2px solid rgba(0,174,239,0.4);
-      padding: 0.4rem 0 0.4rem 1.4rem;
-    }
-    .why-item h3 { margin-bottom: 0.5rem; font-size: 0.92rem; }
-    .why-item p { font-size: 0.88rem; line-height: 1.65; color: var(--muted-lt); }
-
-    /* ========== FINAL CTA ========== */
-    #cta {
-      background: linear-gradient(180deg, var(--bg) 0%, var(--bg-deep) 100%);
-      border-top: 1px solid var(--border);
-      text-align: center;
-    }
-    .cta-line {
-      font-family: var(--font-d);
-      font-size: clamp(1.2rem, 2.8vw, 1.9rem);
-      font-weight: 700;
-      letter-spacing: 0.02em;
-      color: var(--heading);
-      max-width: 780px;
-      margin: 0 auto 1.4rem;
-      line-height: 1.4;
-    }
-    .cta-sub {
-      max-width: 620px;
-      margin: 0 auto 2.2rem;
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: var(--muted-lt);
-    }
-
-    /* ========== CONTACT ========== */
-    #contact {
-      border-top: 1px solid var(--border);
-      position: relative;
-      overflow: hidden;
-    }
-    /* Decorative orb */
-    #contact::before {
-      content: '';
-      position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(0,174,239,0.06) 0%, transparent 70%);
-      top: -20%; left: 50%;
-      transform: translateX(-50%);
-      pointer-events: none;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 3rem;
-      align-items: flex-start;
-      position: relative;
-      z-index: 1;
-    }
-    .contact-info h2 { margin-bottom: 1.2rem; }
-    .contact-info > p { font-size: 0.95rem; margin-bottom: 2rem; color: var(--muted-lt); }
-
-    .contact-methods {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .contact-method {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      padding: 1.1rem 1.4rem;
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      transition: all 0.3s;
-      text-decoration: none;
-    }
-    .contact-method:hover {
-      transform: translateX(6px);
-      border-color: rgba(61,255,243,0.3);
-      box-shadow: 0 8px 28px rgba(0,0,0,0.4), 0 0 20px rgba(0,174,239,0.1);
-    }
-    .contact-method-icon {
-      width: 42px; height: 42px;
-      background: rgba(0,174,239,0.1);
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      flex-shrink: 0;
-    }
-    .contact-method-icon svg {
-      width: 18px; height: 18px;
-      stroke: var(--accent);
-      fill: none;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-    .contact-method-text {
-      font-family: var(--font-m);
-      font-size: 0.92rem;
-      color: var(--accent);
-      text-decoration: underline;
-      text-decoration-color: rgba(0,174,239,0.35);
-      text-underline-offset: 3px;
-      transition: all 0.25s;
-    }
-    .contact-method:hover .contact-method-text {
-      color: var(--accent-2);
-      text-decoration-color: var(--accent-2);
-    }
-    .contact-method-label {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-bottom: 0.15rem;
-    }
-
-    /* Contact form */
-    .contact-form-wrap {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 2.5rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.35);
-    }
-    .contact-form-wrap h3 {
-      font-size: 1.05rem;
-      margin-bottom: 1.5rem;
-    }
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    .form-group label {
-      display: block;
-      font-size: 0.78rem;
-      color: var(--muted-lt);
-      margin-bottom: 0.4rem;
-      letter-spacing: 0.03em;
-    }
-    .form-group input,
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      background: var(--bg);
-      border: 1px solid rgba(0,174,239,0.18);
-      border-radius: var(--radius-sm);
-      padding: 0.8rem 1rem;
-      color: var(--heading);
-      font-family: var(--font-b);
-      font-size: 0.88rem;
-      transition: all 0.3s;
-      outline: none;
-    }
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0,174,239,0.12);
-    }
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: var(--muted);
-    }
-    .form-group select {
-      appearance: none;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237B8494' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-    .form-group select option {
-      background: var(--surface-2);
-      color: var(--heading);
-    }
-    .form-group textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1rem;
-    }
-    .form-submit {
-      margin-top: 0.5rem;
-    }
-    .form-submit .btn {
-      width: 100%;
-      justify-content: center;
-      padding: 0.9rem;
-    }
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 2rem 1rem;
-      animation: surveyFadeIn 0.4s ease;
-    }
-    .form-success.active { display: block; }
-    .form-success-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .form-success h3 {
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    .form-success p {
-      font-size: 0.9rem;
-      color: var(--muted-lt);
-    }
-
-    /* ========== FOOTER ========== */
-    footer {
-      background: var(--bg-deep);
-      border-top: 1px solid var(--border);
-      padding: 2.5rem 0;
-    }
-    .footer-row {
-      display: flex; align-items: center; justify-content: space-between;
-      flex-wrap: wrap; gap: 1rem;
-      font-size: 0.76rem; color: var(--muted);
-    }
-    .footer-logo { font-family: var(--font-d); font-weight: 700; letter-spacing: 0.04em; font-size: 0.95rem; color: var(--heading); }
-    .footer-logo .ai { color: var(--accent); }
-    .footer-sdm a { color: var(--muted); transition: color 0.2s; }
-    .footer-sdm a:hover { color: var(--accent-2); }
-
-    /* Easter egg dog */
-    #dog-egg {
-      position: fixed;
-      bottom: -110px; right: 2rem;
-      font-size: 3.8rem;
-      transition: bottom 0.55s cubic-bezier(0.34, 1.56, 0.64, 1);
-      z-index: 999; pointer-events: none; user-select: none;
-    }
-    #dog-egg.up { bottom: 1.5rem; }
-
-    /* Custom cursor glow — z-index above section backgrounds so it follows everywhere */
-    .cursor-glow {
-      position: fixed;
-      width: 300px; height: 300px;
-      background: radial-gradient(circle, rgba(0,174,239,0.07) 0%, transparent 70%);
-      pointer-events: none;
-      z-index: 50;
-      mix-blend-mode: screen;
-      transform: translate(-50%, -50%);
-      transition: opacity 0.3s;
-      will-change: transform;
-    }
-
-    /* Hidden for source-code curious */
-    .stray { display: none; }
-
-    /* ========== RESPONSIVE ========== */
-    @media (max-width: 920px) {
-      .cap-grid { grid-template-columns: 1fr; }
-      .steps { grid-template-columns: 1fr; }
-      .why-grid { grid-template-columns: 1fr; }
-      .forfaits-grid { grid-template-columns: 1fr; }
-      .forfait.featured { transform: none; }
-      .forfait.featured:hover { transform: translateY(-6px); }
-      .retainers { grid-template-columns: 1fr; }
-      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
-      .nav-links { display: none; }
-      .mobile-toggle { display: block; }
-    }
-    @media (max-width: 600px) {
-      h1 { font-size: 1.7rem; }
-      h2 { font-size: 1.3rem; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; }
-      .footer-row { flex-direction: column; text-align: center; }
-      .form-row { grid-template-columns: 1fr; }
-      .survey-card { padding: 1.8rem; }
-      section { padding: 5rem 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="/assets/styles.css">
 </head>
 <body>
 
@@ -1119,9 +39,9 @@
 
     <ul class="nav-links">
       <li><a href="#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
+      <li><a href="#examples" data-fr="Exemples" data-en="Examples">Exemples</a></li>
       <li><a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
       <li><a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
-      <li><a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a></li>
     </ul>
 
     <div class="nav-right">
@@ -1137,6 +57,7 @@
 <!-- Mobile menu -->
 <div class="mobile-menu" id="mobile-menu">
   <a href="#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
+  <a href="#examples" data-fr="Exemples" data-en="Examples">Exemples</a>
   <a href="#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
   <a href="#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
   <a href="#pourquoi" data-fr="Pourquoi StrAI" data-en="Why StrAI">Pourquoi StrAI</a>
@@ -1240,148 +161,6 @@
   </div>
 </section>
 
-<!-- ====== AI ASSESSMENT SURVEY ====== -->
-<section id="assessment">
-  <div class="container">
-    <div class="assessment-wrap">
-      <div class="assessment-intro gs-reveal">
-        <p class="eyebrow" style="justify-content:center;" data-fr="Diagnostic gratuit" data-en="Free assessment">Diagnostic gratuit</p>
-        <h2 data-fr="Où votre équipe perd-elle du temps?" data-en="Where does your team lose time?">Où votre équipe perd-elle du temps?</h2>
-        <p data-fr="Répondez à quatre questions pour repérer le processus qui mérite d'être simplifié en premier." data-en="Answer four questions to spot the process worth simplifying first.">Répondez à quatre questions pour repérer le processus qui mérite d'être simplifié en premier.</p>
-      </div>
-
-      <div class="survey-progress gs-reveal">
-        <div class="survey-progress-fill" id="survey-progress"></div>
-      </div>
-
-      <div class="survey-card gs-reveal" id="survey-card">
-        <!-- Step 1: Org type -->
-        <div class="survey-step active" data-step="1">
-          <div class="survey-step-label" data-fr="Question 1 de 4" data-en="Question 1 of 4">Question 1 de 4</div>
-          <h3 data-fr="Quel type d'organisation êtes-vous?" data-en="What type of organization are you?">Quel type d'organisation êtes-vous?</h3>
-          <div class="survey-options">
-            <div class="survey-option" data-value="nonprofit" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Organisme à but non lucratif (OBNL)" data-en="Nonprofit organization">Organisme à but non lucratif (OBNL)</span>
-            </div>
-            <div class="survey-option" data-value="school" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="École / établissement d'enseignement" data-en="School / educational institution">École / établissement d'enseignement</span>
-            </div>
-            <div class="survey-option" data-value="small-biz" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Petite entreprise (1-15 employés)" data-en="Small business (1-15 employees)">Petite entreprise (1-15 employés)</span>
-            </div>
-            <div class="survey-option" data-value="freelancer" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Travailleur autonome / Consultant" data-en="Freelancer / Consultant">Travailleur autonome / Consultant</span>
-            </div>
-            <div class="survey-option" data-value="other" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Autre" data-en="Other">Autre</span>
-            </div>
-          </div>
-          <div class="survey-nav">
-            <button class="survey-back" disabled>&larr;</button>
-          </div>
-        </div>
-
-        <!-- Step 2: Biggest challenge -->
-        <div class="survey-step" data-step="2">
-          <div class="survey-step-label" data-fr="Question 2 de 4" data-en="Question 2 of 4">Question 2 de 4</div>
-          <h3 data-fr="Quel est votre plus grand défi au quotidien?" data-en="What is your biggest daily challenge?">Quel est votre plus grand défi au quotidien?</h3>
-          <div class="survey-options">
-            <div class="survey-option" data-value="comms" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Rédiger des communications (courriels, rapports, infolettres)" data-en="Writing communications (emails, reports, newsletters)">Rédiger des communications (courriels, rapports, infolettres)</span>
-            </div>
-            <div class="survey-option" data-value="grants" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Demandes de subventions et reddition de comptes" data-en="Grant applications and reporting">Demandes de subventions et reddition de comptes</span>
-            </div>
-            <div class="survey-option" data-value="knowledge" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Conserver la mémoire organisationnelle" data-en="Preserving organizational knowledge">Conserver la mémoire organisationnelle</span>
-            </div>
-            <div class="survey-option" data-value="admin" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Trop de tâches administratives répétitives" data-en="Too many repetitive admin tasks">Trop de tâches administratives répétitives</span>
-            </div>
-          </div>
-          <div class="survey-nav">
-            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
-          </div>
-        </div>
-
-        <!-- Step 3: AI experience -->
-        <div class="survey-step" data-step="3">
-          <div class="survey-step-label" data-fr="Question 3 de 4" data-en="Question 3 of 4">Question 3 de 4</div>
-          <h3 data-fr="Quel est votre niveau d'expérience avec l'IA?" data-en="What's your experience level with AI?">Quel est votre niveau d'expérience avec l'IA?</h3>
-          <div class="survey-options">
-            <div class="survey-option" data-value="none" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Je n'ai jamais vraiment essayé" data-en="I've never really tried">Je n'ai jamais vraiment essayé</span>
-            </div>
-            <div class="survey-option" data-value="basic" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="J'utilise ChatGPT/Claude de temps en temps" data-en="I use ChatGPT/Claude occasionally">J'utilise ChatGPT/Claude de temps en temps</span>
-            </div>
-            <div class="survey-option" data-value="regular" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Je l'utilise régulièrement mais je sais que je pourrais faire mieux" data-en="I use it regularly but know I could do better">Je l'utilise régulièrement mais je sais que je pourrais faire mieux</span>
-            </div>
-            <div class="survey-option" data-value="advanced" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="J'ai de l'expérience mais j'ai besoin d'aide pour structurer" data-en="I have experience but need help structuring">J'ai de l'expérience mais j'ai besoin d'aide pour structurer</span>
-            </div>
-          </div>
-          <div class="survey-nav">
-            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
-          </div>
-        </div>
-
-        <!-- Step 4: Team size -->
-        <div class="survey-step" data-step="4">
-          <div class="survey-step-label" data-fr="Question 4 de 4" data-en="Question 4 of 4">Question 4 de 4</div>
-          <h3 data-fr="Combien de personnes utiliseraient ces outils?" data-en="How many people would use these tools?">Combien de personnes utiliseraient ces outils?</h3>
-          <div class="survey-options">
-            <div class="survey-option" data-value="solo" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Juste moi" data-en="Just me">Juste moi</span>
-            </div>
-            <div class="survey-option" data-value="small" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="2 à 4 personnes" data-en="2 to 4 people">2 à 4 personnes</span>
-            </div>
-            <div class="survey-option" data-value="medium" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="5 à 10 personnes" data-en="5 to 10 people">5 à 10 personnes</span>
-            </div>
-            <div class="survey-option" data-value="large" onclick="selectOption(this)">
-              <div class="survey-option-dot"></div>
-              <span data-fr="Plus de 10" data-en="More than 10">Plus de 10</span>
-            </div>
-          </div>
-          <div class="survey-nav">
-            <button class="survey-back" onclick="prevStep()">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
-          </div>
-        </div>
-
-        <!-- Results -->
-        <div class="survey-results" id="survey-results">
-          <div class="results-icon">&#x2728;</div>
-          <h3 data-fr="Voici ce que l'IA pourrait faire pour vous" data-en="Here's what AI could do for you">Voici ce que l'IA pourrait faire pour vous</h3>
-          <div class="results-recommendations" id="results-recommendations"></div>
-          <div class="results-cta">
-            <a href="#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
-            <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;" data-fr="Gratuit. Aucun engagement." data-en="Free. No commitment.">Gratuit. Aucun engagement.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ====== PROCESSUS ====== -->
 <section id="processus">
   <div class="container">
@@ -1402,6 +181,253 @@
         <div class="step-num">03</div>
         <h3 data-fr="Votre équipe apprend à s'en servir" data-en="Your team learns to use it">Votre équipe apprend à s'en servir</h3>
         <p data-fr="Nous testons le système avec vous, formons les personnes concernées et restons disponibles pendant la période de soutien incluse." data-en="We test the system with you, train the people involved, and stay available through the included support period.">Nous testons le système avec vous, formons les personnes concernées et restons disponibles pendant la période de soutien incluse.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== EXAMPLES ====== -->
+<section id="examples">
+  <div class="container">
+    <div class="examples-intro gs-reveal">
+      <p class="eyebrow" data-fr="Des exemples concrets" data-en="Real examples">Des exemples concrets</p>
+      <h2 data-fr="Des exemples qui ressemblent au vrai travail." data-en="Examples that look like real work.">Des exemples qui ressemblent au vrai travail.</h2>
+      <p class="lead" data-fr="Un bon outil d'IA ne commence pas par une technologie. Il commence par une tâche qui prend trop de temps, une information difficile à retrouver ou un suivi qui dépend encore de la mémoire d'une personne. Voici quelques systèmes que nous avons conçus pour ce genre de problème." data-en="A useful AI tool doesn't begin with technology. It begins with a task that takes too long, information that's hard to find, or follow-up that still depends on someone's memory. Here are a few systems we've designed for problems like these.">Un bon outil d'IA ne commence pas par une technologie. Il commence par une tâche qui prend trop de temps, une information difficile à retrouver ou un suivi qui dépend encore de la mémoire d'une personne. Voici quelques systèmes que nous avons conçus pour ce genre de problème.</p>
+    </div>
+    <div class="examples-grid">
+      <a class="example-card gs-reveal" href="/examples/ormstown-observer/">
+        <div class="example-tag" data-fr="Journalisme civique · en ligne" data-en="Civic journalism · live">Journalisme civique · en ligne</div>
+        <h3>L'Ormstown Observer</h3>
+        <p data-fr="Des documents publics aux explications bilingues. Un processus de recherche et de rédaction qui aide à retrouver les sources, relever les faits importants et préparer des articles accessibles — avec vérification humaine avant publication." data-en="From public documents to bilingual explanations. A research and writing process that helps gather sources, surface the important facts, and prepare accessible articles — with human review before publication.">Des documents publics aux explications bilingues. Un processus de recherche et de rédaction qui aide à retrouver les sources, relever les faits importants et préparer des articles accessibles — avec vérification humaine avant publication.</p>
+        <span class="example-link" data-fr="Voir l'exemple →" data-en="See the example →">Voir l'exemple →</span>
+      </a>
+      <a class="example-card gs-reveal" href="/examples/ormstowngpt/">
+        <div class="example-tag" data-fr="Assistant de recherche · beta" data-en="Research assistant · beta">Assistant de recherche · beta</div>
+        <h3>OrmstownGPT</h3>
+        <p data-fr="Une question normale plutôt qu'une chasse aux fichiers. Un assistant qui répond à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse." data-en="A normal question instead of a file hunt. An assistant that answers from about 130 official municipal documents and links back to the source document for every answer.">Une question normale plutôt qu'une chasse aux fichiers. Un assistant qui répond à partir d'environ 130 documents municipaux officiels et renvoie au document source de chaque réponse.</p>
+        <span class="example-link" data-fr="Voir l'exemple →" data-en="See the example →">Voir l'exemple →</span>
+      </a>
+      <a class="example-card gs-reveal" href="/examples/automation/">
+        <div class="example-tag" data-fr="Automatisation · n8n" data-en="Automation · n8n">Automatisation · n8n</div>
+        <h3 data-fr="Réception et suivi automatisés" data-en="Automated intake &amp; follow-up">Réception et suivi automatisés</h3>
+        <p data-fr="Une demande reçue devient un suivi visible. L'information est vérifiée, classée et transmise à la bonne personne; les rappels sont créés et un brouillon peut être préparé pour approbation." data-en="An incoming request becomes visible follow-up. The information is validated, filed, and routed to the right person; reminders are created and a draft can be prepared for approval.">Une demande reçue devient un suivi visible. L'information est vérifiée, classée et transmise à la bonne personne; les rappels sont créés et un brouillon peut être préparé pour approbation.</p>
+        <span class="example-link" data-fr="Voir l'exemple →" data-en="See the example →">Voir l'exemple →</span>
+      </a>
+    </div>
+    <p class="examples-note" data-fr="Votre problème ne ressemble pas exactement à ceux-ci? C'est normal — nous partons de votre façon de travailler, pas d'un catalogue de logiciels. <a href='#assessment'>Trouver un bon point de départ ↓</a>" data-en="Does your problem look different from these? That's expected — we start from the way your team works, not a software catalogue. <a href='#assessment'>Find a practical starting point ↓</a>">Votre problème ne ressemble pas exactement à ceux-ci? C'est normal — nous partons de votre façon de travailler, pas d'un catalogue de logiciels. <a href="#assessment">Trouver un bon point de départ ↓</a></p>
+  </div>
+</section>
+
+<!-- ====== AI ASSESSMENT SURVEY ====== -->
+<section id="assessment">
+  <div class="container">
+    <div class="assessment-wrap">
+      <div class="assessment-intro gs-reveal">
+        <p class="eyebrow" style="justify-content:center;" data-fr="Diagnostic gratuit" data-en="Free assessment">Diagnostic gratuit</p>
+        <h2 data-fr="Où votre équipe perd-elle du temps?" data-en="Where does your team lose time?">Où votre équipe perd-elle du temps?</h2>
+        <p data-fr="Répondez à cinq questions rapides pour repérer le processus qui mérite d'être simplifié en premier." data-en="Answer five quick questions to spot the process worth simplifying first.">Répondez à cinq questions rapides pour repérer le processus qui mérite d'être simplifié en premier.</p>
+      </div>
+      <div class="survey-progress gs-reveal">
+        <div class="survey-progress-fill" id="survey-progress"></div>
+      </div>
+      <div class="survey-card gs-reveal" id="survey-card">
+        <div class="survey-step active" data-step="1">
+          <div class="survey-step-label" data-fr="Question 1 de 5" data-en="Question 1 of 5">Question 1 de 5</div>
+          <h3 data-fr="Quelle tâche vous fait perdre le plus de temps en ce moment?" data-en="Which task is costing you the most time right now?">Quelle tâche vous fait perdre le plus de temps en ce moment?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="writing" data-teach-fr="StrAI peut organiser vos informations approuvées et préparer un premier jet structuré, que votre équipe valide." data-teach-en="StrAI can organize your approved information and prepare a structured first draft for your team to review.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Rédiger des documents à répétition" data-en="Writing documents over and over">Rédiger des documents à répétition</span>
+            </div>
+            <div class="survey-option" data-value="finding" data-teach-fr="StrAI peut créer une base de connaissances ou un assistant de recherche qui renvoie à la source." data-teach-en="StrAI can create a knowledge base or a research assistant that links back to the source.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Retrouver l'information dispersée" data-en="Finding scattered information">Retrouver l'information dispersée</span>
+            </div>
+            <div class="survey-option" data-value="followup" data-teach-fr="StrAI peut transformer une date, un courriel ou un formulaire en tâche, rappel et suivi visible." data-teach-en="StrAI can turn a date, an email, or a form into a task, a reminder, and visible follow-up.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Faire les suivis au bon moment" data-en="Following up at the right time">Faire les suivis au bon moment</span>
+            </div>
+            <div class="survey-option" data-value="multistep" data-teach-fr="StrAI peut faire circuler les mêmes données d'une étape à l'autre, sans les recopier." data-teach-en="StrAI can carry the same data from one step to the next, without recopying it.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Faire passer un dossier par plusieurs étapes" data-en="Moving a file through several steps">Faire passer un dossier par plusieurs étapes</span>
+            </div>
+            <div class="survey-option" data-value="questions" data-teach-fr="StrAI peut créer un assistant limité à vos documents et à vos réponses approuvées." data-teach-en="StrAI can create an assistant limited to your documents and approved answers.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Répondre toujours aux mêmes questions" data-en="Answering the same questions again and again">Répondre toujours aux mêmes questions</span>
+            </div>
+            <div class="survey-option" data-value="unsure" data-teach-fr="Pas de souci — nous vous aiderons à repérer un point de départ à partir des irritants de votre équipe." data-teach-en="No problem — we'll help you spot a starting point from your team's day-to-day frustrations.">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Je ne sais pas encore" data-en="I'm not sure yet">Je ne sais pas encore</span>
+            </div>
+          </div>
+          <div class="survey-teach" id="q1-teach"></div>
+          <div class="survey-nav">
+            <button class="survey-back" disabled>&larr;</button>
+          </div>
+        </div>
+        <div class="survey-step" data-step="2">
+          <div class="survey-step-label" data-fr="Question 2 de 5" data-en="Question 2 of 5">Question 2 de 5</div>
+          <h3 data-fr="Où se trouve l'information nécessaire pour faire ce travail?" data-en="Where does the information for that work live?">Où se trouve l'information nécessaire pour faire ce travail?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="email">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Dans des courriels" data-en="In email">Dans des courriels</span>
+            </div>
+            <div class="survey-option" data-value="drive">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Dans Google Drive, Microsoft 365 ou Notion" data-en="In Google Drive, Microsoft 365, or Notion">Dans Google Drive, Microsoft 365 ou Notion</span>
+            </div>
+            <div class="survey-option" data-value="sheets">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Dans des feuilles de calcul" data-en="In spreadsheets">Dans des feuilles de calcul</span>
+            </div>
+            <div class="survey-option" data-value="apps">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Dans plusieurs applications" data-en="Across several apps">Dans plusieurs applications</span>
+            </div>
+            <div class="survey-option" data-value="heads">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Surtout dans la tête d'une ou deux personnes" data-en="Mostly in one or two people's heads">Surtout dans la tête d'une ou deux personnes</span>
+            </div>
+            <div class="survey-option" data-value="unsure">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Nous ne sommes pas certains" data-en="We're not sure">Nous ne sommes pas certains</span>
+            </div>
+          </div>
+          <p class="survey-hint" data-fr="Le premier travail n'est pas toujours d'automatiser : il faut parfois commencer par organiser l'information et décider ce qui peut être utilisé." data-en="The first job isn't always to automate — sometimes it's to organize the information first and decide what can be used.">Le premier travail n'est pas toujours d'automatiser : il faut parfois commencer par organiser l'information et décider ce qui peut être utilisé.</p>
+          <div class="survey-nav">
+            <button class="survey-back">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+        <div class="survey-step" data-step="3">
+          <div class="survey-step-label" data-fr="Question 3 de 5" data-en="Question 3 of 5">Question 3 de 5</div>
+          <h3 data-fr="Quand ce processus ne fonctionne pas bien, qu'est-ce qui arrive?" data-en="When this process breaks down, what happens?">Quand ce processus ne fonctionne pas bien, qu'est-ce qui arrive?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="hours">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Nous perdons plusieurs heures" data-en="We lose several hours">Nous perdons plusieurs heures</span>
+            </div>
+            <div class="survey-option" data-value="deadline">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Une échéance ou un suivi peut être oublié" data-en="A deadline or follow-up can be missed">Une échéance ou un suivi peut être oublié</span>
+            </div>
+            <div class="survey-option" data-value="inconsistent">
+              <div class="survey-option-dot"></div>
+              <span data-fr="L'information varie selon la personne" data-en="The information varies from person to person">L'information varie selon la personne</span>
+            </div>
+            <div class="survey-option" data-value="slow">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Les réponses aux clients ou aux membres sont trop lentes" data-en="Replies to clients or members are too slow">Les réponses aux clients ou aux membres sont trop lentes</span>
+            </div>
+            <div class="survey-option" data-value="knowledge">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Un départ nous fait perdre des connaissances" data-en="A departure costs us knowledge">Un départ nous fait perdre des connaissances</span>
+            </div>
+            <div class="survey-option" data-value="rework">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Les erreurs ou reprises coûtent cher" data-en="Errors or rework are costly">Les erreurs ou reprises coûtent cher</span>
+            </div>
+          </div>
+          <div class="survey-nav">
+            <button class="survey-back">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+        <div class="survey-step" data-step="4">
+          <div class="survey-step-label" data-fr="Question 4 de 5" data-en="Question 4 of 5">Question 4 de 5</div>
+          <h3 data-fr="À quelle fréquence ce travail revient-il?" data-en="How often does this work come around?">À quelle fréquence ce travail revient-il?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="daily">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Tous les jours" data-en="Every day">Tous les jours</span>
+            </div>
+            <div class="survey-option" data-value="weekly">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Plusieurs fois par semaine" data-en="Several times a week">Plusieurs fois par semaine</span>
+            </div>
+            <div class="survey-option" data-value="monthly">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Quelques fois par mois" data-en="A few times a month">Quelques fois par mois</span>
+            </div>
+            <div class="survey-option" data-value="seasonal">
+              <div class="survey-option-dot"></div>
+              <span data-fr="À certaines périodes de l'année" data-en="At certain times of year">À certaines périodes de l'année</span>
+            </div>
+            <div class="survey-option" data-value="important">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Seulement pour des dossiers importants" data-en="Only for important files">Seulement pour des dossiers importants</span>
+            </div>
+          </div>
+          <p class="survey-hint" data-fr="Une petite amélioration répétée chaque semaine peut valoir plus qu'une automatisation complexe utilisée une fois par année." data-en="A small improvement repeated every week can be worth more than a complex automation used once a year.">Une petite amélioration répétée chaque semaine peut valoir plus qu'une automatisation complexe utilisée une fois par année.</p>
+          <div class="survey-nav">
+            <button class="survey-back">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+        <div class="survey-step" data-step="5">
+          <div class="survey-step-label" data-fr="Question 5 de 5" data-en="Question 5 of 5">Question 5 de 5</div>
+          <h3 data-fr="Quel niveau d'aide vous conviendrait pour commencer?" data-en="What kind of help would suit you to start?">Quel niveau d'aide vous conviendrait pour commencer?</h3>
+          <div class="survey-options">
+            <div class="survey-option" data-value="organize">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Organiser nos documents et créer des modèles réutilisables" data-en="Organize our documents and build reusable templates">Organiser nos documents et créer des modèles réutilisables</span>
+            </div>
+            <div class="survey-option" data-value="drafts">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Préparer des brouillons que notre équipe valide" data-en="Prepare drafts our team reviews">Préparer des brouillons que notre équipe valide</span>
+            </div>
+            <div class="survey-option" data-value="automate">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Automatiser le classement, les tâches et les rappels" data-en="Automate filing, tasks, and reminders">Automatiser le classement, les tâches et les rappels</span>
+            </div>
+            <div class="survey-option" data-value="assistant">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Créer un assistant capable de chercher dans nos documents" data-en="Create an assistant that can search our documents">Créer un assistant capable de chercher dans nos documents</span>
+            </div>
+            <div class="survey-option" data-value="connect">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Relier plusieurs étapes ou applications" data-en="Connect several steps or apps">Relier plusieurs étapes ou applications</span>
+            </div>
+            <div class="survey-option" data-value="choose">
+              <div class="survey-option-dot"></div>
+              <span data-fr="Nous avons besoin d'aide pour choisir" data-en="We need help choosing">Nous avons besoin d'aide pour choisir</span>
+            </div>
+          </div>
+          <p class="survey-hint" data-fr="StrAI peut garder une validation humaine avant toute communication, décision ou envoi important." data-en="StrAI can keep a human check before any important message, decision, or send.">StrAI peut garder une validation humaine avant toute communication, décision ou envoi important.</p>
+          <div class="survey-nav">
+            <button class="survey-back">&larr; <span data-fr="Retour" data-en="Back">Retour</span></button>
+          </div>
+        </div>
+        <!-- Diagnosis result -->
+        <div class="survey-results" id="survey-results">
+          <div class="results-icon">&#x1F3AF;</div>
+          <p class="diagnosis-label" data-fr="Votre meilleur point de départ" data-en="Your best starting point">Votre meilleur point de départ</p>
+          <h3 id="diag-title"></h3>
+          <div class="diagnosis-body">
+            <div class="diag-block">
+              <h4 data-fr="Pourquoi commencer ici" data-en="Why start here">Pourquoi commencer ici</h4>
+              <p id="diag-why"></p>
+            </div>
+            <div class="diag-block">
+              <h4 data-fr="Un outil que StrAI pourrait créer" data-en="A tool StrAI could build">Un outil que StrAI pourrait créer</h4>
+              <p id="diag-tool"></p>
+            </div>
+            <div class="diag-block" id="diag-example-wrap">
+              <h4 data-fr="Un exemple concret" data-en="A working example">Un exemple concret</h4>
+              <a class="diag-example-link" id="diag-example" href=""></a>
+            </div>
+            <div class="diag-block">
+              <h4 data-fr="Ce dont StrAI aurait besoin de vous" data-en="What StrAI would need from you">Ce dont StrAI aurait besoin de vous</h4>
+              <ul class="diag-needs" id="diag-needs"></ul>
+            </div>
+            <div class="diag-block">
+              <h4 data-fr="Point de départ suggéré" data-en="Suggested starting point">Point de départ suggéré</h4>
+              <p class="diag-package" id="diag-package"></p>
+            </div>
+          </div>
+          <div class="results-cta">
+            <a href="#contact" class="btn btn-primary" data-fr="Discuter de ce point de départ" data-en="Discuss this starting point">Discuter de ce point de départ</a>
+            <p style="font-size:0.78rem;color:var(--muted);margin-top:0.8rem;" data-fr="Gratuit. Aucun engagement." data-en="Free. No commitment.">Gratuit. Aucun engagement.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -1590,16 +616,16 @@
           <div class="form-row">
             <div class="form-group">
               <label for="name" data-fr="Nom" data-en="Name">Nom</label>
-              <input type="text" id="name" name="name" required placeholder="Votre nom">
+              <input type="text" id="name" name="name" required placeholder="Votre nom" data-ph-fr="Votre nom" data-ph-en="Your name">
             </div>
             <div class="form-group">
               <label for="org" data-fr="Organisation" data-en="Organization">Organisation</label>
-              <input type="text" id="org" name="organization" placeholder="Nom de l'organisme">
+              <input type="text" id="org" name="organization" placeholder="Nom de l'organisme" data-ph-fr="Nom de l'organisme" data-ph-en="Organization name">
             </div>
           </div>
           <div class="form-group">
             <label for="email" data-fr="Courriel" data-en="Email">Courriel</label>
-            <input type="email" id="email" name="email" required placeholder="vous@exemple.com">
+            <input type="email" id="email" name="email" required placeholder="vous@exemple.com" data-ph-fr="vous@exemple.com" data-ph-en="you@example.com">
           </div>
           <div class="form-group">
             <label for="interest" data-fr="Intérêt principal" data-en="Main interest">Intérêt principal</label>
@@ -1614,7 +640,7 @@
           </div>
           <div class="form-group">
             <label for="message" data-fr="Message (optionnel)" data-en="Message (optional)">Message (optionnel)</label>
-            <textarea id="message" name="message" placeholder="Parlez-nous de votre organisation et de vos besoins..." rows="4"></textarea>
+            <textarea id="message" name="message" placeholder="Parlez-nous de votre organisation et de vos besoins..." rows="4" data-ph-fr="Parlez-nous de votre organisation et de vos besoins..." data-ph-en="Tell us about your organization and your needs..."></textarea>
           </div>
           <div class="form-submit">
             <button type="submit" class="btn btn-primary" data-fr="Envoyer le message" data-en="Send message">Envoyer le message</button>
@@ -1647,480 +673,7 @@
 <!-- Easter egg -->
 <div id="dog-egg" aria-hidden="true">&#x1F415;</div>
 
-<script>
-  /* ============================================================
-     StrAI.ca — UI Scripts v4
-     Stray Dog Media — the stray is watching.
-  ============================================================ */
-
-  // --- Language toggle ---
-  const HTML = document.documentElement;
-  const langBtn = document.getElementById('lang-btn');
-  let lang = 'fr';
-
-  function applyLang(l) {
-    lang = l;
-    HTML.setAttribute('lang', l);
-    HTML.setAttribute('data-lang', l);
-    langBtn.textContent = l === 'fr' ? 'EN' : 'FR';
-    document.querySelectorAll('[data-fr]').forEach(el => {
-      const val = el.getAttribute('data-' + l);
-      if (val) el.innerHTML = val;
-    });
-    document.title = l === 'fr'
-      ? "StrAI.ca – Outils d'IA pratiques pour les OBNL du Québec"
-      : "StrAI.ca – Practical AI tools for Quebec nonprofits";
-    document.getElementById('meta-desc').setAttribute('content', l === 'fr'
-      ? "StrAI aide les petits OBNL du Québec à réduire le travail répétitif : subventions, rapports, communications bilingues et suivis — outils d'IA configurés autour de vos connaissances, équipe formée."
-      : "StrAI helps small Quebec nonprofits reduce repetitive work: grants, reports, bilingual communications, and follow-up — practical AI tools configured around your knowledge, teams trained.");
-    // Update form placeholders
-    if (l === 'en') {
-      document.querySelector('#name').placeholder = 'Your name';
-      document.querySelector('#org').placeholder = 'Organization name';
-      document.querySelector('#email').placeholder = 'you@example.com';
-      document.querySelector('#message').placeholder = 'Tell us about your organization and your needs...';
-    } else {
-      document.querySelector('#name').placeholder = 'Votre nom';
-      document.querySelector('#org').placeholder = "Nom de l'organisme";
-      document.querySelector('#email').placeholder = 'vous@exemple.com';
-      document.querySelector('#message').placeholder = 'Parlez-nous de votre organisation et de vos besoins...';
-    }
-  }
-
-  langBtn.addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
-
-  // --- Nav scroll ---
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 50);
-  }, { passive: true });
-
-  // --- Smooth scroll ---
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      const t = document.querySelector(a.getAttribute('href'));
-      if (t) {
-        e.preventDefault();
-        t.scrollIntoView({ behavior: 'smooth' });
-        // Close mobile menu if open
-        mobileMenu.classList.remove('open');
-        mobileBtn.classList.remove('active');
-      }
-    });
-  });
-
-  // --- Mobile menu ---
-  const mobileBtn = document.getElementById('mobile-toggle');
-  const mobileMenu = document.getElementById('mobile-menu');
-  mobileBtn.addEventListener('click', () => {
-    mobileBtn.classList.toggle('active');
-    mobileMenu.classList.toggle('open');
-  });
-  mobileMenu.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', () => {
-      mobileMenu.classList.remove('open');
-      mobileBtn.classList.remove('active');
-    });
-  });
-
-  // --- Cursor glow ---
-  const glow = document.getElementById('cursor-glow');
-  let mouseX = 0, mouseY = 0, glowX = 0, glowY = 0;
-  document.addEventListener('mousemove', e => {
-    mouseX = e.clientX;
-    mouseY = e.clientY;
-  });
-  function updateGlow() {
-    glowX += (mouseX - glowX) * 0.08;
-    glowY += (mouseY - glowY) * 0.08;
-    glow.style.left = glowX + 'px';
-    glow.style.top = glowY + 'px';
-    requestAnimationFrame(updateGlow);
-  }
-  // Only on non-touch
-  if (!('ontouchstart' in window)) {
-    updateGlow();
-    glow.style.opacity = '1';
-  } else {
-    glow.style.display = 'none';
-  }
-
-  // --- Particles ---
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let particles = [];
-
-  function resizeCanvas() {
-    const hero = document.getElementById('hero');
-    canvas.width = hero.offsetWidth;
-    canvas.height = hero.offsetHeight;
-  }
-  resizeCanvas();
-  window.addEventListener('resize', resizeCanvas);
-
-  function createParticle() {
-    return {
-      x: Math.random() * canvas.width,
-      y: Math.random() * canvas.height,
-      size: Math.random() * 2 + 0.5,
-      speedX: (Math.random() - 0.5) * 0.3,
-      speedY: (Math.random() - 0.5) * 0.3,
-      opacity: Math.random() * 0.4 + 0.1,
-      pulseSpeed: Math.random() * 0.02 + 0.005,
-      pulsePhase: Math.random() * Math.PI * 2
-    };
-  }
-
-  for (let i = 0; i < 60; i++) particles.push(createParticle());
-
-  function drawParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    const t = Date.now() * 0.001;
-
-    particles.forEach(p => {
-      p.x += p.speedX;
-      p.y += p.speedY;
-      if (p.x < 0) p.x = canvas.width;
-      if (p.x > canvas.width) p.x = 0;
-      if (p.y < 0) p.y = canvas.height;
-      if (p.y > canvas.height) p.y = 0;
-
-      const pulse = Math.sin(t * p.pulseSpeed * 10 + p.pulsePhase) * 0.3 + 0.7;
-      const alpha = p.opacity * pulse;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(0, 174, 239, ${alpha})`;
-      ctx.fill();
-    });
-
-    // Draw connections
-    for (let i = 0; i < particles.length; i++) {
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(61, 255, 243, ${0.06 * (1 - dist / 120)})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-    requestAnimationFrame(drawParticles);
-  }
-  drawParticles();
-
-  // --- Hero orb parallax ---
-  const orbs = document.querySelectorAll('.hero-orb');
-  window.addEventListener('mousemove', e => {
-    const x = (e.clientX / window.innerWidth - 0.5) * 2;
-    const y = (e.clientY / window.innerHeight - 0.5) * 2;
-    orbs.forEach((orb, i) => {
-      const factor = (i + 1) * 15;
-      orb.style.transform = `translate(${x * factor}px, ${y * factor}px)`;
-    });
-  });
-
-  // --- GSAP Scroll Animations ---
-  gsap.registerPlugin(ScrollTrigger);
-
-  // Hero entrance (gsap.to — CSS pre-hides .gs-reveal, so from() would end at opacity 0)
-  gsap.to('#hero .gs-reveal', {
-    y: 0,
-    opacity: 1,
-    duration: 0.9,
-    stagger: 0.15,
-    ease: 'power3.out',
-    delay: 0.2
-  });
-
-  // Generic reveal animations
-  gsap.utils.toArray('.gs-reveal').forEach(el => {
-    if (el.closest('#hero')) return; // Skip hero — handled above
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 88%',
-      once: true,
-      onEnter: () => {
-        gsap.to(el, {
-          y: 0, opacity: 1,
-          duration: 0.8,
-          ease: 'power3.out'
-        });
-      }
-    });
-  });
-
-  // Left reveals
-  gsap.utils.toArray('.gs-reveal-left').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 88%',
-      once: true,
-      onEnter: () => {
-        gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
-      }
-    });
-  });
-
-  // Right reveals
-  gsap.utils.toArray('.gs-reveal-right').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el,
-      start: 'top 88%',
-      once: true,
-      onEnter: () => {
-        gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' });
-      }
-    });
-  });
-
-  // Capabilities staggered
-  ScrollTrigger.create({
-    trigger: '.cap-grid',
-    start: 'top 85%',
-    once: true,
-    onEnter: () => {
-      gsap.to('.cap-card', {
-        y: 0, opacity: 1,
-        duration: 0.6,
-        stagger: 0.12,
-        ease: 'power3.out'
-      });
-    }
-  });
-
-  // Forfaits staggered
-  ScrollTrigger.create({
-    trigger: '.forfaits-grid',
-    start: 'top 85%',
-    once: true,
-    onEnter: () => {
-      gsap.to('.forfait', {
-        y: 0, opacity: 1,
-        duration: 0.6,
-        stagger: 0.15,
-        ease: 'power3.out'
-      });
-    }
-  });
-
-  // --- Survey Logic ---
-  let currentStep = 1;
-  const totalSteps = 4;
-  const surveyAnswers = {};
-
-  function selectOption(el) {
-    const step = el.closest('.survey-step');
-    step.querySelectorAll('.survey-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    surveyAnswers[currentStep] = el.dataset.value;
-
-    // Auto-advance after brief delay
-    setTimeout(() => {
-      if (currentStep < totalSteps) {
-        nextStep();
-      } else {
-        showResults();
-      }
-    }, 350);
-  }
-
-  function nextStep() {
-    if (currentStep >= totalSteps) return;
-    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.remove('active');
-    currentStep++;
-    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.add('active');
-    updateProgress();
-  }
-
-  function prevStep() {
-    if (currentStep <= 1) return;
-    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.remove('active');
-    currentStep--;
-    document.querySelector(`.survey-step[data-step="${currentStep}"]`).classList.add('active');
-    updateProgress();
-  }
-
-  function updateProgress() {
-    const pct = ((currentStep - 1) / totalSteps) * 100;
-    document.getElementById('survey-progress').style.width = pct + '%';
-  }
-
-  function showResults() {
-    // Hide all steps
-    document.querySelectorAll('.survey-step').forEach(s => s.classList.remove('active'));
-    document.getElementById('survey-progress').style.width = '100%';
-
-    // Generate recommendations based on answers
-    const recs = getRecommendations();
-    const container = document.getElementById('results-recommendations');
-    container.innerHTML = '';
-
-    const icons = ['&#x1F4CB;', '&#x1F4AC;', '&#x26A1;', '&#x1F4CA;'];
-    recs.forEach((rec, i) => {
-      const div = document.createElement('div');
-      div.className = 'result-item';
-      const icon = document.createElement('div');
-      icon.className = 'result-item-icon';
-      icon.innerHTML = icons[i % icons.length];
-      const body = document.createElement('div');
-      // data-fr/data-en so applyLang() re-translates results on later toggles
-      const h4 = document.createElement('h4');
-      h4.setAttribute('data-fr', rec.title_fr);
-      h4.setAttribute('data-en', rec.title_en);
-      const p = document.createElement('p');
-      p.setAttribute('data-fr', rec.desc_fr);
-      p.setAttribute('data-en', rec.desc_en);
-      body.appendChild(h4);
-      body.appendChild(p);
-      div.appendChild(icon);
-      div.appendChild(body);
-      container.appendChild(div);
-    });
-
-    document.getElementById('survey-results').classList.add('active');
-    applyLang(lang); // re-apply translations (fills in the rec cards too)
-  }
-
-  function getRecommendations() {
-    const recs = [];
-    const orgType = surveyAnswers[1];
-    const challenge = surveyAnswers[2];
-    const experience = surveyAnswers[3];
-    const teamSize = surveyAnswers[4];
-
-    // Always recommend based on challenge
-    if (challenge === 'comms') {
-      recs.push({
-        title_fr: 'Modèles de communication IA',
-        title_en: 'AI Communication Templates',
-        desc_fr: 'Des modèles pré-configurés avec votre ton et votre contexte — courriels, infolettres, appels aux bénévoles rédigés en minutes.',
-        desc_en: 'Pre-configured templates with your tone and context — emails, newsletters, volunteer callouts drafted in minutes.'
-      });
-    } else if (challenge === 'grants') {
-      recs.push({
-        title_fr: 'Système de rédaction de subventions',
-        title_en: 'Grant Writing System',
-        desc_fr: "L'IA connaît votre mission, vos programmes et vos chiffres — des premiers jets structurés en une fraction du temps, validés par votre équipe.",
-        desc_en: 'AI knows your mission, programs, and numbers — structured first drafts in a fraction of the time, reviewed by your team.'
-      });
-    } else if (challenge === 'knowledge') {
-      recs.push({
-        title_fr: 'Espace de mémoire organisationnelle',
-        title_en: 'Organizational Memory Space',
-        desc_fr: 'Un système qui rassemble et organise le savoir de votre équipe — pour ne plus perdre de connaissances lors des départs.',
-        desc_en: 'A system that gathers and organizes your team\'s knowledge — so expertise stays put when people leave.'
-      });
-    } else {
-      recs.push({
-        title_fr: 'Automatisation des tâches répétitives',
-        title_en: 'Repetitive Task Automation',
-        desc_fr: 'Rapports, suivis et mises à jour préparés automatiquement, prêts à valider par votre équipe — des heures récupérées chaque semaine.',
-        desc_en: 'Reports, follow-ups, and updates prepared automatically for your team to review — hours recovered every week.'
-      });
-    }
-
-    // Nonprofit-specific
-    if (orgType === 'nonprofit') {
-      recs.push({
-        title_fr: 'Forfait OBNL — 20 % de rabais',
-        title_en: 'Nonprofit Package — 20% Discount',
-        desc_fr: 'En tant qu\'OBNL, vous avez droit à 20 % de rabais sur tous nos forfaits — et certains projets peuvent être admissibles à des programmes d\'aide.',
-        desc_en: 'As a nonprofit, you get 20% off all packages — and some projects may qualify for funding programs.'
-      });
-    }
-
-    // School-specific
-    if (orgType === 'school') {
-      recs.push({
-        title_fr: 'Outils pour le milieu scolaire',
-        title_en: 'Tools for Schools',
-        desc_fr: 'Communications aux parents, coordination du personnel, suivi administratif — des systèmes qui allègent la charge de l\'équipe-école.',
-        desc_en: 'Parent communications, staff coordination, admin tracking — systems that lighten the load on school teams.'
-      });
-    }
-
-    // Experience-based
-    if (experience === 'none' || experience === 'basic') {
-      recs.push({
-        title_fr: 'Formation sur mesure incluse',
-        title_en: 'Custom Training Included',
-        desc_fr: 'Pas besoin d\'être un expert — notre formation de 2 heures rend votre équipe autonome dès le premier jour.',
-        desc_en: 'No need to be an expert — our 2-hour training makes your team autonomous from day one.'
-      });
-    } else {
-      recs.push({
-        title_fr: 'Configuration avancée',
-        title_en: 'Advanced Configuration',
-        desc_fr: 'Vous avez déjà de bonnes bases — on structure et optimise votre utilisation pour un impact maximal.',
-        desc_en: 'You already have a solid foundation — we structure and optimize your usage for maximum impact.'
-      });
-    }
-
-    // Team-based recommendation
-    if (teamSize === 'medium' || teamSize === 'large') {
-      recs.push({
-        title_fr: 'Forfait Autonomie recommandé',
-        title_en: 'Autonomie Package Recommended',
-        desc_fr: 'Pour une équipe de votre taille, le forfait Autonomie inclut un atelier d\'équipe et des automatisations de coordination.',
-        desc_en: 'For a team your size, the Autonomie package includes team workshops and coordination automations.'
-      });
-    } else {
-      recs.push({
-        title_fr: 'Démarrage rapide possible',
-        title_en: 'Quick Start Possible',
-        desc_fr: 'Avec une petite équipe, on peut être opérationnel en quelques jours — résultats visibles dès la première semaine.',
-        desc_en: 'With a small team, we can be operational in days — visible results from week one.'
-      });
-    }
-
-    return recs;
-  }
-
-  // --- Contact Form ---
-  const contactForm = document.getElementById('contact-form');
-  contactForm.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const formData = new FormData(contactForm);
-
-    // Submit to Formspree (or show success for now)
-    fetch(contactForm.action, {
-      method: 'POST',
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        contactForm.style.display = 'none';
-        document.querySelector('#contact-form-wrap h3').style.display = 'none';
-        document.getElementById('form-success').classList.add('active');
-      }
-    }).catch(() => {
-      // Fallback: still show success (form action can be configured later)
-      contactForm.style.display = 'none';
-      document.querySelector('#contact-form-wrap h3').style.display = 'none';
-      document.getElementById('form-success').classList.add('active');
-    });
-  });
-
-  // --- Easter egg ---
-  let clicks = 0, clickT;
-  const dogEl = document.getElementById('dog-egg');
-  document.getElementById('logo').addEventListener('click', () => {
-    clicks++;
-    clearTimeout(clickT);
-    clickT = setTimeout(() => { clicks = 0; }, 2000);
-    if (clicks >= 5) {
-      dogEl.classList.add('up');
-      setTimeout(() => dogEl.classList.remove('up'), 3500);
-      clicks = 0;
-    }
-  });
-</script>
+<script src="/assets/app.js" defer></script>
+<script src="/assets/survey.js" defer></script>
 </body>
 </html>

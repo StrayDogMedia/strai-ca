@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr"
+      data-title-fr="Réception et suivi automatisés — Exemple · StrAI.ca"
+      data-title-en="Automated intake &amp; follow-up — Example · StrAI.ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Réception et suivi automatisés — Exemple · StrAI.ca</title>
+  <meta name="description" id="meta-desc"
+    data-desc-fr="Comment une demande reçue devient un suivi visible : information vérifiée, classée et transmise à la bonne personne; rappels créés et brouillon préparé pour approbation. Un exemple StrAI construit avec n8n."
+    data-desc-en="How an incoming request becomes visible follow-up: information validated, filed, and routed to the right person; reminders created and a draft prepared for approval. A StrAI example built with n8n."
+    content="Comment une demande reçue devient un suivi visible : information vérifiée, classée et transmise à la bonne personne; rappels créés et brouillon préparé pour approbation. Un exemple StrAI construit avec n8n.">
+  <meta property="og:title" content="Automated intake & follow-up — Example · StrAI.ca">
+  <meta property="og:description" content="An incoming request becomes visible follow-up: validated, filed, routed, with reminders and a draft prepared for approval.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://strai.ca/examples/automation/">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<span class="stray" aria-hidden="true">&#x1F43E;</span>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" id="logo">str<span class="ai">AI</span><span class="ca">.ca</span></a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
+      <li><a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a></li>
+      <li><a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
+      <li><a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-btn" id="lang-btn">EN</button>
+      <a href="/#contact" class="btn btn-primary" data-fr="Contacter" data-en="Contact">Contacter</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
+  <a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a>
+  <a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
+  <a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
+  <a href="/#contact" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+
+<!-- ====== SUBHERO ====== -->
+<header class="subhero">
+  <div class="container narrow">
+    <a href="/#examples" class="back-link" data-fr="← Tous les exemples" data-en="← All examples">← Tous les exemples</a>
+    <p class="eyebrow" data-fr="Automatisation · n8n" data-en="Automation · n8n">Automatisation · n8n</p>
+    <h1 data-fr="Réception et suivi automatisés" data-en="Automated intake &amp; follow-up">Réception et suivi automatisés</h1>
+    <p class="subhero-sub"
+      data-fr="Une demande reçue devient un suivi visible plutôt qu'un courriel oublié. L'information est vérifiée, classée et transmise à la bonne personne; les rappels sont créés et un brouillon de réponse peut être préparé — pour approbation humaine avant tout envoi."
+      data-en="An incoming request becomes visible follow-up instead of a forgotten email. The information is validated, filed, and routed to the right person; reminders are created and a draft reply can be prepared — for human approval before anything is sent.">
+      Une demande reçue devient un suivi visible plutôt qu'un courriel oublié. L'information est vérifiée, classée et transmise à la bonne personne; les rappels sont créés et un brouillon de réponse peut être préparé — pour approbation humaine avant tout envoi.
+    </p>
+    <div class="subhero-actions">
+      <a href="/#contact" class="btn btn-primary" data-fr="Discuter d'un projet semblable" data-en="Discuss a similar project">Discuter d'un projet semblable</a>
+    </div>
+  </div>
+</header>
+
+<!-- ====== BODY ====== -->
+<main class="example-body">
+  <div class="container narrow">
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Le problème" data-en="The problem">Le problème</h2>
+      <p data-fr="Les demandes arrivent de partout : un formulaire du site web, un courriel, un message. Chacune doit être lue, classée, confiée à quelqu'un et suivie jusqu'à sa conclusion. Quand cela repose sur la mémoire et la bonne volonté, des demandes se perdent, les réponses tardent, et personne ne voit clairement ce qui est en attente."
+         data-en="Requests arrive from everywhere: a website form, an email, a message. Each one has to be read, filed, handed to someone, and followed through to the end. When that depends on memory and goodwill, requests slip through, replies are late, and no one has a clear view of what's still pending.">
+        Les demandes arrivent de partout : un formulaire du site web, un courriel, un message. Chacune doit être lue, classée, confiée à quelqu'un et suivie jusqu'à sa conclusion. Quand cela repose sur la mémoire et la bonne volonté, des demandes se perdent, les réponses tardent, et personne ne voit clairement ce qui est en attente.
+      </p>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</h2>
+      <p data-fr="Le flux est construit dans n8n et relié aux outils que votre équipe utilise déjà. Chaque étape mécanique est automatisée; la décision qui compte reste entre les mains d'une personne."
+         data-en="The flow is built in n8n and connected to the tools your team already uses. Every mechanical step is automated; the decision that matters stays with a person.">
+        Le flux est construit dans n8n et relié aux outils que votre équipe utilise déjà. Chaque étape mécanique est automatisée; la décision qui compte reste entre les mains d'une personne.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="fs-num">01</span><span data-fr="Une demande arrive (formulaire, courriel ou message)." data-en="A request arrives (form, email, or message).">Une demande arrive (formulaire, courriel ou message).</span></div>
+        <div class="flow-step"><span class="fs-num">02</span><span data-fr="L'information est vérifiée et complétée, puis classée au bon endroit." data-en="The information is validated and completed, then filed in the right place.">L'information est vérifiée et complétée, puis classée au bon endroit.</span></div>
+        <div class="flow-step"><span class="fs-num">03</span><span data-fr="La demande est transmise à la bonne personne, et un rappel de suivi est créé." data-en="The request is routed to the right person, and a follow-up reminder is created.">La demande est transmise à la bonne personne, et un rappel de suivi est créé.</span></div>
+        <div class="flow-step"><span class="fs-num">04</span><span data-fr="Un brouillon de réponse peut être préparé à partir de vos modèles approuvés." data-en="A draft reply can be prepared from your approved templates.">Un brouillon de réponse peut être préparé à partir de vos modèles approuvés.</span></div>
+        <div class="flow-step human"><span class="fs-num">05</span><span data-fr="Une personne relit, ajuste et approuve avant l'envoi — étape humaine." data-en="A person reviews, adjusts, and approves before sending — human step.">Une personne relit, ajuste et approuve avant l'envoi — étape humaine.</span></div>
+      </div>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Ce que ça change" data-en="What it changes">Ce que ça change</h2>
+      <ul>
+        <li data-fr="Rien ne dépend plus de « ne pas oublier » : chaque demande a un statut visible." data-en="Nothing depends on 'remembering' anymore: every request has a visible status.">Rien ne dépend plus de « ne pas oublier » : chaque demande a un statut visible.</li>
+        <li data-fr="Le travail répétitif de tri et de saisie disparaît; il n'est pas recopié d'une application à l'autre." data-en="The repetitive sorting and data-entry work disappears; it isn't recopied from one app to the next.">Le travail répétitif de tri et de saisie disparaît; il n'est pas recopié d'une application à l'autre.</li>
+        <li data-fr="La validation humaine reste avant toute communication ou décision importante." data-en="Human validation stays in place before any important message or decision.">La validation humaine reste avant toute communication ou décision importante.</li>
+      </ul>
+      <p class="ex-note" style="margin-top:1.4rem;"
+         data-fr="Le même schéma s'applique à la coordination des bénévoles, aux demandes d'adhésion, aux réservations ou à toute réception qui doit se terminer par un suivi fiable."
+         data-en="The same pattern applies to volunteer coordination, membership requests, bookings, or any intake that has to end in reliable follow-up.">
+        Le même schéma s'applique à la coordination des bénévoles, aux demandes d'adhésion, aux réservations ou à toute réception qui doit se terminer par un suivi fiable.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== CTA ====== -->
+<section class="example-cta">
+  <div class="container narrow">
+    <h2 data-fr="Un suivi qui repose encore sur la mémoire?" data-en="Follow-up that still depends on memory?">Un suivi qui repose encore sur la mémoire?</h2>
+    <p data-fr="Si des demandes se perdent entre leur réception et leur conclusion, un flux comme celui-ci peut être construit autour de vos outils actuels."
+       data-en="If requests get lost between arriving and being resolved, a flow like this can be built around your current tools.">
+      Si des demandes se perdent entre leur réception et leur conclusion, un flux comme celui-ci peut être construit autour de vos outils actuels.
+    </p>
+    <a href="/#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
+    <a href="/#examples" class="btn btn-ghost" data-fr="Voir les autres exemples" data-en="See the other examples">Voir les autres exemples</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <div class="footer-logo">str<span class="ai">AI</span>.ca</div>
+      <div class="footer-sdm">
+        <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
+        <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
+      </div>
+      <div data-fr="&copy; 2026 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2026 strAI.ca &middot; Ormstown, Quebec">&copy; 2026 strAI.ca &middot; Ormstown, Quebec</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
