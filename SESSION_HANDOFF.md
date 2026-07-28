@@ -33,10 +33,16 @@ yet open to the public" and captioned as illustrative. The subhero "See a previe
 scrolls to it. When OrmstownGPT ships, swap in the live "Ask" URL and drop the coming-soon framing
 (TODO comment marks the spot).
 
-**Blocked on Stray — needed to finish the examples:**
-- Live URL for the Observer newsroom — `TODO(Stray)` comment in that subhero marks where a
-  "Voir le média ↗" ghost button should go. Confirm the real URL and I'll wire it in.
-- Confirm the OrmstownGPT "~130 documents" figure is still current for public copy.
+**Observer example — DONE:** live "Voir le média ↗ / Visit the newsroom ↗" button now links to
+https://www.ormstownobserver.ca (confirmed by Stray 2026-07-28).
+
+**OrmstownGPT roadmap (Stray, 2026-07-28) — before it can be presented as live:**
+1. Full data audit — verify every bylaw/regulation in the corpus is the LATEST version.
+2. Redesign the interface — Stray is leaning toward making OrmstownGPT its own product with a
+   distinct look & feel, separate from the Observer's journalistic identity.
+Until then the strai.ca example page stays as the illustrative "beta / not yet public" preview
+(that framing is still accurate). Don't flip it to "live" yet. See memory `project_ormstowngpt.md`.
+- Still worth confirming the "~130 documents" figure once the data audit runs.
 - Any real proof (a quote, a concrete before/after) you're willing to publish — the example
   pages are the natural home for it.
 
