@@ -2,6 +2,18 @@
 
 **Last session:** 2026-07-24
 
+## 2026-07-28 — Logo lockup, favicon, light/dark theme toggle (branch `examples-subpages`, NOT deployed)
+- **Logo:** text wordmark → four-pill mark + wordmark lockup (nav + footer, all 4 pages);
+  shared `.logo`/`.footer-logo` rules in styles.css. New `/favicon.svg` linked site-wide.
+- **Light/dark theme toggle:** sun/moon sliding switch in the nav (`.theme-toggle`/`.tt-*`),
+  persisted in localStorage as `strai-theme` (default dark), applied via `data-theme` on <html>.
+  Light palette = brand light variants (`:root[data-theme="light"]`): accent `#0B6FA8`, teal
+  `#0A8FA6` replacing neon cyan, dark type on `#EEF3F9` bg; logo pills recolor to `#0B6FA8`/tip
+  `#00AEEF`. Anti-flash inline `<head>` script sets the theme before first paint on every page.
+  `app.js` gained `applyTheme()` next to `applyLang()`. Verified both themes render clean via
+  headless-Chrome screenshots (hero + OrmstownGPT card/mock contrast checked). Nav "Contacter"
+  button now hidden ≤600px (redundant with mobile menu) to make room for the two switches.
+
 ## 2026-07-24 — Asset refactor + example subpages (branch `examples-subpages`, NOT merged/deployed)
 Two things landed on this branch:
 - **Refactor:** index.html inline CSS/JS extracted to `/assets/styles.css`, `/assets/app.js`,

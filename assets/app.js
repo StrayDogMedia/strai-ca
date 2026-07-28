@@ -40,6 +40,20 @@ function applyLang(l) {
 
 if (langBtn) langBtn.addEventListener('click', () => applyLang(lang === 'fr' ? 'en' : 'fr'));
 
+// --- Theme toggle (light/dark, persists across pages via localStorage) ---
+// An inline <head> script sets data-theme before first paint to avoid a flash;
+// this re-affirms it and keeps the switch's pressed state in sync.
+const themeBtn = document.getElementById('theme-toggle');
+let theme = localStorage.getItem('strai-theme') || 'dark';
+function applyTheme(t) {
+  theme = t;
+  localStorage.setItem('strai-theme', t);
+  HTML.setAttribute('data-theme', t);
+  if (themeBtn) themeBtn.setAttribute('aria-pressed', String(t === 'light'));
+}
+if (themeBtn) themeBtn.addEventListener('click', () => applyTheme(theme === 'dark' ? 'light' : 'dark'));
+applyTheme(theme);
+
 // --- Nav scroll ---
 const nav = document.getElementById('nav');
 if (nav) {
