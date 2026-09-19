@@ -1,6 +1,95 @@
 # SESSION_HANDOFF — strAI.ca
 
-**Last session:** 2026-07-24
+**Last session:** 2026-09-18
+
+## 2026-09-18 — Bilingual copy refresh + positioning (branch `claude/copy-refresh-2026-09-18`, NOT merged/deployed)
+
+Implemented the approved copy refresh end-to-end on a review branch. **`main` and the live
+site at strai.ca are unchanged** — this branch was pushed to origin for review only.
+
+**Revised brand hierarchy (now used consistently):**
+- Brand: strAI (visible spelling standardized everywhere — titles, meta, nav, headings, form
+  copy, assessment copy; was inconsistently "StrAI" before)
+- Primary tagline — FR: *L'IA qui enlève du travail, pas du contrôle.* / EN: *AI that takes
+  work off your plate—not control out of your hands.*
+- Homepage headline — FR: *Moins d'administration. Plus de mission.* / EN: *Less
+  administration. More time for your mission.*
+- Descriptor — FR: *Automatisation et IA pour les OBNL du Québec* / EN: *Automation and AI
+  for Quebec nonprofits*
+
+**Sections changed (index.html):**
+- Hero: eyebrow, headline, new `.hero-tagline` between H1 and description, description copy,
+  both CTAs (primary now links to `#assessment`, secondary to `#examples`)
+- About: eyebrow, heading, lead paragraph (secondary schools/business invitation left as-is,
+  per brief)
+- Outcomes: EN heading only ("Spend less time on..."), FR heading unchanged per brief
+- Process: heading
+- Example cards (OrmstownGPT, Automated intake): descriptions
+- Why strAI: section label casing, "defined scope and price" item now says human review
+  stays essential rather than naming what stays the client's responsibility
+- Assessment: final-question hint rewritten, both result-heading labels casing-fixed
+  ("A tool strAI could build" / "What strAI would need from you")
+- Contact form: heading, dropdown (see below), success message
+
+**Pricing dropdown correction:** the contact form's package dropdown showed *regular* prices
+while the pricing cards lead with the *nonprofit* prices — a mismatch. Removed prices from
+Ancrage/Momentum/Autonomie entirely; each option now shows its outcome instead (e.g.
+"Momentum — Subventions, rapports et suivis" / "Momentum — Grants, reports, and follow-up").
+Option `value`s unchanged. (Untouched: the two `cours1`/`cours2` options added 2026-09-17 for
+the new `/cours/` page — no pricing mismatch there, out of scope for this brief.)
+
+**SEO/social metadata:** homepage title + meta description (FR/EN) and OG title/description
+updated to the new positioning. All three example subpages (`ormstown-observer`,
+`ormstowngpt`, `automation`) had their title/meta casing fixed to `strAI.ca`; `automation`'s
+meta description was also rewritten from "visible follow-up" to "tracked task" framing
+(FR + EN) per the brief. `ormstown-observer`'s and `ormstowngpt`'s EN visible intro copy was
+also improved per the brief (FR intros and all other subpage copy left untouched). The
+`/cours/` page (added 2026-09-17, not part of this brief) also got its `StrAI.ca` → `strAI.ca`
+casing fixed for consistency while in here.
+
+**Minimal CSS change:** added `.hero-tagline` (Orbitron, weight 500, `clamp(1rem, 1.6vw,
+1.2rem)`, heading color, 0.02em letter-spacing, `margin-top: 1.4rem`) and reduced
+`.hero-sub`'s top margin from `1.8rem` to `1rem` so the tagline and description read as one
+hierarchy under the H1. No other design/layout/animation/theme changes.
+
+**Tests performed:**
+- `git diff --check` — clean
+- `node --check` on `assets/app.js` and `assets/survey.js` — both OK (neither file's content
+  was touched; only header comments there still say "StrAI.ca", left alone as non-visible)
+- `data-fr`/`data-en` attribute counts matched on every touched page (index.html 194/194,
+  cours/index.html 48/48, ormstown-observer 34/34, ormstowngpt 40/40, automation 35/35)
+- No duplicate HTML `id`s on any page
+- All homepage `#anchor` links (`assessment`, `capabilities`, `contact`, `examples`,
+  `forfaits`, `pourquoi`) resolve to an existing `id`
+- Language toggle exercised on homepage + all 3 example pages (FR↔EN), confirmed via
+  `document.title` and rendered text, not just attribute inspection
+- Full 5-question assessment flow run through in FR — result headings and hint text
+  confirmed correct; diagnosis body copy (from survey.js) contains no brand-name string to
+  fix
+- Dark and light themes checked on the homepage hero (including computed styles of the new
+  `.hero-tagline`: Orbitron/500/19.2px/white/0.02em/22.4px margin — all match spec)
+- Desktop (1440px) and mobile (375px) widths checked on the homepage hero — no overflow on
+  the longer FR hero headline or About heading in either width
+- Contact dropdown option text confirmed in both languages (FR and EN) — see pricing
+  correction above
+- Console + network requests checked on every page touched — no errors, no failed requests
+- **The contact form was not submitted during testing.**
+
+**Outstanding — do NOT invent, still blocked on business input from Stray** (per the brief;
+carries forward the same open list from 2026-07-22/07-24, now scoped as the future FAQ):
+1. Workflow / file ownership
+2. Portability
+3. Third-party subscription fees
+4. Data storage or processing
+5. Quebec Law 25 compliance
+6. Setup timelines
+7. Post-support arrangements
+8. Google Workspace or Microsoft 365 scope
+
+The FAQ itself was deliberately **not implemented** this session — leave it out until Stray
+confirms these facts.
+
+---
 
 ## 2026-07-28 — Logo lockup, favicon, light/dark theme toggle (branch `examples-subpages`, NOT deployed)
 - **Logo:** text wordmark → four-pill mark + wordmark lockup (nav + footer, all 4 pages);

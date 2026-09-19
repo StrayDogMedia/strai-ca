@@ -374,10 +374,20 @@
       text-shadow: 0 0 30px rgba(61,255,243,0.45);
     }
 
+    .hero-tagline {
+      font-family: var(--font-d);
+      font-weight: 500;
+      font-size: clamp(1rem, 1.6vw, 1.2rem);
+      letter-spacing: 0.02em;
+      color: var(--heading);
+      margin-top: 1.4rem;
+      line-height: 1.5;
+    }
+
     .hero-sub {
       font-size: 1.05rem;
       max-width: 560px;
-      margin: 1.8rem 0 2.8rem;
+      margin: 1rem 0 2.8rem;
       line-height: 1.8;
       color: var(--muted-lt);
     }
