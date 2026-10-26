@@ -2,6 +2,42 @@
 
 **Last session:** 2026-10-25
 
+## 2026-10-25 — Redesign "L'atelier" (branch `claude/redesign-atelier-2026-10-25`, PR open)
+
+Jesse sent the "stealth tech" look (Orbitron, neon cyan, cursor glow, orbs/particles) back to
+the drawing board for lacking personality. Three directions were mocked up (Chien de travail /
+Le cahier / L'atelier); he chose **L'atelier**: the garage, not the start-up. Dark by default,
+warm and tooled.
+
+**Design system now (assets/styles.css header is the reference):**
+- Tokens: charcoal `--bg #131210`, surfaces `#1B1916`, **amber accent `#F2A93B`** (`--accent-2`
+  `#FFC46B` hover), `--accent-ink` for text on amber buttons, cream heading `#F0E9DC`, warm
+  muted greys, radius 4px/3px. Light theme is warm paper (`#F4EFE6`) with a darker amber
+  (`#B8701A`) for contrast. `--hot` (red) is kept as a token but no longer used by buttons.
+- Type: **Bricolage Grotesque** display (800 for headings, tight tracking), **IBM Plex Sans**
+  body, **IBM Plex Mono** labels/eyebrows/prices. Google Fonts link updated on every page.
+- Gone: cursor glow (CSS `display:none`, div removed from all pages), hero orbs / grid /
+  particles canvas, scroll indicator, text-shadow glows, button shimmer, neon hover shadows.
+- Hero is two columns: copy + **the bench** (`.bench`), a real job shown as it is (the Ledger
+  for the Observer: 236 lines of the 2026-08-03 minutes, $0.00 gap, 14 checks, human review).
+  Its figures come from the Observer's validator; update them when the Ledger moves on, or
+  swap in another live job. Links to `/examples/ormstown-ledger/`.
+- Scroll reveals no longer pre-hide in CSS. `app.js` hides only elements below the fold at
+  load (`gsap.set`) and eases them in on entry; the hero uses `gsap.from`. Without JS or GSAP
+  the whole page is visible. The staggered-grid block was removed (per-card reveals cover it).
+- Logo SVG rects now take `style="fill:var(--accent)"` / `--accent-2` instead of hard-coded
+  cyan, so the mark follows the theme on every page.
+
+**Checks:** `git diff --check` clean; `node --check assets/app.js` ok; data-fr/data-en counts
+match on all six pages (index 207/207, cours 48/48, examples 35/50/34/40); no duplicate ids;
+all homepage anchors resolve; FR/EN toggle, dark + light, 1280px and 375px (no horizontal
+overflow), console clean. Contact form not submitted.
+
+**Not in this branch:** the five `capabilities/<slug>/` pages and the cap-card link changes
+that sat uncommitted in the local checkout on 2026-10-25 (another session's work). They share
+`styles.css`; whoever lands them should rebase on this redesign and check their head
+`<link>` uses the new font URL.
+
 ## 2026-10-25 — Case study: the Observer's Ledger (`/examples/ormstown-ledger/`, NOT committed)
 
 New bilingual example page `examples/ormstown-ledger/index.html` (copied from the

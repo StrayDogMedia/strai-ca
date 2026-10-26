@@ -192,40 +192,30 @@ if (orbs.length) {
 if (window.gsap) {
   gsap.registerPlugin(ScrollTrigger);
 
-  // Hero entrance (gsap.to — CSS pre-hides .gs-reveal, so from() would end at opacity 0)
+  // Hero entrance
   if (document.querySelector('#hero .gs-reveal')) {
-    gsap.to('#hero .gs-reveal', { y: 0, opacity: 1, duration: 0.9, stagger: 0.15, ease: 'power3.out', delay: 0.2 });
+    gsap.from('#hero .gs-reveal', { y: 24, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out', delay: 0.1 });
   }
 
-  gsap.utils.toArray('.gs-reveal').forEach(el => {
-    if (el.closest('#hero')) return;
-    ScrollTrigger.create({
-      trigger: el, start: 'top 88%', once: true,
-      onEnter: () => gsap.to(el, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
-    });
-  });
-  gsap.utils.toArray('.gs-reveal-left').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el, start: 'top 88%', once: true,
-      onEnter: () => gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
-    });
-  });
-  gsap.utils.toArray('.gs-reveal-right').forEach(el => {
-    ScrollTrigger.create({
-      trigger: el, start: 'top 88%', once: true,
-      onEnter: () => gsap.to(el, { x: 0, opacity: 1, duration: 0.9, ease: 'power3.out' })
-    });
-  });
-
-  // Staggered grids (no-op if the trigger isn't on this page)
-  [['.cap-grid', '.cap-card', 0.12], ['.forfaits-grid', '.forfait', 0.15], ['.examples-grid', '.example-card', 0.12]].forEach(([trigger, target, stagger]) => {
-    if (document.querySelector(trigger)) {
+  // Scroll reveals. Elements are visible by default (no CSS pre-hide), so a
+  // reader without JS, a search crawler or a screenshot sees the whole page.
+  // Only what is below the fold at load is hidden, then eased in on entry.
+  const vh = window.innerHeight;
+  const belowFold = el => el.getBoundingClientRect().top > vh * 0.92;
+  const reveal = (sel, fromVars) => {
+    gsap.utils.toArray(sel).forEach(el => {
+      if (el.closest('#hero') || !belowFold(el)) return;
+      gsap.set(el, fromVars);
       ScrollTrigger.create({
-        trigger, start: 'top 85%', once: true,
-        onEnter: () => gsap.to(target, { y: 0, opacity: 1, duration: 0.6, stagger, ease: 'power3.out' })
+        trigger: el, start: 'top 88%', once: true,
+        onEnter: () => gsap.to(el, { x: 0, y: 0, opacity: 1, duration: 0.8, ease: 'power3.out' })
       });
-    }
-  });
+    });
+  };
+  reveal('.gs-reveal', { y: 40, opacity: 0 });
+  reveal('.gs-reveal-left', { x: -60, opacity: 0 });
+  reveal('.gs-reveal-right', { x: 60, opacity: 0 });
+
 }
 
 // --- Easter egg (5 logo clicks → dog; homepage only) ---
