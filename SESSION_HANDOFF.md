@@ -1,6 +1,28 @@
 # SESSION_HANDOFF — strAI.ca
 
-**Last session:** 2026-09-18
+**Last session:** 2026-10-25
+
+## 2026-10-25 — Case study: the Observer's Ledger (`/examples/ormstown-ledger/`, NOT committed)
+
+New bilingual example page `examples/ormstown-ledger/index.html` (copied from the
+`ormstown-observer` template; same nav/subhero/flow/CTA/footer, `data-fr`/`data-en` 50/50)
+plus a fourth card in the homepage `#examples` grid. It describes the municipal-spending
+explorer at https://ormstownobserver.ca/finances/ — 4,439 payment lines, 20 sittings
+(Jan 2025–Aug 2026), six-question front door, sourced context, the "What the law requires"
+tab (C-65.01; 15 contracts, 9 obligations), and the static/textContent/allowlist/validator
+engineering choices. Every figure was read from the live site and `finances/tests/validate.js`
+on 2026-10-25; the three outbound links (`/finances/`, `?tab=disclosures`, `/finances/budget/`)
+all return 200.
+
+**Editorial rules baked into the copy (keep them):** the Observer is "an independent bilingual
+newspaper in the Haut-Saint-Laurent" — never named as a strAI property, publisher/editor never
+named; the disclosure register is described as showing what is and isn't published, with no
+characterization of the municipality. One-way link only: the Observer does not link back.
+
+Checks run: `git diff --check` clean; data-fr/data-en 203/203 on index.html; no duplicate ids;
+FR↔EN toggle, dark/light, 375px width (no horizontal overflow), console clean.
+Working tree also carried someone else's uncommitted `capabilities/` pages + cap-card
+link changes (index.html, styles.css, app.js) — left untouched; commit them separately.
 
 ## 2026-09-18 — Bilingual copy refresh + positioning (branch `claude/copy-refresh-2026-09-18`, NOT merged/deployed)
 

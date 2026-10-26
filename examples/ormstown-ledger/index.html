@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="fr" data-lang="fr"
+      data-title-fr="Le Registre de l'Observer — Exemple · strAI.ca"
+      data-title-en="The Observer's Ledger — Example · strAI.ca">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>try{document.documentElement.setAttribute('data-theme',localStorage.getItem('strai-theme')||'dark')}catch(e){}</script>
+  <title>Le Registre de l'Observer — Exemple · strAI.ca</title>
+  <meta name="description" id="meta-desc"
+    data-desc-fr="Comment strAI a construit le Registre : un explorateur des dépenses municipales pour un journal indépendant bilingue — 4 439 lignes de paiement reliées aux procès-verbaux officiels, un contexte sourcé, un onglet « Ce que la loi exige », le tout sur un site statique vérifiable."
+    data-desc-en="How strAI built the Ledger: a municipal-spending explorer for an independent bilingual newspaper — 4,439 payment lines linked to the official minutes, sourced context, a “What the law requires” tab, all on a verifiable static site."
+    content="Comment strAI a construit le Registre : un explorateur des dépenses municipales pour un journal indépendant bilingue — 4 439 lignes de paiement reliées aux procès-verbaux officiels, un contexte sourcé, un onglet « Ce que la loi exige », le tout sur un site statique vérifiable.">
+  <meta property="og:title" content="The Observer's Ledger — Example · strAI.ca">
+  <meta property="og:description" content="A municipal-spending explorer for an independent bilingual newspaper: every payment line linked to the official minutes, sourced context, and a register of what the law requires.">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://strai.ca/examples/ormstown-ledger/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@300;400;500;600&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <link rel="stylesheet" href="/assets/styles.css">
+</head>
+<body>
+
+<span class="stray" aria-hidden="true">&#x1F43E;</span>
+<div class="cursor-glow" id="cursor-glow"></div>
+
+<!-- ====== NAV ====== -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo" id="logo">
+      <svg viewBox="0 0 48 34" aria-hidden="true">
+        <g fill="#00AEEF">
+          <rect x="0" y="12" width="9" height="22" rx="4.5"></rect>
+          <rect x="13" y="0" width="9" height="34" rx="4.5"></rect>
+          <rect x="26" y="6" width="9" height="28" rx="4.5"></rect>
+          <rect x="39" y="18" width="9" height="16" rx="4.5" fill="#3DFFF3"></rect>
+        </g>
+      </svg>
+      <span>str<span class="ai">AI</span><span class="ca">.ca</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a></li>
+      <li><a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a></li>
+      <li><a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a></li>
+      <li><a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Basculer le thème clair ou sombre" title="Thème clair / sombre">
+        <span class="tt-track">
+          <svg class="tt-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="tt-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          <span class="tt-thumb"></span>
+        </span>
+      </button>
+      <button class="lang-btn" id="lang-btn">EN</button>
+      <a href="/#contact" class="btn btn-primary" data-fr="Contacter" data-en="Contact">Contacter</a>
+      <button class="mobile-toggle" id="mobile-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="/#capabilities" data-fr="Résultats" data-en="Outcomes">Résultats</a>
+  <a href="/#examples" data-fr="Exemples" data-en="Examples">Exemples</a>
+  <a href="/#assessment" data-fr="Diagnostic" data-en="Assessment">Diagnostic</a>
+  <a href="/#forfaits" data-fr="Forfaits" data-en="Packages">Forfaits</a>
+  <a href="/#contact" data-fr="Contact" data-en="Contact">Contact</a>
+</div>
+
+<!-- ====== SUBHERO ====== -->
+<header class="subhero">
+  <div class="container narrow">
+    <a href="/#examples" class="back-link" data-fr="← Tous les exemples" data-en="← All examples">← Tous les exemples</a>
+    <p class="eyebrow" data-fr="Transparence municipale · en ligne" data-en="Municipal transparency · live">Transparence municipale · en ligne</p>
+    <h1 data-fr="Le Registre de l'Observer" data-en="The Observer's Ledger">Le Registre de l'Observer</h1>
+    <p class="subhero-sub"
+      data-fr="Un journal indépendant bilingue du Haut-Saint-Laurent voulait que ses lecteurs puissent voir où va l'argent de leur municipalité, ligne par ligne, sans avoir à ouvrir des dizaines de PDF. strAI a construit le Registre : chaque paiement approuvé par le conseil, relié au procès-verbal officiel dont il provient, expliqué en langage courant et confronté à ce que la loi exige de publier."
+      data-en="An independent bilingual newspaper in the Haut-Saint-Laurent wanted its readers to see where their municipality's money goes, line by line, without opening dozens of PDFs. strAI built the Ledger: every council-approved payment, linked to the official minutes it comes from, explained in plain language, and set against what the law requires to be published.">
+      Un journal indépendant bilingue du Haut-Saint-Laurent voulait que ses lecteurs puissent voir où va l'argent de leur municipalité, ligne par ligne, sans avoir à ouvrir des dizaines de PDF. strAI a construit le Registre : chaque paiement approuvé par le conseil, relié au procès-verbal officiel dont il provient, expliqué en langage courant et confronté à ce que la loi exige de publier.
+    </p>
+    <div class="subhero-actions">
+      <a href="/#contact" class="btn btn-primary" data-fr="Discuter d'un projet semblable" data-en="Discuss a similar project">Discuter d'un projet semblable</a>
+      <a href="https://ormstownobserver.ca/finances/" target="_blank" rel="noopener" class="btn btn-ghost" data-fr="Explorer le Registre ↗" data-en="Explore the Ledger ↗">Explorer le Registre ↗</a>
+    </div>
+  </div>
+</header>
+
+<!-- ====== BODY ====== -->
+<main class="example-body">
+  <div class="container narrow">
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Le problème" data-en="The problem">Le problème</h2>
+      <p data-fr="Une municipalité approuve ses paiements à chaque séance du conseil. La liste existe : c'est une annexe du procès-verbal, un PDF de plusieurs pages, parfois numérisé, publié des semaines plus tard. Personne ne peut y chercher un fournisseur, additionner une catégorie ou comparer deux années. L'information est publique au sens strict, mais inutilisable en pratique — et la loi qui oblige à publier certains contrats est rarement vérifiée par qui que ce soit."
+         data-en="A municipality approves its payments at every council sitting. The list exists: it's an annex to the minutes, a multi-page PDF, sometimes scanned, published weeks later. Nobody can search it for a supplier, add up a category, or compare two years. The information is public in the strict sense, but unusable in practice — and the law that requires certain contracts to be published is rarely checked by anyone.">
+        Une municipalité approuve ses paiements à chaque séance du conseil. La liste existe : c'est une annexe du procès-verbal, un PDF de plusieurs pages, parfois numérisé, publié des semaines plus tard. Personne ne peut y chercher un fournisseur, additionner une catégorie ou comparer deux années. L'information est publique au sens strict, mais inutilisable en pratique — et la loi qui oblige à publier certains contrats est rarement vérifiée par qui que ce soit.
+      </p>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Ce que le Registre contient" data-en="What the Ledger holds">Ce que le Registre contient</h2>
+      <p data-fr="Au 25 octobre 2026, le <a href='https://ormstownobserver.ca/finances/' target='_blank' rel='noopener'>Registre</a> couvre <strong>4 439 lignes de paiement</strong> approuvées par le conseil sur <strong>20 séances</strong>, de janvier 2025 à août 2026. Chaque ligne renvoie au PDF du procès-verbal officiel dont elle est tirée. Les totaux de chaque séance concordent au cent près avec la liste adoptée; le seul écart (0,12 $ en janvier 2025, deux chiffres illisibles dans un document numérisé) est documenté sur la <a href='https://ormstownobserver.ca/finances/budget/' target='_blank' rel='noopener'>page de méthode</a>."
+         data-en="As of October 25, 2026, the <a href='https://ormstownobserver.ca/finances/' target='_blank' rel='noopener'>Ledger</a> covers <strong>4,439 payment lines</strong> approved by council across <strong>20 sittings</strong>, from January 2025 to August 2026. Every line links to the official minutes PDF it was taken from. Each sitting's total reconciles to the adopted list to the penny; the one exception (a $0.12 gap in January 2025, from two digits unreadable in a scanned document) is documented on the <a href='https://ormstownobserver.ca/finances/budget/' target='_blank' rel='noopener'>method page</a>.">
+        Au 25 octobre 2026, le <a href="https://ormstownobserver.ca/finances/" target="_blank" rel="noopener">Registre</a> couvre <strong>4 439 lignes de paiement</strong> approuvées par le conseil sur <strong>20 séances</strong>, de janvier 2025 à août 2026. Chaque ligne renvoie au PDF du procès-verbal officiel dont elle est tirée. Les totaux de chaque séance concordent au cent près avec la liste adoptée; le seul écart (0,12 $ en janvier 2025, deux chiffres illisibles dans un document numérisé) est documenté sur la <a href="https://ormstownobserver.ca/finances/budget/" target="_blank" rel="noopener">page de méthode</a>.
+      </p>
+      <ul>
+        <li data-fr="<strong>Une porte d'entrée en langage courant.</strong> Une boîte de recherche et six questions formulées comme un lecteur les poserait : qui a été le plus payé cette année, qu'a approuvé la dernière séance, où va l'argent, qu'est-ce qui dépasse 25 000 $, combien coûtent les services juridiques, et ce que la loi exige."
+            data-en="<strong>A plain-language front door.</strong> A search box and six questions phrased the way a reader would ask them: who was paid the most this year, what the last sitting approved, where the money goes, what is over $25,000, what legal services cost, and what the law requires.">
+          <strong>Une porte d'entrée en langage courant.</strong> Une boîte de recherche et six questions formulées comme un lecteur les poserait : qui a été le plus payé cette année, qu'a approuvé la dernière séance, où va l'argent, qu'est-ce qui dépasse 25 000 $, combien coûtent les services juridiques, et ce que la loi exige.</li>
+        <li data-fr="<strong>Le contexte à côté des chiffres.</strong> Pour chaque catégorie, chaque séance et chaque fournisseur, une courte explication de la raison de la dépense — chaque point relié au procès-verbal ou à un article publié, jamais à la mémoire de quelqu'un."
+            data-en="<strong>Context beside the numbers.</strong> For each category, sitting and supplier, a short explanation of why the money was spent — every point tied to the minutes or to a published story, never to someone's memory.">
+          <strong>Le contexte à côté des chiffres.</strong> Pour chaque catégorie, chaque séance et chaque fournisseur, une courte explication de la raison de la dépense — chaque point relié au procès-verbal ou à un article publié, jamais à la mémoire de quelqu'un.</li>
+        <li data-fr="<strong>« Ce que la loi exige ».</strong> Un onglet qui reflète les obligations de divulgation financière du Québec, dont la <em>Loi sur les contrats des organismes municipaux</em> (C-65.01, en vigueur depuis le 1er avril 2026) : les fournisseurs payés 25 000 $ ou plus dans l'année, un registre de 15 contrats de 25 000 $ ou plus recoupés avec le SEAO et accompagnés du montant versé à ce jour, et un registre daté de 9 obligations montrant ce que la Municipalité a publié et ce qu'elle n'a pas publié — factuellement, sans qualification."
+            data-en="<strong>“What the law requires.”</strong> A tab that mirrors Québec's financial-disclosure obligations, including the <em>Loi sur les contrats des organismes municipaux</em> (C-65.01, in force since April 1, 2026): suppliers paid $25,000 or more in a year, a register of 15 contracts of $25,000 or more cross-checked against SEAO with paid-to-date, and a dated register of 9 obligations showing what the Town has and hasn't published — factually, without characterization.">
+          <strong>« Ce que la loi exige ».</strong> Un onglet qui reflète les obligations de divulgation financière du Québec, dont la <em>Loi sur les contrats des organismes municipaux</em> (C-65.01, en vigueur depuis le 1er avril 2026) : les fournisseurs payés 25 000 $ ou plus dans l'année, un registre de 15 contrats de 25 000 $ ou plus recoupés avec le SEAO et accompagnés du montant versé à ce jour, et un registre daté de 9 obligations montrant ce que la Municipalité a publié et ce qu'elle n'a pas publié — factuellement, sans qualification.</li>
+      </ul>
+      <p class="ex-note" style="margin-top:1.4rem;"
+         data-fr="Voir l'onglet <a href='https://ormstownobserver.ca/finances/?tab=disclosures' target='_blank' rel='noopener'>Ce que la loi exige ↗</a> et la <a href='https://ormstownobserver.ca/finances/budget/' target='_blank' rel='noopener'>méthode et les sources ↗</a> sur le site du journal."
+         data-en="See the <a href='https://ormstownobserver.ca/finances/?tab=disclosures' target='_blank' rel='noopener'>What the law requires ↗</a> tab and the <a href='https://ormstownobserver.ca/finances/budget/' target='_blank' rel='noopener'>method and sources ↗</a> on the newspaper's site.">
+        Voir l'onglet <a href="https://ormstownobserver.ca/finances/?tab=disclosures" target="_blank" rel="noopener">Ce que la loi exige ↗</a> et la <a href="https://ormstownobserver.ca/finances/budget/" target="_blank" rel="noopener">méthode et les sources ↗</a> sur le site du journal.
+      </p>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Comment ça fonctionne" data-en="How it works">Comment ça fonctionne</h2>
+      <p data-fr="Le processus part du document officiel et se termine par une vérification humaine. Rien n'est publié tant que les chiffres ne concordent pas."
+         data-en="The process starts from the official document and ends with a human check. Nothing is published until the figures reconcile.">
+        Le processus part du document officiel et se termine par une vérification humaine. Rien n'est publié tant que les chiffres ne concordent pas.
+      </p>
+      <div class="flow">
+        <div class="flow-step"><span class="fs-num">01</span><span data-fr="Le procès-verbal d'une séance paraît sur le site municipal; son annexe des dépenses est transcrite ligne par ligne." data-en="A sitting's minutes appear on the municipal site; its expense annex is transcribed line by line.">Le procès-verbal d'une séance paraît sur le site municipal; son annexe des dépenses est transcrite ligne par ligne.</span></div>
+        <div class="flow-step"><span class="fs-num">02</span><span data-fr="Chaque ligne reçoit une catégorie et un fournisseur normalisé; la somme est comparée au total adopté, au cent près." data-en="Each line gets a category and a normalized supplier; the sum is compared with the adopted total, to the penny.">Chaque ligne reçoit une catégorie et un fournisseur normalisé; la somme est comparée au total adopté, au cent près.</span></div>
+        <div class="flow-step"><span class="fs-num">03</span><span data-fr="Un validateur de 14 vérifications tourne avant chaque mise en ligne : sources, liens, parité des deux langues, totaux, registres." data-en="A validator with 14 checks runs before every release: sources, links, parity of both languages, totals, registers.">Un validateur de 14 vérifications tourne avant chaque mise en ligne : sources, liens, parité des deux langues, totaux, registres.</span></div>
+        <div class="flow-step human"><span class="fs-num">04</span><span data-fr="La salle de rédaction écrit le contexte de la séance et relit — étape humaine, et la seule qui décide de publier." data-en="The newsroom writes the sitting's context and reviews — the human step, and the only one that decides to publish.">La salle de rédaction écrit le contexte de la séance et relit — étape humaine, et la seule qui décide de publier.</span></div>
+      </div>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Les choix techniques qui comptent" data-en="The engineering choices that matter">Les choix techniques qui comptent</h2>
+      <p data-fr="Un outil de reddition de comptes doit être plus difficile à casser, à falsifier ou à abandonner que l'information qu'il publie. Les choix ci-dessous sont ennuyeux à dessein."
+         data-en="An accountability tool has to be harder to break, to tamper with, or to abandon than the information it publishes. The choices below are deliberately boring.">
+        Un outil de reddition de comptes doit être plus difficile à casser, à falsifier ou à abandonner que l'information qu'il publie. Les choix ci-dessous sont ennuyeux à dessein.
+      </p>
+      <ul>
+        <li data-fr="<strong>Un site statique, sans base de données.</strong> Hébergé sur GitHub Pages; les données vivent dans des fichiers texte versionnés. Chaque changement est un commit qu'on peut relire et annuler. Coût d'hébergement : zéro."
+            data-en="<strong>A static site, no database.</strong> Hosted on GitHub Pages; the data lives in versioned text files. Every change is a commit that can be reviewed and reverted. Hosting cost: zero.">
+          <strong>Un site statique, sans base de données.</strong> Hébergé sur GitHub Pages; les données vivent dans des fichiers texte versionnés. Chaque changement est un commit qu'on peut relire et annuler. Coût d'hébergement : zéro.</li>
+        <li data-fr="<strong>Rendu par <code>textContent</code> uniquement.</strong> Aucune donnée n'est injectée comme HTML, donc rien dans un fichier de données ne peut devenir un script dans le navigateur du lecteur."
+            data-en="<strong>textContent-only rendering.</strong> No data is ever injected as HTML, so nothing in a data file can become a script in the reader's browser.">
+          <strong>Rendu par <code>textContent</code> uniquement.</strong> Aucune donnée n'est injectée comme HTML, donc rien dans un fichier de données ne peut devenir un script dans le navigateur du lecteur.</li>
+        <li data-fr="<strong>Liste blanche de liens.</strong> Les liens sortants ne peuvent pointer que vers le site municipal, le SEAO et LégisQuébec. Tout autre domaine est affiché comme texte, jamais comme lien."
+            data-en="<strong>Link allowlist.</strong> Outbound links can only point to the municipal site, SEAO and LégisQuébec. Any other domain is shown as text, never as a link.">
+          <strong>Liste blanche de liens.</strong> Les liens sortants ne peuvent pointer que vers le site municipal, le SEAO et LégisQuébec. Tout autre domaine est affiché comme texte, jamais comme lien.</li>
+        <li data-fr="<strong>Des fichiers de données rédigés à la main, et un validateur qui les surveille.</strong> Le contexte et les registres sont écrits par la rédaction, pas générés. Quatorze vérifications automatiques font échouer la publication si une source manque, si un lien est brisé, si une séance n'a pas de contexte ou si un total ne concorde pas."
+            data-en="<strong>Hand-authored data files, with a validator watching them.</strong> The context and the registers are written by the newsroom, not generated. Fourteen automated checks fail the build if a source is missing, a link is broken, a sitting has no context, or a total doesn't reconcile.">
+          <strong>Des fichiers de données rédigés à la main, et un validateur qui les surveille.</strong> Le contexte et les registres sont écrits par la rédaction, pas générés. Quatorze vérifications automatiques font échouer la publication si une source manque, si un lien est brisé, si une séance n'a pas de contexte ou si un total ne concorde pas.</li>
+        <li data-fr="<strong>Bilingue par construction.</strong> Chaque chaîne existe en français et en anglais, et le validateur refuse une entrée qui n'a qu'une langue. Le français n'est jamais « à venir »."
+            data-en="<strong>Bilingual by construction.</strong> Every string exists in French and English, and the validator refuses an entry that has only one language. French is never “coming soon”.">
+          <strong>Bilingue par construction.</strong> Chaque chaîne existe en français et en anglais, et le validateur refuse une entrée qui n'a qu'une langue. Le français n'est jamais « à venir ».</li>
+      </ul>
+    </div>
+
+    <div class="ex-block gs-reveal">
+      <h2 data-fr="Ce que ce modèle offre à votre organisation" data-en="What this pattern gives your organization">Ce que ce modèle offre à votre organisation</h2>
+      <p data-fr="Le même modèle — des documents officiels transcrits, reliés à leur source, expliqués et vérifiés avant publication — s'applique à bien d'autres choses qu'un journal : le registre des dépenses d'une petite municipalité, le suivi des subventions d'un organisme communautaire, les décisions d'un conseil d'administration, l'inventaire des règlements d'une MRC."
+         data-en="The same pattern — official documents transcribed, linked to their source, explained, and checked before publication — applies to much more than a newspaper: a small municipality's own spending register, a community organization's grant tracking, a board's decisions, a regional county's inventory of by-laws.">
+        Le même modèle — des documents officiels transcrits, reliés à leur source, expliqués et vérifiés avant publication — s'applique à bien d'autres choses qu'un journal : le registre des dépenses d'une petite municipalité, le suivi des subventions d'un organisme communautaire, les décisions d'un conseil d'administration, l'inventaire des règlements d'une MRC.
+      </p>
+      <ul>
+        <li data-fr="<strong>Peu coûteux à héberger.</strong> Pas de serveur, pas de base de données, pas d'abonnement mensuel. Un dépôt Git et un hébergement de pages statiques suffisent." data-en="<strong>Cheap to host.</strong> No server, no database, no monthly subscription. A Git repository and static-page hosting are enough.">
+          <strong>Peu coûteux à héberger.</strong> Pas de serveur, pas de base de données, pas d'abonnement mensuel. Un dépôt Git et un hébergement de pages statiques suffisent.</li>
+        <li data-fr="<strong>Vérifiable.</strong> Chaque chiffre renvoie au document d'où il vient. Un lecteur, un vérificateur ou un conseiller peut remonter à la source en un clic." data-en="<strong>Verifiable.</strong> Every figure points to the document it came from. A reader, an auditor or a council member can trace it to the source in one click.">
+          <strong>Vérifiable.</strong> Chaque chiffre renvoie au document d'où il vient. Un lecteur, un vérificateur ou un conseiller peut remonter à la source en un clic.</li>
+        <li data-fr="<strong>Maintenable par une petite équipe.</strong> Ajouter une séance, c'est ajouter un fichier et lancer le validateur. Pas besoin d'un développeur pour l'entretien courant — et quand quelqu'un se trompe, la publication échoue au lieu de publier une erreur." data-en="<strong>Maintainable by a small team.</strong> Adding a sitting means adding a file and running the validator. No developer is needed for routine upkeep — and when someone slips, the build fails instead of publishing a mistake.">
+          <strong>Maintenable par une petite équipe.</strong> Ajouter une séance, c'est ajouter un fichier et lancer le validateur. Pas besoin d'un développeur pour l'entretien courant — et quand quelqu'un se trompe, la publication échoue au lieu de publier une erreur.</li>
+        <li data-fr="<strong>Conforme par défaut.</strong> La structure bilingue et les références aux lois sont intégrées dès le départ, pas ajoutées après coup." data-en="<strong>Compliant by default.</strong> The bilingual structure and the references to the law are built in from the start, not bolted on afterwards.">
+          <strong>Conforme par défaut.</strong> La structure bilingue et les références aux lois sont intégrées dès le départ, pas ajoutées après coup.</li>
+      </ul>
+      <p class="ex-note" style="margin-top:1.4rem;"
+         data-fr="Le Registre est publié par un journal indépendant, qui en garde la responsabilité éditoriale. strAI en a conçu et construit l'outil; le journal décide de ce qui y paraît."
+         data-en="The Ledger is published by an independent newspaper, which keeps editorial responsibility for it. strAI designed and built the tool; the newspaper decides what appears in it.">
+        Le Registre est publié par un journal indépendant, qui en garde la responsabilité éditoriale. strAI en a conçu et construit l'outil; le journal décide de ce qui y paraît.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ====== CTA ====== -->
+<section class="example-cta">
+  <div class="container narrow">
+    <h2 data-fr="Des chiffres publics que personne ne peut lire?" data-en="Public figures nobody can read?">Des chiffres publics que personne ne peut lire?</h2>
+    <p data-fr="Si votre organisation publie des dépenses, des décisions ou des contrats dans des PDF que peu de gens ouvrent, un registre semblable peut être construit autour de vos documents — et entretenu par votre équipe."
+       data-en="If your organization publishes spending, decisions or contracts in PDFs that few people open, a similar register can be built around your documents — and maintained by your own team.">
+      Si votre organisation publie des dépenses, des décisions ou des contrats dans des PDF que peu de gens ouvrent, un registre semblable peut être construit autour de vos documents — et entretenu par votre équipe.
+    </p>
+    <a href="/#contact" class="btn btn-primary" data-fr="Réserver un appel de 30 minutes" data-en="Book a 30-minute call">Réserver un appel de 30 minutes</a>
+    <a href="/#examples" class="btn btn-ghost" data-fr="Voir les autres exemples" data-en="See the other examples">Voir les autres exemples</a>
+  </div>
+</section>
+
+<!-- ====== FOOTER ====== -->
+<footer>
+  <div class="container">
+    <div class="footer-row">
+      <span class="footer-logo">
+        <svg viewBox="0 0 48 34" aria-hidden="true">
+          <g fill="#00AEEF">
+            <rect x="0" y="12" width="9" height="22" rx="4.5"></rect>
+            <rect x="13" y="0" width="9" height="34" rx="4.5"></rect>
+            <rect x="26" y="6" width="9" height="28" rx="4.5"></rect>
+            <rect x="39" y="18" width="9" height="16" rx="4.5" fill="#3DFFF3"></rect>
+          </g>
+        </svg>
+        <span>str<span class="ai">AI</span></span>
+      </span>
+      <div class="footer-sdm">
+        <span data-fr="Une initiative de" data-en="An initiative by">Une initiative de</span>
+        <a href="https://www.straydogmedia.ca" target="_blank" rel="noopener"> Stray Dog Media &#x1F43E;</a>
+      </div>
+      <div data-fr="&copy; 2026 strAI.ca &middot; Ormstown, Québec" data-en="&copy; 2026 strAI.ca &middot; Ormstown, Quebec">&copy; 2026 strAI.ca &middot; Ormstown, Québec</div>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/app.js" defer></script>
+</body>
+</html>
